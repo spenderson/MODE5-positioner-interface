@@ -224,23 +224,53 @@ namespace Serial
             UpdateCOMPortList();
         }
 
+        private void AddFloatToPacket(byte[] packet, float value, int startIndex)
+        {
+            byte[] bytes = BitConverter.GetBytes(value);
+            Array.Reverse(bytes); // Since this is a Windows Forms .NET Framework 4.8 application, GetBytes() returns little-endian
+
+            packet[startIndex] = bytes[0];
+            packet[startIndex + 1] = bytes[1];
+            packet[startIndex + 2] = bytes[2];
+            packet[startIndex + 3] = bytes[3];
+        }
+
         private void btnSend_Click(object sender, EventArgs e)
         {
             if(null != Serial)
             {
                 if(true == Serial.IsOpen)
                 {
-                    //Serial.Write(tboxData.Text);
-                    //byte[] data = Encoding.ASCII.GetBytes(tboxData.Text);
+                    // Construct packet based on slider values
 
                     byte[] packet = new byte[MODE5_PACKET_SIZE];
+
+                    // Sync char
+
                     packet[0] = MODE5_SYNC_CHAR;
-                    packet[0] = MODE5_SYNC_CHAR;
 
+                    // Positions
 
+                    int azPos = azPosSlider.Value * 16777216 / 360;
+                    packet[1] = (byte)((azPos >> 16) & 0xFF);
+                    packet[2] = (byte)((azPos >> 8)  & 0xFF);
+                    packet[3] = (byte)((azPos)       & 0xFF);
 
+                    int elPos = elPosSlider.Value * 16777216 / 360;
+                    packet[4] = (byte)((elPos >> 16) & 0xFF);
+                    packet[5] = (byte)((elPos >> 8)  & 0xFF);
+                    packet[6] = (byte)((elPos)       & 0xFF);
 
+                    // Velocities and Accellerations
 
+                    AddFloatToPacket(packet, azVelSlider.Value, 7);
+                    AddFloatToPacket(packet, elVelSlider.Value, 11);
+                    AddFloatToPacket(packet, azAccelSlider.Value, 15);
+                    AddFloatToPacket(packet, elAccelSlider.Value, 19);
+
+                    // Checksum
+
+                    packet[23] = 0x52; // dummy checksum for testing
 
                     Serial.Write(packet, 0, packet.Length);
                 }

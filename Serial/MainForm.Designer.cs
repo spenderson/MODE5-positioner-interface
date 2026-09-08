@@ -119,18 +119,18 @@
             // 
             // azPosSlider
             // 
-            this.azPosSlider.Location = new System.Drawing.Point(122, 136);
+            this.azPosSlider.Location = new System.Drawing.Point(82, 136);
             this.azPosSlider.Maximum = 360;
             this.azPosSlider.Name = "azPosSlider";
-            this.azPosSlider.Size = new System.Drawing.Size(394, 56);
+            this.azPosSlider.Size = new System.Drawing.Size(434, 56);
             this.azPosSlider.TabIndex = 7;
             // 
             // elPosSlider
             // 
-            this.elPosSlider.Location = new System.Drawing.Point(122, 198);
+            this.elPosSlider.Location = new System.Drawing.Point(82, 181);
             this.elPosSlider.Maximum = 90;
             this.elPosSlider.Name = "elPosSlider";
-            this.elPosSlider.Size = new System.Drawing.Size(394, 56);
+            this.elPosSlider.Size = new System.Drawing.Size(434, 56);
             this.elPosSlider.TabIndex = 8;
             // 
             // azVelSlider
@@ -176,7 +176,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 198);
+            this.label1.Location = new System.Drawing.Point(13, 181);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 16);
             this.label1.TabIndex = 13;
@@ -185,7 +185,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 136);
+            this.label2.Location = new System.Drawing.Point(13, 136);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 16);
             this.label2.TabIndex = 14;
@@ -194,7 +194,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(288, 106);
+            this.label3.Location = new System.Drawing.Point(224, 105);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(55, 16);
             this.label3.TabIndex = 15;

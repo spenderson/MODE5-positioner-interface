@@ -16,9 +16,13 @@ namespace Serial
     {
         #region Constant
         private readonly int[] baudrate = { 9600, 19200, 38400, 115200, 230400, 460800, 921600, 3860000 };
+        private readonly int MODE5_PACKET_SIZE = 24;
+        //private readonly byte MODE5_SYNC_CHAR = 0xAA;
+        private readonly byte MODE5_SYNC_CHAR = 0x41; // typable sync char "A", for testing
         #endregion
 
         private SerialPort Serial = new SerialPort();
+        private List<byte> rxBuffer = new List<byte>();
 
         #region Local Helpers
         private void UpdateCOMPortList()
@@ -46,7 +50,8 @@ namespace Serial
         public delegate void UPDATE_OUTPUT_TEXT(String Str);
         public void UpdateOutputText(String Str)
         {
-            tboxReceive.Text += Str;
+            //tboxReceive.Text += Str;
+            tboxReceive.Text = Str + tboxReceive.Text; // reversed to keep recent data at the top
             tboxReceive.ScrollToCaret();
         }
         #endregion
@@ -55,9 +60,69 @@ namespace Serial
         #region Handlers
         void SerialOnReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
-            String str = Serial.ReadExisting();
+            // Add received bytes to buffer
+            int busRxMax = 100;
+            byte[] rxBufferLocal = new byte[busRxMax];
+            int numBytesReceived = Serial.Read(rxBufferLocal, 0, busRxMax);
+            for (int i = 0; i < numBytesReceived; i++)
+            {
+                rxBuffer.Add(rxBufferLocal[i]);
+            }
+
+            int firstSyncChar;
+            while (true)
+            {
+                firstSyncChar = -1;
+
+                // Loop through all bytes within buffer, from left to right: if current byte is a sync char, assign that byte's position number to firstSyncChar.
+                for (int i = 0; i < rxBuffer.Count; i++)
+                {
+                    if (rxBuffer[i] == MODE5_SYNC_CHAR)
+                    {
+                        firstSyncChar = i;
+                        break;
+                    }
+                }
+
+                // If firstSyncChar is still -1, clear buffer and exit SerialOnReceivedHandler.
+                if (firstSyncChar == -1)
+                {
+                    rxBuffer.Clear();
+                    return;
+                }
+
+                // Remove all bytes before the first sync char.
+                if (firstSyncChar > 0)
+                {
+                    rxBuffer.RemoveRange(0, firstSyncChar);
+                }
+
+                // If there aren't 23 bytes after the first sync char, exit SerialOnReceivedHandler.
+                if (rxBuffer.Count < MODE5_PACKET_SIZE)
+                {
+                    return;
+                }
+
+                // Check the 23rd byte for checksum logic
+                if (true) // it checks out
+                {
+                    // output those 24 bytes to window, clear them from the receive buffer. 
+                    string str = "MODE5 packet received:";
+                    for (int i = 0; i < MODE5_PACKET_SIZE; i++)
+                    {
+                        str += " " + rxBuffer[i].ToString("X2");
+                    }
+                    str += "\r\n";
+                    Invoke(new UPDATE_OUTPUT_TEXT(UpdateOutputText), str);
+                    rxBuffer.RemoveRange(0, MODE5_PACKET_SIZE);
+                } 
+                else // it doesn't
+                {
+                    // remove first byte (sync char) from receive buffer.
+                    rxBuffer.RemoveRange(0, 1);
+                }
+            }
             
-           Invoke(new UPDATE_OUTPUT_TEXT(UpdateOutputText), str);
         }
         #endregion
 
@@ -165,7 +230,19 @@ namespace Serial
             {
                 if(true == Serial.IsOpen)
                 {
-                    Serial.Write(tboxData.Text);
+                    //Serial.Write(tboxData.Text);
+                    //byte[] data = Encoding.ASCII.GetBytes(tboxData.Text);
+
+                    byte[] packet = new byte[MODE5_PACKET_SIZE];
+                    packet[0] = MODE5_SYNC_CHAR;
+                    packet[0] = MODE5_SYNC_CHAR;
+
+
+
+
+
+
+                    Serial.Write(packet, 0, packet.Length);
                 }
                 else
                 {

@@ -55,14 +55,14 @@ namespace Serial
         }
         public void UpdateTextBoxes(float azPos, float elPos, float azVel, float elVel, float azAcc, float elAcc)
         {
-            azPosTextBox.Text = azPos.ToString();
-            elPosTextBox.Text = elPos.ToString();
+            azPosTextBox.Text = azPos.ToString("0.##");
+            elPosTextBox.Text = elPos.ToString("0.##");
 
-            azVelTextBox.Text = azVel.ToString();
-            elVelTextBox.Text = elVel.ToString();
+            azVelTextBox.Text = azVel.ToString("0.##");
+            elVelTextBox.Text = elVel.ToString("0.##");
 
-            azAccTextBox.Text = azAcc.ToString();
-            elAccTextBox.Text = elAcc.ToString();
+            azAccTextBox.Text = azAcc.ToString("0.##");
+            elAccTextBox.Text = elAcc.ToString("0.##");
         }
         #endregion
         private float PullFloatFromPacket(List<byte> packetBuffer, int startingIndex)
@@ -299,11 +299,19 @@ namespace Serial
                     // Positions
 
                     int azPos = (int)(azPosSlider.Value * 16777216.0 / 360.0);
-                    int elPos = (int)(elPosSlider.Value * 16777216.0 / 360.0);
 
                     packet[1] = (byte)((azPos >> 16) & 0xFF);
                     packet[2] = (byte)((azPos >> 8)  & 0xFF);
                     packet[3] = (byte)((azPos)       & 0xFF);
+
+                    double elDegrees = elPosSlider.Value;
+
+                    if (elDegrees < 0)
+                    {
+                        elDegrees = (elDegrees % 360) + 360;
+                    }
+
+                    int elPos = (int)(elDegrees * 16777216.0 / 360.0);
 
                     packet[4] = (byte)((elPos >> 16) & 0xFF);
                     packet[5] = (byte)((elPos >> 8)  & 0xFF);

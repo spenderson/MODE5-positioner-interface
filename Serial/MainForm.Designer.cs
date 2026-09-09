@@ -141,7 +141,8 @@
             // elPosSlider
             // 
             this.elPosSlider.Location = new System.Drawing.Point(82, 181);
-            this.elPosSlider.Maximum = 90;
+            this.elPosSlider.Maximum = 83;
+            this.elPosSlider.Minimum = -38;
             this.elPosSlider.Name = "elPosSlider";
             this.elPosSlider.Size = new System.Drawing.Size(434, 56);
             this.elPosSlider.TabIndex = 8;
@@ -191,18 +192,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(13, 181);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 16);
+            this.label1.Size = new System.Drawing.Size(63, 32);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Elevation";
+            this.label1.Text = "Elevation\r\n-38 - 83";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 136);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 16);
+            this.label2.Size = new System.Drawing.Size(53, 32);
             this.label2.TabIndex = 14;
-            this.label2.Text = "Azimuth";
+            this.label2.Text = "Azimuth\r\n0 - 360";
             // 
             // label3
             // 

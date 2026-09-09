@@ -49,6 +49,19 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.azPosTextBox = new System.Windows.Forms.TextBox();
+            this.elPosTextBox = new System.Windows.Forms.TextBox();
+            this.elVelTextBox = new System.Windows.Forms.TextBox();
+            this.azVelTextBox = new System.Windows.Forms.TextBox();
+            this.elAccTextBox = new System.Windows.Forms.TextBox();
+            this.azAccTextBox = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.azVelSlider)).BeginInit();
@@ -110,7 +123,7 @@
             // 
             // tboxReceive
             // 
-            this.tboxReceive.Location = new System.Drawing.Point(16, 501);
+            this.tboxReceive.Location = new System.Drawing.Point(16, 778);
             this.tboxReceive.Margin = new System.Windows.Forms.Padding(4);
             this.tboxReceive.Multiline = true;
             this.tboxReceive.Name = "tboxReceive";
@@ -254,11 +267,129 @@
             this.label9.TabIndex = 20;
             this.label9.Text = "Azimuth";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(13, 473);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(132, 16);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Last received packet";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(39, 546);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(66, 32);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Position\r\n(degrees)";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(39, 611);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 32);
+            this.label12.TabIndex = 24;
+            this.label12.Text = "Velocity\r\n(deg/sec)";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(39, 675);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(91, 32);
+            this.label13.TabIndex = 25;
+            this.label13.Text = "Acceleration\r\n(deg/sec/sec)";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(147, 513);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 16);
+            this.label14.TabIndex = 26;
+            this.label14.Text = "Azimuth";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(230, 513);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(63, 16);
+            this.label15.TabIndex = 27;
+            this.label15.Text = "Elevation";
+            // 
+            // azPosTextBox
+            // 
+            this.azPosTextBox.Location = new System.Drawing.Point(150, 556);
+            this.azPosTextBox.Name = "azPosTextBox";
+            this.azPosTextBox.Size = new System.Drawing.Size(60, 22);
+            this.azPosTextBox.TabIndex = 28;
+            // 
+            // elPosTextBox
+            // 
+            this.elPosTextBox.Location = new System.Drawing.Point(233, 556);
+            this.elPosTextBox.Name = "elPosTextBox";
+            this.elPosTextBox.Size = new System.Drawing.Size(60, 22);
+            this.elPosTextBox.TabIndex = 29;
+            // 
+            // elVelTextBox
+            // 
+            this.elVelTextBox.Location = new System.Drawing.Point(233, 621);
+            this.elVelTextBox.Name = "elVelTextBox";
+            this.elVelTextBox.Size = new System.Drawing.Size(60, 22);
+            this.elVelTextBox.TabIndex = 31;
+            // 
+            // azVelTextBox
+            // 
+            this.azVelTextBox.Location = new System.Drawing.Point(150, 621);
+            this.azVelTextBox.Name = "azVelTextBox";
+            this.azVelTextBox.Size = new System.Drawing.Size(60, 22);
+            this.azVelTextBox.TabIndex = 30;
+            // 
+            // elAccTextBox
+            // 
+            this.elAccTextBox.Location = new System.Drawing.Point(233, 685);
+            this.elAccTextBox.Name = "elAccTextBox";
+            this.elAccTextBox.Size = new System.Drawing.Size(60, 22);
+            this.elAccTextBox.TabIndex = 33;
+            // 
+            // azAccTextBox
+            // 
+            this.azAccTextBox.Location = new System.Drawing.Point(150, 685);
+            this.azAccTextBox.Name = "azAccTextBox";
+            this.azAccTextBox.Size = new System.Drawing.Size(60, 22);
+            this.azAccTextBox.TabIndex = 32;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(13, 737);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(80, 16);
+            this.label16.TabIndex = 34;
+            this.label16.Text = "Receive log";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(537, 657);
+            this.ClientSize = new System.Drawing.Size(532, 932);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.elAccTextBox);
+            this.Controls.Add(this.azAccTextBox);
+            this.Controls.Add(this.elVelTextBox);
+            this.Controls.Add(this.azVelTextBox);
+            this.Controls.Add(this.elPosTextBox);
+            this.Controls.Add(this.azPosTextBox);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label7);
@@ -318,6 +449,19 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox azPosTextBox;
+        private System.Windows.Forms.TextBox elPosTextBox;
+        private System.Windows.Forms.TextBox elVelTextBox;
+        private System.Windows.Forms.TextBox azVelTextBox;
+        private System.Windows.Forms.TextBox elAccTextBox;
+        private System.Windows.Forms.TextBox azAccTextBox;
+        private System.Windows.Forms.Label label16;
     }
 }
 

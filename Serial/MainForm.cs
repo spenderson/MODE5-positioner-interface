@@ -17,8 +17,8 @@ namespace Serial
         #region Constant
         private readonly int[] baudrate = { 9600, 19200, 38400, 115200, 230400, 460800, 921600, 3860000 };
         private readonly int MODE5_PACKET_SIZE = 24;
-        //private readonly byte MODE5_SYNC_CHAR = 0xAA;
-        private readonly byte MODE5_SYNC_CHAR = 0x41; // typable sync char "A", for testing
+        private readonly byte MODE5_SYNC_CHAR = 0xAA;
+        //private readonly byte MODE5_SYNC_CHAR = 0x41; // typable sync char "A", for testing
         #endregion
 
         private SerialPort Serial = new SerialPort();
@@ -50,11 +50,34 @@ namespace Serial
         public delegate void UPDATE_OUTPUT_TEXT(String Str);
         public void UpdateOutputText(String Str)
         {
-            //tboxReceive.Text += Str;
             tboxReceive.Text = Str + tboxReceive.Text; // reversed to keep recent data at the top
             tboxReceive.ScrollToCaret();
         }
+        public void UpdateTextBoxes(float azPos, float elPos, float azVel, float elVel, float azAcc, float elAcc)
+        {
+            azPosTextBox.Text = azPos.ToString();
+            elPosTextBox.Text = elPos.ToString();
+
+            azVelTextBox.Text = azVel.ToString();
+            elVelTextBox.Text = elVel.ToString();
+
+            azAccTextBox.Text = azAcc.ToString();
+            elAccTextBox.Text = elAcc.ToString();
+        }
         #endregion
+        private float PullFloatFromPacket(List<byte> packetBuffer, int startingIndex)
+        {
+            byte[] bytes = new byte[4];
+
+            bytes[0] = packetBuffer[startingIndex];
+            bytes[1] = packetBuffer[startingIndex + 1];
+            bytes[2] = packetBuffer[startingIndex + 2];
+            bytes[3] = packetBuffer[startingIndex + 3];
+
+            Array.Reverse(bytes); // matches AddFloatToPacket()
+
+            return BitConverter.ToSingle(bytes, 0);
+        }
 
 
         #region Handlers
@@ -104,16 +127,40 @@ namespace Serial
                 }
 
                 // Check the 23rd byte for checksum logic
-                if (true) // it checks out
+                int sum = 0;
+                for (int i = 0; i < MODE5_PACKET_SIZE - 1; i++)
                 {
-                    // output those 24 bytes to window, clear them from the receive buffer. 
-                    string str = "MODE5 packet received:";
+                    sum += rxBuffer[i];
+                }
+
+                if (sum % 256 == rxBuffer[MODE5_PACKET_SIZE - 1]) // it checks out
+                {
+                    // output those 24 bytes to big text box
+
+                    string str = "";
                     for (int i = 0; i < MODE5_PACKET_SIZE; i++)
                     {
                         str += " " + rxBuffer[i].ToString("X2");
                     }
                     str += "\r\n";
                     Invoke(new UPDATE_OUTPUT_TEXT(UpdateOutputText), str);
+
+                    // output the data to their dedicated little text boxes
+
+                    int azInt = (rxBuffer[1]  << 16) | (rxBuffer[2]  << 8)  | rxBuffer[3];
+                    int elInt = (rxBuffer[4]  << 16) | (rxBuffer[5]  << 8)  | rxBuffer[6];
+                    float azPos = azInt * 360.0f / 16777216.0f;
+                    float elPos = elInt * 360.0f / 16777216.0f;
+
+                    float azVel = PullFloatFromPacket(rxBuffer, 7);
+                    float elVel = PullFloatFromPacket(rxBuffer, 11);
+                    float azAcc = PullFloatFromPacket(rxBuffer, 15);
+                    float elAcc = PullFloatFromPacket(rxBuffer, 19);
+
+                    Invoke((Action)(() => UpdateTextBoxes(azPos, elPos, azVel, elVel, azAcc, elAcc)));
+
+                    // clear them from the receive buffer. 
+
                     rxBuffer.RemoveRange(0, MODE5_PACKET_SIZE);
                 } 
                 else // it doesn't
@@ -251,12 +298,13 @@ namespace Serial
 
                     // Positions
 
-                    int azPos = azPosSlider.Value * 16777216 / 360;
+                    int azPos = (int)(azPosSlider.Value * 16777216.0 / 360.0);
+                    int elPos = (int)(elPosSlider.Value * 16777216.0 / 360.0);
+
                     packet[1] = (byte)((azPos >> 16) & 0xFF);
                     packet[2] = (byte)((azPos >> 8)  & 0xFF);
                     packet[3] = (byte)((azPos)       & 0xFF);
 
-                    int elPos = elPosSlider.Value * 16777216 / 360;
                     packet[4] = (byte)((elPos >> 16) & 0xFF);
                     packet[5] = (byte)((elPos >> 8)  & 0xFF);
                     packet[6] = (byte)((elPos)       & 0xFF);
@@ -270,7 +318,13 @@ namespace Serial
 
                     // Checksum
 
-                    packet[23] = 0x52; // dummy checksum for testing
+                    int bytesToSum = MODE5_PACKET_SIZE - 1;
+                    int sum = 0;
+                    for (int i = 0; i < bytesToSum; i++)
+                    {
+                        sum += packet[i];
+                    }
+                    packet[bytesToSum] = (byte)(sum % 256);
 
                     Serial.Write(packet, 0, packet.Length);
                 }

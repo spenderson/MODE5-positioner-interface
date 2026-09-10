@@ -138,11 +138,18 @@ namespace Serial
                     // output those 24 bytes to big text box
 
                     string str = "";
+                    List<int> spaces = new List<int> { 1, 4, 7, 11, 15, 19, 23 };
+
                     for (int i = 0; i < MODE5_PACKET_SIZE; i++)
                     {
-                        str += " " + rxBuffer[i].ToString("X2");
+                        if (spaces.Contains(i))
+                        {
+                            str += " ";
+                        }
+                        str += rxBuffer[i].ToString("X2");
                     }
                     str += "\r\n";
+
                     Invoke(new UPDATE_OUTPUT_TEXT(UpdateOutputText), str);
 
                     // output the data to their dedicated little text boxes
@@ -341,6 +348,39 @@ namespace Serial
                     MessageBox.Show("COM Port is not Opened");
                 }
             }
+        }
+
+        private bool updatingControls = false; // flag used to prevent feedback loops (to be safe)
+
+        private void azPosSlider_Scroll(object sender, EventArgs e)
+        {
+            if (updatingControls)
+                return;
+            updatingControls = true;
+            azPosTextBoxTx.Text = azPosSlider.Value.ToString();
+            updatingControls = false;
+        }
+
+        private void azPosTextBoxTx_TextChanged(object sender, EventArgs e)
+        {
+            if (updatingControls)
+                return;
+
+            int value;
+
+            if (int.TryParse(azPosTextBoxTx.Text, out value) &&
+                value >= azPosSlider.Minimum &&
+                value <= azPosSlider.Maximum)
+            {
+                updatingControls = true;
+                azPosSlider.Value = value;
+                updatingControls = false;
+            }
+        }
+
+        private void azPosTextBoxTx_Leave(object sender, EventArgs e)
+        {
+            azPosTextBoxTx.Text = azPosSlider.Value.ToString();
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.cboxComport = new System.Windows.Forms.ComboBox();
             this.btnConnect = new System.Windows.Forms.Button();
             this.cboxBaudrate = new System.Windows.Forms.ComboBox();
@@ -74,14 +75,14 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.azPosTextBoxTx = new System.Windows.Forms.TextBox();
+            this.elPosTextBoxTx = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.elAccTextBoxTx = new System.Windows.Forms.TextBox();
+            this.azAccTextBoxTx = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.elVelTextBoxTx = new System.Windows.Forms.TextBox();
+            this.azVelTextBoxTx = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -108,7 +109,7 @@
             this.cboxComport.Location = new System.Drawing.Point(72, 32);
             this.cboxComport.Margin = new System.Windows.Forms.Padding(4);
             this.cboxComport.Name = "cboxComport";
-            this.cboxComport.Size = new System.Drawing.Size(160, 24);
+            this.cboxComport.Size = new System.Drawing.Size(103, 24);
             this.cboxComport.TabIndex = 0;
             // 
             // btnConnect
@@ -116,7 +117,7 @@
             this.btnConnect.Location = new System.Drawing.Point(26, 106);
             this.btnConnect.Margin = new System.Windows.Forms.Padding(4);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(100, 28);
+            this.btnConnect.Size = new System.Drawing.Size(112, 28);
             this.btnConnect.TabIndex = 1;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -128,15 +129,15 @@
             this.cboxBaudrate.Location = new System.Drawing.Point(72, 65);
             this.cboxBaudrate.Margin = new System.Windows.Forms.Padding(4);
             this.cboxBaudrate.Name = "cboxBaudrate";
-            this.cboxBaudrate.Size = new System.Drawing.Size(160, 24);
+            this.cboxBaudrate.Size = new System.Drawing.Size(103, 24);
             this.cboxBaudrate.TabIndex = 2;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(249, 32);
+            this.btnRefresh.Location = new System.Drawing.Point(234, 32);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(100, 28);
+            this.btnRefresh.Size = new System.Drawing.Size(79, 28);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -155,6 +156,7 @@
             // 
             // tboxReceive
             // 
+            this.tboxReceive.Font = new System.Drawing.Font("Courier New", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tboxReceive.Location = new System.Drawing.Point(9, 371);
             this.tboxReceive.Margin = new System.Windows.Forms.Padding(4);
             this.tboxReceive.Multiline = true;
@@ -169,6 +171,7 @@
             this.azPosSlider.Name = "azPosSlider";
             this.azPosSlider.Size = new System.Drawing.Size(260, 56);
             this.azPosSlider.TabIndex = 7;
+            this.azPosSlider.Scroll += new System.EventHandler(this.azPosSlider_Scroll);
             // 
             // elPosSlider
             // 
@@ -313,6 +316,7 @@
             // 
             this.azPosTextBox.Location = new System.Drawing.Point(109, 27);
             this.azPosTextBox.Name = "azPosTextBox";
+            this.azPosTextBox.ReadOnly = true;
             this.azPosTextBox.Size = new System.Drawing.Size(60, 22);
             this.azPosTextBox.TabIndex = 28;
             // 
@@ -320,6 +324,7 @@
             // 
             this.elPosTextBox.Location = new System.Drawing.Point(109, 27);
             this.elPosTextBox.Name = "elPosTextBox";
+            this.elPosTextBox.ReadOnly = true;
             this.elPosTextBox.Size = new System.Drawing.Size(60, 22);
             this.elPosTextBox.TabIndex = 29;
             // 
@@ -327,6 +332,7 @@
             // 
             this.elVelTextBox.Location = new System.Drawing.Point(109, 53);
             this.elVelTextBox.Name = "elVelTextBox";
+            this.elVelTextBox.ReadOnly = true;
             this.elVelTextBox.Size = new System.Drawing.Size(60, 22);
             this.elVelTextBox.TabIndex = 31;
             // 
@@ -334,6 +340,7 @@
             // 
             this.azVelTextBox.Location = new System.Drawing.Point(109, 53);
             this.azVelTextBox.Name = "azVelTextBox";
+            this.azVelTextBox.ReadOnly = true;
             this.azVelTextBox.Size = new System.Drawing.Size(60, 22);
             this.azVelTextBox.TabIndex = 30;
             // 
@@ -341,6 +348,7 @@
             // 
             this.elAccTextBox.Location = new System.Drawing.Point(109, 79);
             this.elAccTextBox.Name = "elAccTextBox";
+            this.elAccTextBox.ReadOnly = true;
             this.elAccTextBox.Size = new System.Drawing.Size(60, 22);
             this.elAccTextBox.TabIndex = 33;
             // 
@@ -348,6 +356,7 @@
             // 
             this.azAccTextBox.Location = new System.Drawing.Point(109, 79);
             this.azAccTextBox.Name = "azAccTextBox";
+            this.azAccTextBox.ReadOnly = true;
             this.azAccTextBox.Size = new System.Drawing.Size(60, 22);
             this.azAccTextBox.TabIndex = 32;
             // 
@@ -483,12 +492,12 @@
             this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox6);
             this.groupBox3.Controls.Add(this.btnSend);
-            this.groupBox3.Location = new System.Drawing.Point(16, 182);
+            this.groupBox3.Location = new System.Drawing.Point(16, 693);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(521, 423);
             this.groupBox3.TabIndex = 40;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Transmission";
+            this.groupBox3.Text = "Transmitter";
             // 
             // groupBox8
             // 
@@ -499,10 +508,10 @@
             this.groupBox8.Controls.Add(this.label18);
             this.groupBox8.Controls.Add(this.elPosSlider);
             this.groupBox8.Controls.Add(this.label5);
-            this.groupBox8.Controls.Add(this.textBox2);
+            this.groupBox8.Controls.Add(this.elPosTextBoxTx);
             this.groupBox8.Controls.Add(this.azPosSlider);
             this.groupBox8.Controls.Add(this.label4);
-            this.groupBox8.Controls.Add(this.textBox1);
+            this.groupBox8.Controls.Add(this.azPosTextBoxTx);
             this.groupBox8.Location = new System.Drawing.Point(22, 35);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(478, 146);
@@ -546,28 +555,30 @@
             this.label4.TabIndex = 30;
             this.label4.Text = "0";
             // 
-            // textBox1
+            // azPosTextBoxTx
             // 
-            this.textBox1.Location = new System.Drawing.Point(407, 33);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(48, 22);
-            this.textBox1.TabIndex = 22;
+            this.azPosTextBoxTx.Location = new System.Drawing.Point(407, 33);
+            this.azPosTextBoxTx.Name = "azPosTextBoxTx";
+            this.azPosTextBoxTx.Size = new System.Drawing.Size(48, 22);
+            this.azPosTextBoxTx.TabIndex = 22;
+            this.azPosTextBoxTx.TextChanged += new System.EventHandler(this.azPosTextBoxTx_TextChanged);
+            this.azPosTextBoxTx.Leave += new System.EventHandler(this.azPosTextBoxTx_Leave);
             // 
-            // textBox2
+            // elPosTextBoxTx
             // 
-            this.textBox2.Location = new System.Drawing.Point(407, 91);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(48, 22);
-            this.textBox2.TabIndex = 23;
+            this.elPosTextBoxTx.Location = new System.Drawing.Point(407, 91);
+            this.elPosTextBoxTx.Name = "elPosTextBoxTx";
+            this.elPosTextBoxTx.Size = new System.Drawing.Size(48, 22);
+            this.elPosTextBoxTx.TabIndex = 23;
             // 
             // groupBox7
             // 
             this.groupBox7.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.groupBox7.Controls.Add(this.azAccelSlider);
             this.groupBox7.Controls.Add(this.elAccelSlider);
-            this.groupBox7.Controls.Add(this.textBox5);
+            this.groupBox7.Controls.Add(this.elAccTextBoxTx);
             this.groupBox7.Controls.Add(this.label9);
-            this.groupBox7.Controls.Add(this.textBox6);
+            this.groupBox7.Controls.Add(this.azAccTextBoxTx);
             this.groupBox7.Controls.Add(this.label8);
             this.groupBox7.Location = new System.Drawing.Point(216, 202);
             this.groupBox7.Name = "groupBox7";
@@ -576,19 +587,19 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Acceleration";
             // 
-            // textBox5
+            // elAccTextBoxTx
             // 
-            this.textBox5.Location = new System.Drawing.Point(86, 47);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(48, 22);
-            this.textBox5.TabIndex = 27;
+            this.elAccTextBoxTx.Location = new System.Drawing.Point(86, 47);
+            this.elAccTextBoxTx.Name = "elAccTextBoxTx";
+            this.elAccTextBoxTx.Size = new System.Drawing.Size(48, 22);
+            this.elAccTextBoxTx.TabIndex = 27;
             // 
-            // textBox6
+            // azAccTextBoxTx
             // 
-            this.textBox6.Location = new System.Drawing.Point(18, 47);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(48, 22);
-            this.textBox6.TabIndex = 26;
+            this.azAccTextBoxTx.Location = new System.Drawing.Point(18, 47);
+            this.azAccTextBoxTx.Name = "azAccTextBoxTx";
+            this.azAccTextBoxTx.Size = new System.Drawing.Size(48, 22);
+            this.azAccTextBoxTx.TabIndex = 26;
             // 
             // groupBox6
             // 
@@ -596,9 +607,9 @@
             this.groupBox6.Controls.Add(this.elVelSlider);
             this.groupBox6.Controls.Add(this.label6);
             this.groupBox6.Controls.Add(this.label7);
-            this.groupBox6.Controls.Add(this.textBox4);
+            this.groupBox6.Controls.Add(this.elVelTextBoxTx);
             this.groupBox6.Controls.Add(this.azVelSlider);
-            this.groupBox6.Controls.Add(this.textBox3);
+            this.groupBox6.Controls.Add(this.azVelTextBoxTx);
             this.groupBox6.Location = new System.Drawing.Point(22, 202);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(153, 200);
@@ -606,19 +617,19 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Velocity";
             // 
-            // textBox4
+            // elVelTextBoxTx
             // 
-            this.textBox4.Location = new System.Drawing.Point(86, 50);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(48, 22);
-            this.textBox4.TabIndex = 25;
+            this.elVelTextBoxTx.Location = new System.Drawing.Point(86, 50);
+            this.elVelTextBoxTx.Name = "elVelTextBoxTx";
+            this.elVelTextBoxTx.Size = new System.Drawing.Size(48, 22);
+            this.elVelTextBoxTx.TabIndex = 25;
             // 
-            // textBox3
+            // azVelTextBoxTx
             // 
-            this.textBox3.Location = new System.Drawing.Point(18, 50);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(48, 22);
-            this.textBox3.TabIndex = 24;
+            this.azVelTextBoxTx.Location = new System.Drawing.Point(18, 50);
+            this.azVelTextBoxTx.Name = "azVelTextBoxTx";
+            this.azVelTextBoxTx.Size = new System.Drawing.Size(48, 22);
+            this.azVelTextBoxTx.TabIndex = 24;
             // 
             // groupBox4
             // 
@@ -630,7 +641,7 @@
             this.groupBox4.Controls.Add(this.btnRefresh);
             this.groupBox4.Location = new System.Drawing.Point(16, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(363, 150);
+            this.groupBox4.Size = new System.Drawing.Size(332, 150);
             this.groupBox4.TabIndex = 41;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "RS-232";
@@ -660,7 +671,7 @@
             this.groupBox5.Controls.Add(this.label10);
             this.groupBox5.Controls.Add(this.groupBox2);
             this.groupBox5.Controls.Add(this.groupBox1);
-            this.groupBox5.Location = new System.Drawing.Point(16, 620);
+            this.groupBox5.Location = new System.Drawing.Point(16, 168);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(521, 509);
             this.groupBox5.TabIndex = 42;
@@ -675,9 +686,10 @@
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
-            this.Text = "Serial V1.0";
+            this.Text = "MODE5 Receiver";
             this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).EndInit();
@@ -751,12 +763,12 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox azVelTextBoxTx;
+        private System.Windows.Forms.TextBox elPosTextBoxTx;
+        private System.Windows.Forms.TextBox azPosTextBoxTx;
+        private System.Windows.Forms.TextBox elVelTextBoxTx;
+        private System.Windows.Forms.TextBox elAccTextBoxTx;
+        private System.Windows.Forms.TextBox azAccTextBoxTx;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox8;

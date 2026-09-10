@@ -183,6 +183,27 @@ namespace Serial
         public MainForm()
         {
             InitializeComponent();
+
+            // have each slider/textbox pair on the TX interface be tagged to eachother
+            // this is to allow generic handlers to use tags to decide which other UI elements to update
+
+            azPosSlider.Tag = azPosTextBoxTx;
+            azPosTextBoxTx.Tag = azPosSlider;
+
+            elPosSlider.Tag = elPosTextBoxTx;
+            elPosTextBoxTx.Tag = elPosSlider;
+
+            azVelSlider.Tag = azVelTextBoxTx;
+            azVelTextBoxTx.Tag = azVelSlider;
+
+            elVelSlider.Tag = elVelTextBoxTx;
+            elVelTextBoxTx.Tag = elVelSlider;
+
+            azAccSlider.Tag = azAccTextBoxTx;
+            azAccTextBoxTx.Tag = azAccSlider;
+
+            elAccSlider.Tag = elAccTextBoxTx;
+            elAccTextBoxTx.Tag = elAccSlider;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -328,8 +349,8 @@ namespace Serial
 
                     AddFloatToPacket(packet, azVelSlider.Value, 7);
                     AddFloatToPacket(packet, elVelSlider.Value, 11);
-                    AddFloatToPacket(packet, azAccelSlider.Value, 15);
-                    AddFloatToPacket(packet, elAccelSlider.Value, 19);
+                    AddFloatToPacket(packet, azAccSlider.Value, 15);
+                    AddFloatToPacket(packet, elAccSlider.Value, 19);
 
                     // Checksum
 
@@ -352,35 +373,46 @@ namespace Serial
 
         private bool updatingControls = false; // flag used to prevent feedback loops (to be safe)
 
-        private void azPosSlider_Scroll(object sender, EventArgs e)
+        private void Slider_Scroll(object sender, EventArgs e)
         {
+            TrackBar slider = (TrackBar)sender;
+            TextBox textBox = (TextBox)slider.Tag;
+
             if (updatingControls)
                 return;
+
             updatingControls = true;
-            azPosTextBoxTx.Text = azPosSlider.Value.ToString();
+
+            textBox.Text = slider.Value.ToString();
+
             updatingControls = false;
         }
 
-        private void azPosTextBoxTx_TextChanged(object sender, EventArgs e)
+        private void TextBoxTx_TextChanged(object sender, EventArgs e)
         {
+            TextBox textBox = (TextBox)sender;
+            TrackBar slider = (TrackBar)textBox.Tag;
+
             if (updatingControls)
                 return;
 
             int value;
 
-            if (int.TryParse(azPosTextBoxTx.Text, out value) &&
-                value >= azPosSlider.Minimum &&
-                value <= azPosSlider.Maximum)
+            if (int.TryParse(textBox.Text, out value) &&
+                value >= slider.Minimum &&
+                value <= slider.Maximum)
             {
                 updatingControls = true;
-                azPosSlider.Value = value;
+                slider.Value = value;
                 updatingControls = false;
             }
         }
 
-        private void azPosTextBoxTx_Leave(object sender, EventArgs e)
+        private void TextBoxTx_Leave(object sender, EventArgs e)
         {
-            azPosTextBoxTx.Text = azPosSlider.Value.ToString();
+            TextBox textBox = (TextBox)sender;
+            TrackBar slider = (TrackBar)textBox.Tag;
+            textBox.Text = slider.Value.ToString();
         }
     }
 }

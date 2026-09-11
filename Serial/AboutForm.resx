@@ -618,7 +618,7 @@
         q9UPVXoAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="textBoxDescription.Text" xml:space="preserve">
+  <data name="labelCompanyName.Text" xml:space="preserve">
     <value>Serial interface and MODE5 command/telemetry utility
 
 Communicates with MODE5-compatible pedestal systems over RS-232 serial communication.

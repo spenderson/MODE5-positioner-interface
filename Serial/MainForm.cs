@@ -184,6 +184,7 @@ namespace Serial
         {
             InitializeComponent();
 
+
             // have each slider/textbox pair on the TX interface be tagged to eachother
             // this is to allow generic handlers to use tags to decide which other UI elements to update
 
@@ -204,6 +205,18 @@ namespace Serial
 
             elAccSlider.Tag = elAccTextBoxTx;
             elAccTextBoxTx.Tag = elAccSlider;
+
+
+            // make sure the text boxes are populated upon startup
+
+            azPosTextBoxTx.Text = azPosSlider.Value.ToString();
+            elPosTextBoxTx.Text = elPosSlider.Value.ToString();
+
+            azVelTextBoxTx.Text = azVelSlider.Value.ToString();
+            elVelTextBoxTx.Text = elVelSlider.Value.ToString();
+
+            azAccTextBoxTx.Text = azAccSlider.Value.ToString();
+            elAccTextBoxTx.Text = elAccSlider.Value.ToString();
         }
 
         private void btnConnect_Click(object sender, EventArgs e)

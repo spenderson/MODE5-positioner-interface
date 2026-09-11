@@ -420,5 +420,13 @@ namespace Serial
             AboutForm aboutForm = new AboutForm();
             aboutForm.ShowDialog();
         }
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && ActiveControl is TextBox)
+            {
+                ActiveControl = null;
+                e.Handled = true;
+            }
+        }
     }
 }

@@ -202,7 +202,6 @@
             this.elPosSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.elPosSlider.Size = new System.Drawing.Size(56, 209);
             this.elPosSlider.TabIndex = 8;
-            this.elPosSlider.Value = -2;
             this.elPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
             // 
             // azVelSlider
@@ -825,7 +824,7 @@
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(705, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(696, 28);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -840,17 +839,19 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(705, 1380);
+            this.ClientSize = new System.Drawing.Size(696, 1380);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "MODE5 Receiver";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.azVelSlider)).EndInit();

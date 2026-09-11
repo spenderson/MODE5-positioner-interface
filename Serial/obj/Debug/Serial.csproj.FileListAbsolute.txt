@@ -8,3 +8,4 @@ C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.csproj.Gen
 C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.csproj.CoreCompileInputs.cache
 C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.exe
 C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.pdb
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.AboutForm.resources

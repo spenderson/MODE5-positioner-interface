@@ -414,5 +414,11 @@ namespace Serial
             TrackBar slider = (TrackBar)textBox.Tag;
             textBox.Text = slider.Value.ToString();
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.ShowDialog();
+        }
     }
 }

@@ -1,3 +1,2 @@
-# CSharp_SerialPort
-This is a simple C# SerialPort  project. 
-https://youtu.be/tYBAT6OVgVc
+# MODE5 Positioner Interface
+This is a C# project for an interface used to send and receive packets via Serial Ports. 

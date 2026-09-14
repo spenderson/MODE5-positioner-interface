@@ -56,8 +56,8 @@ namespace Serial
         public void UpdateTextBoxes(float azPos, float elPos, float azVel, float elVel, float azAcc, float elAcc)
         {
             // full precision for MODE5 can go up 21 decimal spots for position values
-            azPosTextBox.Text = azPos.ToString("0.###");
-            elPosTextBox.Text = elPos.ToString("0.###");
+            azPosTextBox.Text = azPos.ToString("0.00");
+            elPosTextBox.Text = elPos.ToString("0.00");
 
             // G9 is apparently tailored to displaying floats
             azVelTextBox.Text = azVel.ToString("G9");
@@ -330,57 +330,72 @@ namespace Serial
             {
                 if(true == Serial.IsOpen)
                 {
-                    // Construct packet based on slider values
+                    double azDegrees, elDegrees;
+                    float azVel, elVel, azAcc, elAcc;
 
-                    byte[] packet = new byte[MODE5_PACKET_SIZE];
-
-                    // Sync char
-
-                    packet[0] = MODE5_SYNC_CHAR;
-
-                    // Positions
-
-                    int azPos = (int)(azPosSlider.Value * 16777216.0 / 360.0);
-
-                    packet[1] = (byte)((azPos >> 16) & 0xFF);
-                    packet[2] = (byte)((azPos >> 8)  & 0xFF);
-                    packet[3] = (byte)((azPos)       & 0xFF);
-
-                    double elDegrees = elPosSlider.Value;
-
-                    if (elDegrees < 0)
+                    if (
+                        double.TryParse(azPosTextBoxTx.Text, out azDegrees) &&
+                        double.TryParse(elPosTextBoxTx.Text, out elDegrees) &&
+                        float.TryParse(azVelTextBoxTx.Text, out azVel) &&
+                        float.TryParse(elVelTextBoxTx.Text, out elVel) &&
+                        float.TryParse(azAccTextBoxTx.Text, out azAcc) &&
+                        float.TryParse(elAccTextBoxTx.Text, out elAcc)
+                        )
                     {
-                        elDegrees = (elDegrees % 360) + 360;
+                        // Construct packet based on slider values
+
+                        byte[] packet = new byte[MODE5_PACKET_SIZE];
+
+                        // Sync char
+
+                        packet[0] = MODE5_SYNC_CHAR;
+
+                        // Positions
+
+                        int azPos = (int)(azDegrees * 16777216.0 / 360.0);
+
+                        packet[1] = (byte)((azPos >> 16) & 0xFF);
+                        packet[2] = (byte)((azPos >> 8) & 0xFF);
+                        packet[3] = (byte)((azPos) & 0xFF);
+
+                        if (elDegrees < 0)
+                        {
+                            elDegrees = (elDegrees % 360) + 360;
+                        }
+
+                        int elPos = (int)(elDegrees * 16777216.0 / 360.0);
+
+                        packet[4] = (byte)((elPos >> 16) & 0xFF);
+                        packet[5] = (byte)((elPos >> 8) & 0xFF);
+                        packet[6] = (byte)((elPos) & 0xFF);
+
+                        // Velocities and Accelerations
+
+                        AddFloatToPacket(packet, azVel, 7);
+                        AddFloatToPacket(packet, elVel, 11);
+                        AddFloatToPacket(packet, azAcc, 15);
+                        AddFloatToPacket(packet, elAcc, 19);
+
+                        // Checksum
+
+                        int bytesToSum = MODE5_PACKET_SIZE - 1;
+                        int sum = 0;
+                        for (int i = 0; i < bytesToSum; i++)
+                        {
+                            sum += packet[i];
+                        }
+                        packet[bytesToSum] = (byte)(sum % 256);
+
+                        Serial.Write(packet, 0, packet.Length);
                     }
-
-                    int elPos = (int)(elDegrees * 16777216.0 / 360.0);
-
-                    packet[4] = (byte)((elPos >> 16) & 0xFF);
-                    packet[5] = (byte)((elPos >> 8)  & 0xFF);
-                    packet[6] = (byte)((elPos)       & 0xFF);
-
-                    // Velocities and Accellerations
-
-                    AddFloatToPacket(packet, azVelSlider.Value, 7);
-                    AddFloatToPacket(packet, elVelSlider.Value, 11);
-                    AddFloatToPacket(packet, azAccSlider.Value, 15);
-                    AddFloatToPacket(packet, elAccSlider.Value, 19);
-
-                    // Checksum
-
-                    int bytesToSum = MODE5_PACKET_SIZE - 1;
-                    int sum = 0;
-                    for (int i = 0; i < bytesToSum; i++)
+                    else
                     {
-                        sum += packet[i];
+                        MessageBox.Show("Invalid inputs");
                     }
-                    packet[bytesToSum] = (byte)(sum % 256);
-
-                    Serial.Write(packet, 0, packet.Length);
                 }
                 else
                 {
-                    MessageBox.Show("COM Port is not Opened");
+                    MessageBox.Show("COM Port is not opened");
                 }
             }
         }
@@ -410,9 +425,9 @@ namespace Serial
             if (updatingControls)
                 return;
 
-            double value;
+            float value;
 
-            if (double.TryParse(textBox.Text, out value) &&
+            if (float.TryParse(textBox.Text, out value) &&
                 value >= slider.Minimum &&
                 value <= slider.Maximum)
             {
@@ -422,12 +437,12 @@ namespace Serial
             }
         }
 
-        private void TextBoxTx_Leave(object sender, EventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            TrackBar slider = (TrackBar)textBox.Tag;
-            textBox.Text = slider.Value.ToString();
-        }
+        //private void TextBoxTx_Leave(object sender, EventArgs e)
+        //{
+        //    TextBox textBox = (TextBox)sender;
+        //    TrackBar slider = (TrackBar)textBox.Tag;
+        //    textBox.Text = slider.Value.ToString();
+        //}
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {

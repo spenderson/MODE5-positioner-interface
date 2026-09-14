@@ -618,13 +618,19 @@
         q9UPVXoAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="labelCompanyName.Text" xml:space="preserve">
-    <value>Serial interface and MODE5 command/telemetry utility
+  <data name="labelProductName.Text" xml:space="preserve">
+    <value>MODE5 Pedestal Control
+
+Version 1.0
+
+Developed by Spencer Henderson
+
+Serial interface and MODE5 command/telemetry utility
 
 Communicates with MODE5-compatible pedestal systems over RS-232 serial communication.
 
-Protocol: MODE5
 Packet size: 24 bytes
-Serial format: 8-N-1</value>
+Serial format: 8-N-1
+</value>
   </data>
 </root>

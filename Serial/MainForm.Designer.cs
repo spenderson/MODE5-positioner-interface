@@ -45,12 +45,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.azPosTextBox = new System.Windows.Forms.TextBox();
-            this.elPosTextBox = new System.Windows.Forms.TextBox();
-            this.elVelTextBox = new System.Windows.Forms.TextBox();
-            this.azVelTextBox = new System.Windows.Forms.TextBox();
-            this.elAccTextBox = new System.Windows.Forms.TextBox();
-            this.azAccTextBox = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -98,6 +92,12 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.azPosTextBox = new System.Windows.Forms.Label();
+            this.azVelTextBox = new System.Windows.Forms.Label();
+            this.elVelTextBox = new System.Windows.Forms.Label();
+            this.azAccTextBox = new System.Windows.Forms.Label();
+            this.elAccTextBox = new System.Windows.Forms.Label();
+            this.elPosTextBox = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.azVelSlider)).BeginInit();
@@ -288,54 +288,6 @@
             this.label13.TabIndex = 25;
             this.label13.Text = "Acceleration:";
             // 
-            // azPosTextBox
-            // 
-            this.azPosTextBox.Location = new System.Drawing.Point(109, 27);
-            this.azPosTextBox.Name = "azPosTextBox";
-            this.azPosTextBox.ReadOnly = true;
-            this.azPosTextBox.Size = new System.Drawing.Size(60, 22);
-            this.azPosTextBox.TabIndex = 28;
-            // 
-            // elPosTextBox
-            // 
-            this.elPosTextBox.Location = new System.Drawing.Point(109, 27);
-            this.elPosTextBox.Name = "elPosTextBox";
-            this.elPosTextBox.ReadOnly = true;
-            this.elPosTextBox.Size = new System.Drawing.Size(60, 22);
-            this.elPosTextBox.TabIndex = 29;
-            // 
-            // elVelTextBox
-            // 
-            this.elVelTextBox.Location = new System.Drawing.Point(109, 53);
-            this.elVelTextBox.Name = "elVelTextBox";
-            this.elVelTextBox.ReadOnly = true;
-            this.elVelTextBox.Size = new System.Drawing.Size(60, 22);
-            this.elVelTextBox.TabIndex = 31;
-            // 
-            // azVelTextBox
-            // 
-            this.azVelTextBox.Location = new System.Drawing.Point(109, 53);
-            this.azVelTextBox.Name = "azVelTextBox";
-            this.azVelTextBox.ReadOnly = true;
-            this.azVelTextBox.Size = new System.Drawing.Size(60, 22);
-            this.azVelTextBox.TabIndex = 30;
-            // 
-            // elAccTextBox
-            // 
-            this.elAccTextBox.Location = new System.Drawing.Point(109, 79);
-            this.elAccTextBox.Name = "elAccTextBox";
-            this.elAccTextBox.ReadOnly = true;
-            this.elAccTextBox.Size = new System.Drawing.Size(60, 22);
-            this.elAccTextBox.TabIndex = 33;
-            // 
-            // azAccTextBox
-            // 
-            this.azAccTextBox.Location = new System.Drawing.Point(109, 79);
-            this.azAccTextBox.Name = "azAccTextBox";
-            this.azAccTextBox.ReadOnly = true;
-            this.azAccTextBox.Size = new System.Drawing.Size(60, 22);
-            this.azAccTextBox.TabIndex = 32;
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -347,15 +299,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.azPosTextBox);
             this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.azAccTextBox);
             this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.azVelTextBox);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.azPosTextBox);
-            this.groupBox1.Controls.Add(this.azVelTextBox);
-            this.groupBox1.Controls.Add(this.azAccTextBox);
             this.groupBox1.Location = new System.Drawing.Point(22, 62);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(363, 117);
@@ -366,7 +318,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(175, 82);
+            this.label21.Location = new System.Drawing.Point(251, 82);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(61, 16);
             this.label21.TabIndex = 41;
@@ -375,7 +327,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(175, 56);
+            this.label20.Location = new System.Drawing.Point(251, 56);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(57, 16);
             this.label20.TabIndex = 40;
@@ -384,7 +336,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(175, 30);
+            this.label14.Location = new System.Drawing.Point(251, 30);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(58, 16);
             this.label14.TabIndex = 39;
@@ -392,15 +344,15 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.elPosTextBox);
             this.groupBox2.Controls.Add(this.label22);
+            this.groupBox2.Controls.Add(this.elAccTextBox);
             this.groupBox2.Controls.Add(this.label23);
+            this.groupBox2.Controls.Add(this.elVelTextBox);
             this.groupBox2.Controls.Add(this.label24);
             this.groupBox2.Controls.Add(this.label25);
             this.groupBox2.Controls.Add(this.label26);
             this.groupBox2.Controls.Add(this.label27);
-            this.groupBox2.Controls.Add(this.elAccTextBox);
-            this.groupBox2.Controls.Add(this.elPosTextBox);
-            this.groupBox2.Controls.Add(this.elVelTextBox);
             this.groupBox2.Location = new System.Drawing.Point(22, 193);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(363, 117);
@@ -411,7 +363,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(175, 82);
+            this.label22.Location = new System.Drawing.Point(251, 82);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(61, 16);
             this.label22.TabIndex = 41;
@@ -420,7 +372,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(175, 56);
+            this.label23.Location = new System.Drawing.Point(251, 56);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(57, 16);
             this.label23.TabIndex = 40;
@@ -429,7 +381,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(175, 30);
+            this.label24.Location = new System.Drawing.Point(251, 30);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(58, 16);
             this.label24.TabIndex = 39;
@@ -489,7 +441,7 @@
             // 
             // groupBox10
             // 
-            this.groupBox10.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.groupBox10.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox10.Controls.Add(this.label18);
             this.groupBox10.Controls.Add(this.label4);
             this.groupBox10.Controls.Add(this.azPosTextBoxTx);
@@ -523,7 +475,7 @@
             // 
             this.azPosTextBoxTx.Location = new System.Drawing.Point(18, 21);
             this.azPosTextBoxTx.Name = "azPosTextBoxTx";
-            this.azPosTextBoxTx.Size = new System.Drawing.Size(58, 22);
+            this.azPosTextBoxTx.Size = new System.Drawing.Size(60, 22);
             this.azPosTextBoxTx.TabIndex = 22;
             this.azPosTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.azPosTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
@@ -531,7 +483,7 @@
             // 
             // groupBox9
             // 
-            this.groupBox9.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.groupBox9.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox9.Controls.Add(this.label1);
             this.groupBox9.Controls.Add(this.label5);
             this.groupBox9.Controls.Add(this.elPosTextBoxTx);
@@ -566,7 +518,7 @@
             // 
             this.elPosTextBoxTx.Location = new System.Drawing.Point(20, 32);
             this.elPosTextBoxTx.Name = "elPosTextBoxTx";
-            this.elPosTextBoxTx.Size = new System.Drawing.Size(58, 22);
+            this.elPosTextBoxTx.Size = new System.Drawing.Size(60, 22);
             this.elPosTextBoxTx.TabIndex = 23;
             this.elPosTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.elPosTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
@@ -595,7 +547,7 @@
             // 
             // groupBox14
             // 
-            this.groupBox14.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox14.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox14.Controls.Add(this.label30);
             this.groupBox14.Controls.Add(this.elAccTextBoxTx);
             this.groupBox14.Controls.Add(this.label31);
@@ -637,7 +589,7 @@
             // 
             // groupBox13
             // 
-            this.groupBox13.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.groupBox13.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox13.Controls.Add(this.label7);
             this.groupBox13.Controls.Add(this.azAccTextBoxTx);
             this.groupBox13.Controls.Add(this.label6);
@@ -691,7 +643,7 @@
             // 
             // groupBox12
             // 
-            this.groupBox12.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.groupBox12.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox12.Controls.Add(this.label2);
             this.groupBox12.Controls.Add(this.label3);
             this.groupBox12.Controls.Add(this.azVelTextBoxTx);
@@ -733,7 +685,7 @@
             // 
             // groupBox11
             // 
-            this.groupBox11.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.groupBox11.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox11.Controls.Add(this.label29);
             this.groupBox11.Controls.Add(this.label28);
             this.groupBox11.Controls.Add(this.elVelTextBoxTx);
@@ -839,6 +791,73 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // azPosTextBox
+            // 
+            this.azPosTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.azPosTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.azPosTextBox.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.azPosTextBox.Location = new System.Drawing.Point(109, 27);
+            this.azPosTextBox.Name = "azPosTextBox";
+            this.azPosTextBox.Size = new System.Drawing.Size(125, 22);
+            this.azPosTextBox.TabIndex = 37;
+            this.azPosTextBox.Text = "-";
+            this.azPosTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // azVelTextBox
+            // 
+            this.azVelTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.azVelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.azVelTextBox.Location = new System.Drawing.Point(109, 53);
+            this.azVelTextBox.Name = "azVelTextBox";
+            this.azVelTextBox.Size = new System.Drawing.Size(125, 22);
+            this.azVelTextBox.TabIndex = 37;
+            this.azVelTextBox.Text = "-";
+            this.azVelTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // elVelTextBox
+            // 
+            this.elVelTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.elVelTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.elVelTextBox.Location = new System.Drawing.Point(109, 53);
+            this.elVelTextBox.Name = "elVelTextBox";
+            this.elVelTextBox.Size = new System.Drawing.Size(125, 22);
+            this.elVelTextBox.TabIndex = 39;
+            this.elVelTextBox.Text = "-";
+            this.elVelTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // azAccTextBox
+            // 
+            this.azAccTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.azAccTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.azAccTextBox.Location = new System.Drawing.Point(109, 79);
+            this.azAccTextBox.Name = "azAccTextBox";
+            this.azAccTextBox.Size = new System.Drawing.Size(125, 22);
+            this.azAccTextBox.TabIndex = 41;
+            this.azAccTextBox.Text = "-";
+            this.azAccTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // elAccTextBox
+            // 
+            this.elAccTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.elAccTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.elAccTextBox.Location = new System.Drawing.Point(109, 79);
+            this.elAccTextBox.Name = "elAccTextBox";
+            this.elAccTextBox.Size = new System.Drawing.Size(125, 22);
+            this.elAccTextBox.TabIndex = 43;
+            this.elAccTextBox.Text = "-";
+            this.elAccTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // elPosTextBox
+            // 
+            this.elPosTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.elPosTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.elPosTextBox.Location = new System.Drawing.Point(109, 27);
+            this.elPosTextBox.Name = "elPosTextBox";
+            this.elPosTextBox.Size = new System.Drawing.Size(125, 22);
+            this.elPosTextBox.TabIndex = 45;
+            this.elPosTextBox.Text = "-";
+            this.elPosTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -911,12 +930,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox azPosTextBox;
-        private System.Windows.Forms.TextBox elPosTextBox;
-        private System.Windows.Forms.TextBox elVelTextBox;
-        private System.Windows.Forms.TextBox azVelTextBox;
-        private System.Windows.Forms.TextBox elAccTextBox;
-        private System.Windows.Forms.TextBox azAccTextBox;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label14;
@@ -964,6 +977,12 @@
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.Label azPosTextBox;
+        private System.Windows.Forms.Label elPosTextBox;
+        private System.Windows.Forms.Label elAccTextBox;
+        private System.Windows.Forms.Label azAccTextBox;
+        private System.Windows.Forms.Label elVelTextBox;
+        private System.Windows.Forms.Label azVelTextBox;
     }
 }
 

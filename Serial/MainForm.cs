@@ -55,14 +55,15 @@ namespace Serial
         }
         public void UpdateTextBoxes(float azPos, float elPos, float azVel, float elVel, float azAcc, float elAcc)
         {
-            azPosTextBox.Text = azPos.ToString("0.##");
-            elPosTextBox.Text = elPos.ToString("0.##");
+            // full precision for MODE5 can go up 21 decimal spots for position values
+            azPosTextBox.Text = azPos.ToString("0.###");
+            elPosTextBox.Text = elPos.ToString("0.###");
 
-            azVelTextBox.Text = azVel.ToString("0.##");
-            elVelTextBox.Text = elVel.ToString("0.##");
-
-            azAccTextBox.Text = azAcc.ToString("0.##");
-            elAccTextBox.Text = elAcc.ToString("0.##");
+            // G9 is apparently tailored to displaying floats
+            azVelTextBox.Text = azVel.ToString("G9");
+            elVelTextBox.Text = elVel.ToString("G9");
+            azAccTextBox.Text = azAcc.ToString("G9");
+            elAccTextBox.Text = elAcc.ToString("G9");
         }
         #endregion
         private float PullFloatFromPacket(List<byte> packetBuffer, int startingIndex)
@@ -409,14 +410,14 @@ namespace Serial
             if (updatingControls)
                 return;
 
-            int value;
+            double value;
 
-            if (int.TryParse(textBox.Text, out value) &&
+            if (double.TryParse(textBox.Text, out value) &&
                 value >= slider.Minimum &&
                 value <= slider.Maximum)
             {
                 updatingControls = true;
-                slider.Value = value;
+                slider.Value = (int)Math.Round(value);
                 updatingControls = false;
             }
         }

@@ -52,10 +52,10 @@
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 4;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 19F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 154F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(556, 399);
+            this.tableLayoutPanel.Size = new System.Drawing.Size(556, 362);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // logoPictureBox
@@ -66,7 +66,7 @@
             this.logoPictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.logoPictureBox.Name = "logoPictureBox";
             this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 4);
-            this.logoPictureBox.Size = new System.Drawing.Size(175, 391);
+            this.logoPictureBox.Size = new System.Drawing.Size(175, 354);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
@@ -78,30 +78,28 @@
             this.labelProductName.Margin = new System.Windows.Forms.Padding(8, 0, 4, 0);
             this.labelProductName.MaximumSize = new System.Drawing.Size(0, 164);
             this.labelProductName.Name = "labelProductName";
-            this.labelProductName.Size = new System.Drawing.Size(361, 95);
+            this.labelProductName.Size = new System.Drawing.Size(361, 94);
             this.labelProductName.TabIndex = 19;
-            this.labelProductName.Text = resources.GetString("labelProductName.Text");
+            this.labelProductName.Text = "MODE5 Pedestal Control\r\n\r\nVersion 1.0\r\n\r\nDeveloped by Spencer Henderson\r\n";
             this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelCompanyName
             // 
             this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCompanyName.Location = new System.Drawing.Point(191, 207);
+            this.labelCompanyName.Location = new System.Drawing.Point(191, 113);
             this.labelCompanyName.Margin = new System.Windows.Forms.Padding(8, 0, 4, 0);
-            this.labelCompanyName.MaximumSize = new System.Drawing.Size(0, 221);
+            this.labelCompanyName.MaximumSize = new System.Drawing.Size(0, 212);
             this.labelCompanyName.Name = "labelCompanyName";
-            this.labelCompanyName.Size = new System.Drawing.Size(361, 95);
+            this.labelCompanyName.Size = new System.Drawing.Size(361, 154);
             this.labelCompanyName.TabIndex = 22;
-            this.labelCompanyName.Text = "Serial interface and MODE5 command/telemetry utility\r\n\r\nCommunicates with MODE5-c" +
-    "ompatible pedestal systems over RS-232 serial communication.\r\n\r\nPacket size: 24 " +
-    "bytes\r\nSerial format: 8-N-1";
+            this.labelCompanyName.Text = resources.GetString("labelCompanyName.Text");
             this.labelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // okButton
             // 
             this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(452, 368);
+            this.okButton.Location = new System.Drawing.Point(452, 331);
             this.okButton.Margin = new System.Windows.Forms.Padding(4);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(100, 27);
@@ -113,7 +111,7 @@
             this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(580, 421);
+            this.ClientSize = new System.Drawing.Size(580, 384);
             this.Controls.Add(this.tableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Margin = new System.Windows.Forms.Padding(4);

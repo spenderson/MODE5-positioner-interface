@@ -437,24 +437,45 @@ namespace Serial
             }
         }
 
-        //private void TextBoxTx_Leave(object sender, EventArgs e)
-        //{
-        //    TextBox textBox = (TextBox)sender;
-        //    TrackBar slider = (TrackBar)textBox.Tag;
-        //    textBox.Text = slider.Value.ToString();
-        //}
+        private void TextBoxTx_Leave(object sender, EventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            TrackBar slider = (TrackBar)textBox.Tag;
+
+            float value;
+
+            if (!float.TryParse(textBox.Text, out value))
+            {
+                MessageBox.Show("Invalid input");
+                textBox.Text = slider.Value.ToString();
+            }
+
+            if (value < slider.Minimum ||
+                value > slider.Maximum)
+            {
+                MessageBox.Show("Input out of range");
+                textBox.Text = slider.Value.ToString();
+            }
+        }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.ShowDialog();
         }
+
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && ActiveControl is TextBox)
             {
-                ActiveControl = null;
+                TextBox textBox = (TextBox)ActiveControl;
+
+                TextBoxTx_Leave(textBox, EventArgs.Empty);
+
+                textBox.Focus();
+
                 e.Handled = true;
+                e.SuppressKeyPress = true;
             }
         }
     }

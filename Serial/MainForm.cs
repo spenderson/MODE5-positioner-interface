@@ -218,6 +218,8 @@ namespace Serial
 
             azAccTextBoxTx.Text = azAccSlider.Value.ToString();
             elAccTextBoxTx.Text = elAccSlider.Value.ToString();
+
+            sendMode.SelectedIndex = 0;
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -420,9 +422,8 @@ namespace Serial
                 MessageBox.Show("Invalid input");
                 textBox.Text = slider.Value.ToString();
             }
-
-            if (value < slider.Minimum ||
-                value > slider.Maximum)
+            else if (value < slider.Minimum ||
+                     value > slider.Maximum)
             {
                 MessageBox.Show("Input out of range");
                 textBox.Text = slider.Value.ToString();

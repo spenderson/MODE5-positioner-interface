@@ -101,6 +101,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTimer = new System.Windows.Forms.Timer(this.components);
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.azVelSlider)).BeginInit();
@@ -122,6 +123,7 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboxComport
@@ -166,7 +168,7 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(274, 85);
+            this.btnSend.Location = new System.Drawing.Point(566, 583);
             this.btnSend.Margin = new System.Windows.Forms.Padding(4);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(130, 28);
@@ -491,12 +493,14 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.groupBox15);
             this.groupBox3.Controls.Add(this.groupBox8);
+            this.groupBox3.Controls.Add(this.btnSend);
             this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox6);
             this.groupBox3.Location = new System.Drawing.Point(12, 187);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(691, 667);
+            this.groupBox3.Size = new System.Drawing.Size(718, 667);
             this.groupBox3.TabIndex = 40;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Transmitter";
@@ -504,10 +508,8 @@
             // groupBox8
             // 
             this.groupBox8.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox8.Controls.Add(this.sendMode);
             this.groupBox8.Controls.Add(this.groupBox10);
             this.groupBox8.Controls.Add(this.groupBox9);
-            this.groupBox8.Controls.Add(this.btnSend);
             this.groupBox8.Location = new System.Drawing.Point(22, 35);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(653, 340);
@@ -523,9 +525,8 @@
             "1 Hz",
             "10 Hz",
             "50 Hz",
-            "100 Hz",
-            "Continuous"});
-            this.sendMode.Location = new System.Drawing.Point(278, 31);
+            "100 Hz"});
+            this.sendMode.Location = new System.Drawing.Point(16, 30);
             this.sendMode.Name = "sendMode";
             this.sendMode.Size = new System.Drawing.Size(121, 24);
             this.sendMode.TabIndex = 37;
@@ -872,7 +873,7 @@
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(717, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(867, 28);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -887,11 +888,22 @@
             // 
             this.sendTimer.Tick += new System.EventHandler(this.sendTimer_Tick);
             // 
+            // groupBox15
+            // 
+            this.groupBox15.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox15.Controls.Add(this.sendMode);
+            this.groupBox15.Location = new System.Drawing.Point(550, 464);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(158, 78);
+            this.groupBox15.TabIndex = 38;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Send Mode";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 1380);
+            this.ClientSize = new System.Drawing.Size(867, 1380);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -936,6 +948,7 @@
             this.groupBox5.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.groupBox15.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1014,6 +1027,7 @@
         private System.Windows.Forms.Label azVelTextBox;
         private System.Windows.Forms.ComboBox sendMode;
         private System.Windows.Forms.Timer sendTimer;
+        private System.Windows.Forms.GroupBox groupBox15;
     }
 }
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.IO.Ports;
+using System.Net;
 
 namespace Serial
 {
@@ -18,7 +19,6 @@ namespace Serial
         private readonly int[] baudrate = { 9600, 19200, 38400, 115200, 230400, 460800, 921600, 3860000 };
         private readonly int MODE5_PACKET_SIZE = 24;
         private readonly byte MODE5_SYNC_CHAR = 0xAA;
-        //private readonly byte MODE5_SYNC_CHAR = 0x41; // typable sync char "A", for testing
         #endregion
 
         private SerialPort Serial = new SerialPort();
@@ -294,11 +294,8 @@ namespace Serial
 
                     // Add callback handler for receiving
                     Serial.DataReceived += new SerialDataReceivedEventHandler(SerialOnReceivedHandler);
-
                 }
-
             }
-
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -330,68 +327,44 @@ namespace Serial
             {
                 if(true == Serial.IsOpen)
                 {
-                    double azDegrees, elDegrees;
-                    float azVel, elVel, azAcc, elAcc;
-
-                    if (
-                        double.TryParse(azPosTextBoxTx.Text, out azDegrees) &&
-                        double.TryParse(elPosTextBoxTx.Text, out elDegrees) &&
-                        float.TryParse(azVelTextBoxTx.Text, out azVel) &&
-                        float.TryParse(elVelTextBoxTx.Text, out elVel) &&
-                        float.TryParse(azAccTextBoxTx.Text, out azAcc) &&
-                        float.TryParse(elAccTextBoxTx.Text, out elAcc)
-                        )
+                    if (!sendTimer.Enabled)
                     {
-                        // Construct packet based on slider values
-
-                        byte[] packet = new byte[MODE5_PACKET_SIZE];
-
-                        // Sync char
-
-                        packet[0] = MODE5_SYNC_CHAR;
-
-                        // Positions
-
-                        int azPos = (int)(azDegrees * 16777216.0 / 360.0);
-
-                        packet[1] = (byte)((azPos >> 16) & 0xFF);
-                        packet[2] = (byte)((azPos >> 8) & 0xFF);
-                        packet[3] = (byte)((azPos) & 0xFF);
-
-                        if (elDegrees < 0)
+                        if (sendMode.Text == "Single Packet")
                         {
-                            elDegrees = (elDegrees % 360) + 360;
+                            SendPacket();
                         }
-
-                        int elPos = (int)(elDegrees * 16777216.0 / 360.0);
-
-                        packet[4] = (byte)((elPos >> 16) & 0xFF);
-                        packet[5] = (byte)((elPos >> 8) & 0xFF);
-                        packet[6] = (byte)((elPos) & 0xFF);
-
-                        // Velocities and Accelerations
-
-                        AddFloatToPacket(packet, azVel, 7);
-                        AddFloatToPacket(packet, elVel, 11);
-                        AddFloatToPacket(packet, azAcc, 15);
-                        AddFloatToPacket(packet, elAcc, 19);
-
-                        // Checksum
-
-                        int bytesToSum = MODE5_PACKET_SIZE - 1;
-                        int sum = 0;
-                        for (int i = 0; i < bytesToSum; i++)
+                        else if (sendMode.Text == "1 Hz")
                         {
-                            sum += packet[i];
+                            sendTimer.Interval = 1000;
+                            sendTimer.Start();
                         }
-                        packet[bytesToSum] = (byte)(sum % 256);
-
-                        Serial.Write(packet, 0, packet.Length);
+                        else if (sendMode.Text == "10 Hz")
+                        {
+                            sendTimer.Interval = 100;
+                            sendTimer.Start();
+                        }
+                        else if (sendMode.Text == "50 Hz")
+                        {
+                            sendTimer.Interval = 20;
+                            sendTimer.Start();
+                        }
+                        else if (sendMode.Text == "100 Hz")
+                        {
+                            sendTimer.Interval = 10;
+                            sendTimer.Start();
+                        }
+                        else if (sendMode.Text == "Continuous")
+                        {
+                            // for now, "continuous" means 1000 Hz
+                            sendTimer.Interval = 1;
+                            sendTimer.Start();
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Invalid inputs");
+                        sendTimer.Stop();
                     }
+                    UpdateSendButton();
                 }
                 else
                 {
@@ -411,9 +384,7 @@ namespace Serial
                 return;
 
             updatingControls = true;
-
             textBox.Text = slider.Value.ToString();
-
             updatingControls = false;
         }
 
@@ -437,7 +408,7 @@ namespace Serial
             }
         }
 
-        private void TextBoxTx_Leave(object sender, EventArgs e)
+        private void ValidateInput(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
             TrackBar slider = (TrackBar)textBox.Tag;
@@ -470,12 +441,106 @@ namespace Serial
             {
                 TextBox textBox = (TextBox)ActiveControl;
 
-                TextBoxTx_Leave(textBox, EventArgs.Empty);
+                ValidateInput(textBox, EventArgs.Empty);
 
                 textBox.Focus();
 
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+            }
+        }
+
+        private void sendTimer_Tick(object sender, EventArgs e)
+        {
+            SendPacket();
+        }
+
+        private void SendPacket()
+        {
+            double azDegrees, elDegrees;
+            float azVel, elVel, azAcc, elAcc;
+
+            if (
+                double.TryParse(azPosTextBoxTx.Text, out azDegrees) &&
+                double.TryParse(elPosTextBoxTx.Text, out elDegrees) &&
+                float.TryParse(azVelTextBoxTx.Text, out azVel) &&
+                float.TryParse(elVelTextBoxTx.Text, out elVel) &&
+                float.TryParse(azAccTextBoxTx.Text, out azAcc) &&
+                float.TryParse(elAccTextBoxTx.Text, out elAcc)
+                )
+            {
+                // Construct packet based on slider values
+
+                byte[] packet = new byte[MODE5_PACKET_SIZE];
+
+                // Sync char
+
+                packet[0] = MODE5_SYNC_CHAR;
+
+                // Positions
+
+                int azPos = (int)(azDegrees * 16777216.0 / 360.0);
+
+                packet[1] = (byte)((azPos >> 16) & 0xFF);
+                packet[2] = (byte)((azPos >> 8) & 0xFF);
+                packet[3] = (byte)((azPos) & 0xFF);
+
+                if (elDegrees < 0)
+                {
+                    elDegrees = (elDegrees % 360) + 360;
+                }
+
+                int elPos = (int)(elDegrees * 16777216.0 / 360.0);
+
+                packet[4] = (byte)((elPos >> 16) & 0xFF);
+                packet[5] = (byte)((elPos >> 8) & 0xFF);
+                packet[6] = (byte)((elPos) & 0xFF);
+
+                // Velocities and Accelerations
+
+                AddFloatToPacket(packet, azVel, 7);
+                AddFloatToPacket(packet, elVel, 11);
+                AddFloatToPacket(packet, azAcc, 15);
+                AddFloatToPacket(packet, elAcc, 19);
+
+                // Checksum
+
+                int bytesToSum = MODE5_PACKET_SIZE - 1;
+                int sum = 0;
+                for (int i = 0; i < bytesToSum; i++)
+                {
+                    sum += packet[i];
+                }
+                packet[bytesToSum] = (byte)(sum % 256);
+
+                // Send it
+
+                Serial.Write(packet, 0, packet.Length);
+            }
+            else
+            {
+                MessageBox.Show("Invalid inputs");
+            }
+        }
+
+        private void sendMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            sendTimer.Stop(); // in case it's running
+            UpdateSendButton();
+        }
+        private void UpdateSendButton()
+        {
+            if (sendTimer.Enabled)
+            {
+                btnSend.Text = "Stop";
+            }
+            else if (sendMode.Text == "Single Packet")
+            {
+                btnSend.Text = "Send";
+            }
+            else
+            {
+                btnSend.Text = "Start";
             }
         }
     }

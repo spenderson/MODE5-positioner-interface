@@ -65,8 +65,9 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
             this.sendMode = new System.Windows.Forms.ComboBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -101,7 +102,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTimer = new System.Windows.Forms.Timer(this.components);
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.azVelSlider)).BeginInit();
@@ -111,6 +111,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox15.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
@@ -123,7 +124,6 @@
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox15.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboxComport
@@ -186,7 +186,7 @@
             this.tboxReceive.Name = "tboxReceive";
             this.tboxReceive.ReadOnly = true;
             this.tboxReceive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tboxReceive.Size = new System.Drawing.Size(655, 123);
+            this.tboxReceive.Size = new System.Drawing.Size(735, 123);
             this.tboxReceive.TabIndex = 6;
             // 
             // azPosSlider
@@ -505,6 +505,33 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Transmitter";
             // 
+            // groupBox15
+            // 
+            this.groupBox15.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox15.Controls.Add(this.sendMode);
+            this.groupBox15.Location = new System.Drawing.Point(550, 464);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Size = new System.Drawing.Size(158, 78);
+            this.groupBox15.TabIndex = 38;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Send Mode";
+            // 
+            // sendMode
+            // 
+            this.sendMode.FormattingEnabled = true;
+            this.sendMode.Items.AddRange(new object[] {
+            "Single Packet",
+            "1 Hz",
+            "10 Hz",
+            "50 Hz",
+            "100 Hz",
+            "Continuous"});
+            this.sendMode.Location = new System.Drawing.Point(16, 30);
+            this.sendMode.Name = "sendMode";
+            this.sendMode.Size = new System.Drawing.Size(121, 24);
+            this.sendMode.TabIndex = 37;
+            this.sendMode.SelectedIndexChanged += new System.EventHandler(this.sendMode_SelectedIndexChanged);
+            // 
             // groupBox8
             // 
             this.groupBox8.BackColor = System.Drawing.SystemColors.Control;
@@ -516,21 +543,6 @@
             this.groupBox8.TabIndex = 34;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Position";
-            // 
-            // sendMode
-            // 
-            this.sendMode.FormattingEnabled = true;
-            this.sendMode.Items.AddRange(new object[] {
-            "Single Packet",
-            "1 Hz",
-            "10 Hz",
-            "50 Hz",
-            "100 Hz"});
-            this.sendMode.Location = new System.Drawing.Point(16, 30);
-            this.sendMode.Name = "sendMode";
-            this.sendMode.Size = new System.Drawing.Size(121, 24);
-            this.sendMode.TabIndex = 37;
-            this.sendMode.SelectedIndexChanged += new System.EventHandler(this.sendMode_SelectedIndexChanged);
             // 
             // groupBox10
             // 
@@ -860,7 +872,7 @@
             this.groupBox5.Controls.Add(this.groupBox1);
             this.groupBox5.Location = new System.Drawing.Point(12, 860);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(671, 509);
+            this.groupBox5.Size = new System.Drawing.Size(751, 509);
             this.groupBox5.TabIndex = 42;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Receiver";
@@ -887,17 +899,6 @@
             // sendTimer
             // 
             this.sendTimer.Tick += new System.EventHandler(this.sendTimer_Tick);
-            // 
-            // groupBox15
-            // 
-            this.groupBox15.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox15.Controls.Add(this.sendMode);
-            this.groupBox15.Location = new System.Drawing.Point(550, 464);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Size = new System.Drawing.Size(158, 78);
-            this.groupBox15.TabIndex = 38;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Send Mode";
             // 
             // MainForm
             // 
@@ -927,6 +928,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
@@ -948,7 +950,6 @@
             this.groupBox5.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox15.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

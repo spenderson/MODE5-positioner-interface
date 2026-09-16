@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
@@ -187,11 +188,15 @@ namespace Serial
         #region Receiver
         private List<byte> rxBuffer = new List<byte>();
 
+        private int packetCounter = 0;
+
         public delegate void UPDATE_OUTPUT_TEXT(String Str);
 
         public void UpdateOutputText(String Str)
         {
-            tboxReceive.Text = Str + tboxReceive.Text; // reversed to keep recent data at the top
+            packetCounter++;
+            packetCounter = packetCounter % 1000;
+            tboxReceive.Text = packetCounter.ToString("D3") + ": " + Str + tboxReceive.Text; // reversed to keep recent data at the top
             tboxReceive.ScrollToCaret();
         }
 
@@ -323,7 +328,10 @@ namespace Serial
 
 
         #region Transmitter
-        private bool updatingControls = false; // flag used to prevent feedback loops (to be safe)
+        private bool updatingControls = false; // to prevent feedback loops (to be safe)
+        private CancellationTokenSource continuousCancellationTokenSource;
+        private Task continuousSendTask;
+        private bool isSending = false;
 
         private void Slider_Scroll(object sender, EventArgs e)
         {
@@ -395,7 +403,7 @@ namespace Serial
 
         private void UpdateSendButton()
         {
-            if (sendTimer.Enabled)
+            if (isSending)
             {
                 btnSend.Text = "Stop";
             }
@@ -409,54 +417,73 @@ namespace Serial
             }
         }
 
+        private void StopSending()
+        {
+            sendTimer.Stop();
+
+            if (continuousCancellationTokenSource != null)
+            {
+                continuousCancellationTokenSource.Cancel();
+            }
+
+            isSending = false;
+
+            UpdateSendButton();
+        }
+
         private void btnSend_Click(object sender, EventArgs e)
         {
             if (null != Serial)
             {
                 if (true == Serial.IsOpen)
                 {
-                    if (!sendTimer.Enabled)
+                    if (!isSending)
                     {
                         if (sendMode.Text == "Single Packet")
                         {
                             ConstructAndSendPacket();
                         }
-                        else if (sendMode.Text == "1 Hz")
+                        else
                         {
-                            sendTimer.Interval = 1000;
-                            sendTimer.Start();
-                        }
-                        else if (sendMode.Text == "10 Hz")
-                        {
-                            sendTimer.Interval = 100;
-                            sendTimer.Start();
-                        }
-                        else if (sendMode.Text == "50 Hz")
-                        {
-                            sendTimer.Interval = 20;
-                            sendTimer.Start();
-                        }
-                        else if (sendMode.Text == "100 Hz")
-                        {
-                            sendTimer.Interval = 10;
-                            sendTimer.Start();
-                        }
-                        else if (sendMode.Text == "Continuous")
-                        {
-                            // for now, "continuous" means 1000 Hz
-                            sendTimer.Interval = 1;
-                            sendTimer.Start();
+                            if (sendMode.Text == "1 Hz")
+                            {
+                                sendTimer.Interval = 1000;
+                                sendTimer.Start();
+                            }
+                            else if (sendMode.Text == "10 Hz")
+                            {
+                                sendTimer.Interval = 100;
+                                sendTimer.Start();
+                            }
+                            else if (sendMode.Text == "50 Hz")
+                            {
+                                sendTimer.Interval = 20;
+                                sendTimer.Start();
+                            }
+                            else if (sendMode.Text == "100 Hz")
+                            {
+                                sendTimer.Interval = 10;
+                                sendTimer.Start();
+                            }
+                            else if (sendMode.Text == "Continuous")
+                            {
+                                byte[] packet = ConstructPacket();
+                                continuousCancellationTokenSource = new CancellationTokenSource();
+                                CancellationToken token = continuousCancellationTokenSource.Token;
+                                continuousSendTask = Task.Run(() => ContinuousSend(packet, token), token);
+                            }
+                            isSending = true;
                         }
                     }
                     else
                     {
-                        sendTimer.Stop();
+                        StopSending();
                     }
                     UpdateSendButton();
                 }
                 else
                 {
-                    MessageBox.Show("COM Port is not opened");
+                    MessageBox.Show("COM port is not opened");
                 }
             }
         }
@@ -552,8 +579,15 @@ namespace Serial
 
         private void sendMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            sendTimer.Stop(); // in case it's running
-            UpdateSendButton();
+            StopSending();
+        }
+
+        private void ContinuousSend(byte[] packet, CancellationToken token)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                SendPacket(packet);
+            }
         }
         #endregion
     }

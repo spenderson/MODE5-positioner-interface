@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.IO.Ports;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.IO.Ports;
-using System.Net;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Serial
 {
@@ -195,8 +196,16 @@ namespace Serial
         public void UpdateOutputText(String Str)
         {
             packetCounter++;
-            packetCounter = packetCounter % 1000;
-            tboxReceive.Text = packetCounter.ToString("D3") + ": " + Str + tboxReceive.Text; // reversed to keep recent data at the top
+
+            // keep the output log at a maximum of 10 lines
+            if (packetCounter > 9)
+            {
+                int lastNewlineIndex = tboxReceive.Text.LastIndexOf("\r\n");
+                tboxReceive.Text = tboxReceive.Text.Substring(0, lastNewlineIndex);
+            }
+
+            int index = packetCounter % 1000;
+            tboxReceive.Text = index.ToString("D3") + ": " + Str + tboxReceive.Text; // reversed to keep recent data at the top
             tboxReceive.ScrollToCaret();
         }
 

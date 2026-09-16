@@ -102,6 +102,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTimer = new System.Windows.Forms.Timer(this.components);
+            this.sweepTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.azVelSlider)).BeginInit();
@@ -186,7 +187,7 @@
             this.tboxReceive.Name = "tboxReceive";
             this.tboxReceive.ReadOnly = true;
             this.tboxReceive.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tboxReceive.Size = new System.Drawing.Size(735, 123);
+            this.tboxReceive.Size = new System.Drawing.Size(699, 123);
             this.tboxReceive.TabIndex = 6;
             // 
             // azPosSlider
@@ -525,7 +526,8 @@
             "10 Hz",
             "50 Hz",
             "100 Hz",
-            "Continuous"});
+            "Continuous",
+            "Sweep"});
             this.sendMode.Location = new System.Drawing.Point(16, 30);
             this.sendMode.Name = "sendMode";
             this.sendMode.Size = new System.Drawing.Size(121, 24);
@@ -872,7 +874,7 @@
             this.groupBox5.Controls.Add(this.groupBox1);
             this.groupBox5.Location = new System.Drawing.Point(12, 860);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(751, 509);
+            this.groupBox5.Size = new System.Drawing.Size(718, 509);
             this.groupBox5.TabIndex = 42;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Receiver";
@@ -885,7 +887,7 @@
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(867, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(739, 28);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -900,11 +902,15 @@
             // 
             this.sendTimer.Tick += new System.EventHandler(this.sendTimer_Tick);
             // 
+            // sweepTimer
+            // 
+            this.sweepTimer.Tick += new System.EventHandler(this.sweepTimer_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 1380);
+            this.ClientSize = new System.Drawing.Size(739, 1380);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -1029,6 +1035,7 @@
         private System.Windows.Forms.ComboBox sendMode;
         private System.Windows.Forms.Timer sendTimer;
         private System.Windows.Forms.GroupBox groupBox15;
+        private System.Windows.Forms.Timer sweepTimer;
     }
 }
 

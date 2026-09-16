@@ -92,6 +92,9 @@ namespace Serial
             // If user click disconnect
             if ("Disconnect" == btnConnect.Text.ToString())
             {
+
+                StopSending();
+
                 if (true == Serial.IsOpen)
                 {
                     Serial.Close();
@@ -338,8 +341,8 @@ namespace Serial
 
         #region Transmitter
         private bool updatingControls = false; // to prevent feedback loops (to be safe)
-        private CancellationTokenSource continuousCancellationTokenSource;
-        private Task continuousSendTask;
+        private CancellationTokenSource backgroundCancellationTokenSource;
+        private Task backgroundSendTask;
         private bool isSending = false;
 
         private void Slider_Scroll(object sender, EventArgs e)
@@ -429,10 +432,11 @@ namespace Serial
         private void StopSending()
         {
             sendTimer.Stop();
+            sweepTimer.Stop();
 
-            if (continuousCancellationTokenSource != null)
+            if (backgroundCancellationTokenSource != null)
             {
-                continuousCancellationTokenSource.Cancel();
+                backgroundCancellationTokenSource.Cancel();
             }
 
             isSending = false;
@@ -476,10 +480,35 @@ namespace Serial
                             }
                             else if (sendMode.Text == "Continuous")
                             {
-                                byte[] packet = ConstructPacket();
-                                continuousCancellationTokenSource = new CancellationTokenSource();
-                                CancellationToken token = continuousCancellationTokenSource.Token;
-                                continuousSendTask = Task.Run(() => ContinuousSend(packet, token), token);
+
+                                // construct packet from textbox values on UI
+
+                                float.TryParse(azPosTextBoxTx.Text, out float azDegrees);
+                                float.TryParse(elPosTextBoxTx.Text, out float elDegrees);
+                                float.TryParse(azVelTextBoxTx.Text, out float azVel);
+                                float.TryParse(elVelTextBoxTx.Text, out float elVel);
+                                float.TryParse(azAccTextBoxTx.Text, out float azAcc);
+                                float.TryParse(elAccTextBoxTx.Text, out float elAcc);
+                                byte[] packet = ConstructPacket(azDegrees, elDegrees, azVel, elVel, azAcc, elAcc);
+
+                                // pass the packet off to the ContinuousSend method that runs in the background
+
+                                backgroundCancellationTokenSource = new CancellationTokenSource();
+                                CancellationToken token = backgroundCancellationTokenSource.Token;
+                                backgroundSendTask = Task.Run(() => ContinuousSend(packet, token), token);
+
+                            }
+                            else if (sendMode.Text == "Sweep")
+                            {
+                                // reset the sweep variables, in case it had already been run
+                                sweepAzDegrees = 0;
+                                sweepElDegrees = 0;
+                                sweepAzDirection = 1;
+                                sweepElDirection = 1;
+
+                                // run the sweep
+                                sweepTimer.Interval = 500;
+                                sweepTimer.Start();
                             }
                             isSending = true;
                         }
@@ -508,7 +537,7 @@ namespace Serial
             packet[startIndex + 3] = bytes[3];
         }
 
-        private byte[] ConstructPacket()
+        private byte[] ConstructPacket(float azDegrees, float elDegrees, float azVel, float elVel, float azAcc, float elAcc)
         {
 
             byte[] packet = new byte[MODE5_PACKET_SIZE];
@@ -518,9 +547,6 @@ namespace Serial
             packet[0] = MODE5_SYNC_CHAR;
 
             // Positions
-
-            float.TryParse(azPosTextBoxTx.Text, out float azDegrees);
-            float.TryParse(elPosTextBoxTx.Text, out float elDegrees);
 
             int azPos = (int)(azDegrees * 16777216.0 / 360.0);
 
@@ -540,11 +566,6 @@ namespace Serial
             packet[6] = (byte)((elPos) & 0xFF);
 
             // Velocities and Accelerations
-
-            float.TryParse(azVelTextBoxTx.Text, out float azVel);
-            float.TryParse(elVelTextBoxTx.Text, out float elVel);
-            float.TryParse(azAccTextBoxTx.Text, out float azAcc);
-            float.TryParse(elAccTextBoxTx.Text, out float elAcc);
 
             AddFloatToPacket(packet, azVel, 7);
             AddFloatToPacket(packet, elVel, 11);
@@ -573,10 +594,15 @@ namespace Serial
 
         private void ConstructAndSendPacket()
         {
-            // these two methods are separate because the Continuous send mode requires
-            // constructing the packet and then repeatedly sending it as fast as possible
 
-            byte[] packet = ConstructPacket();
+            float.TryParse(azPosTextBoxTx.Text, out float azDegrees);
+            float.TryParse(elPosTextBoxTx.Text, out float elDegrees);
+            float.TryParse(azVelTextBoxTx.Text, out float azVel);
+            float.TryParse(elVelTextBoxTx.Text, out float elVel);
+            float.TryParse(azAccTextBoxTx.Text, out float azAcc);
+            float.TryParse(elAccTextBoxTx.Text, out float elAcc);
+            byte[] packet = ConstructPacket(azDegrees, elDegrees, azVel, elVel, azAcc, elAcc);
+
             SendPacket(packet);
 
         }
@@ -597,6 +623,63 @@ namespace Serial
             {
                 SendPacket(packet);
             }
+        }
+
+        private int sweepMinAz = 0;
+        private int sweepMaxAz = 359;
+        private int sweepMinEl = -38;
+        private int sweepMaxEl = 83;
+        float sweepAzDegrees = 0, sweepElDegrees = 0;
+        int sweepAzDirection = 1, sweepElDirection = 1;
+
+        private void sweepTimer_Tick(object sender, EventArgs e)
+        {
+
+            // update AZ
+
+            if (sweepAzDirection > 0 && sweepAzDegrees < sweepMaxAz)
+            {
+                sweepAzDegrees++;
+            }
+            else if (sweepAzDirection > 0 && sweepAzDegrees >= sweepMaxAz)
+            {
+                sweepAzDirection = -1;
+                sweepAzDegrees--;
+            }
+            else if (sweepAzDirection < 0 && sweepAzDegrees > sweepMinAz)
+            {
+                sweepAzDegrees--;
+            }
+            else if (sweepAzDirection < 0 && sweepAzDegrees <= sweepMinAz)
+            {
+                sweepAzDirection = 1;
+                sweepAzDegrees++;
+            }
+
+            // update EL
+
+            if (sweepElDirection > 0 && sweepElDegrees < sweepMaxEl)
+            {
+                sweepElDegrees++;
+            }
+            else if (sweepElDirection > 0 && sweepElDegrees >= sweepMaxEl)
+            {
+                sweepElDirection = -1;
+                sweepElDegrees--;
+            }
+            else if (sweepElDirection < 0 && sweepElDegrees > sweepMinEl)
+            {
+                sweepElDegrees--;
+            }
+            else if (sweepElDirection < 0 && sweepElDegrees <= sweepMinEl)
+            {
+                sweepElDirection = 1;
+                sweepElDegrees++;
+            }
+
+            // send it
+
+            SendPacket(ConstructPacket(sweepAzDegrees, sweepElDegrees, 2.0f, 2.0f, 1.0f, 1.0f));
         }
         #endregion
     }

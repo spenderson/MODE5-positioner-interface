@@ -194,6 +194,8 @@ namespace Serial
 
         private int packetCounter = 0;
 
+        private int invalidCSCounter = 0;
+
         public delegate void UPDATE_OUTPUT_TEXT(String Str);
 
         public void UpdateOutputText(String Str)
@@ -332,6 +334,10 @@ namespace Serial
                 {
                     // remove first byte (sync char) from receive buffer.
                     rxBuffer.RemoveRange(0, 1);
+
+                    // tick up the counter
+                    invalidCSCounter++;
+                    invalidCSTextBox.Text = invalidCSCounter.ToString();
                 }
             }
 

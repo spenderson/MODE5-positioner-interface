@@ -103,6 +103,8 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendTimer = new System.Windows.Forms.Timer(this.components);
             this.sweepTimer = new System.Windows.Forms.Timer(this.components);
+            this.invalidCSTextBox = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.azVelSlider)).BeginInit();
@@ -867,6 +869,8 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.label8);
+            this.groupBox5.Controls.Add(this.invalidCSTextBox);
             this.groupBox5.Controls.Add(this.tboxReceive);
             this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Controls.Add(this.label10);
@@ -905,6 +909,27 @@
             // sweepTimer
             // 
             this.sweepTimer.Tick += new System.EventHandler(this.sweepTimer_Tick);
+            // 
+            // invalidCSTextBox
+            // 
+            this.invalidCSTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.invalidCSTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.invalidCSTextBox.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.invalidCSTextBox.Location = new System.Drawing.Point(477, 304);
+            this.invalidCSTextBox.Name = "invalidCSTextBox";
+            this.invalidCSTextBox.Size = new System.Drawing.Size(125, 22);
+            this.invalidCSTextBox.TabIndex = 40;
+            this.invalidCSTextBox.Text = "-";
+            this.invalidCSTextBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(459, 278);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(164, 16);
+            this.label8.TabIndex = 41;
+            this.label8.Text = "Invalid Checksum Counter:";
             // 
             // MainForm
             // 
@@ -1036,6 +1061,8 @@
         private System.Windows.Forms.Timer sendTimer;
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.Timer sweepTimer;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label invalidCSTextBox;
     }
 }
 

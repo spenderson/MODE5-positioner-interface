@@ -17,39 +17,9 @@ namespace MODE5_Tester
 {
     public partial class MainForm : Form
     {
-        #region Both Receiver and Transmitter
-        private readonly int[] baudrate = { 9600, 19200, 38400, 115200, 230400, 460800, 921600, 3860000 };
-        
-        private readonly int MODE5_PACKET_SIZE = 24;
-        
-        private readonly byte MODE5_SYNC_CHAR = 0xAA;
-
-        private SerialPort Serial = new SerialPort();
-        
-        private void UpdateCOMPortList()
-        {
-            // Get all existing Com Port names
-            string[] Ports = System.IO.Ports.SerialPort.GetPortNames();
-            cboxComport.Items.Clear();
-            cboxBaudrate.Items.Clear();
-
-            // Append existing COM to the cboxComport list
-            foreach (var item in Ports)
-            {
-                cboxComport.Items.Add(item);
-            }
-
-            // Append possible Baudrate to the cboxBaudrate list
-            foreach (var baud in baudrate)
-            {
-                cboxBaudrate.Items.Add(baud.ToString());
-            }
-        }
-        
         public MainForm()
         {
             InitializeComponent();
-
 
             // have each slider/textbox pair on the TX interface be tagged to eachother
             // this is to allow generic handlers to use tags to decide which other UI elements to update
@@ -86,6 +56,39 @@ namespace MODE5_Tester
             sendMode.SelectedIndex = 0;
 
         }
+
+        #region Globals
+        private readonly int[] baudrate = { 9600, 19200, 38400, 115200, 230400, 460800, 921600, 3860000 };
+        
+        private readonly int MODE5_PACKET_SIZE = 24;
+        
+        private readonly byte MODE5_SYNC_CHAR = 0xAA;
+
+        private SerialPort Serial = new SerialPort();
+
+        private bool updatingControls = false; // to prevent feedback loops (to be safe)
+
+        private CancellationTokenSource backgroundCancellationTokenSource;
+
+        private Task backgroundSendTask;
+
+        private bool isSending = false;
+
+        // variables used for sweep function
+        private int sweepMinAz = 0;
+
+        private int sweepMaxAz = 359;
+
+        private int sweepMinEl = -38;
+
+        private int sweepMaxEl = 83;
+
+        float sweepAzDegrees = 0, sweepElDegrees = 0;
+
+        int sweepAzDirection = 1, sweepElDirection = 1;
+        #endregion
+
+        #region Handlers
         
         private void btnConnect_Click(object sender, EventArgs e)
         {
@@ -168,8 +171,14 @@ namespace MODE5_Tester
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // We need to populate the lists during mainform is loading
             UpdateCOMPortList();
+
+            // Autopopulate COM port and Baud rate dropdowns
+            cboxBaudrate.SelectedIndex = 0;
+            if (cboxComport.Items.Count > 0)
+            {
+                cboxComport.SelectedIndex = 0;
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -183,13 +192,6 @@ namespace MODE5_Tester
             AboutForm aboutForm = new AboutForm();
             aboutForm.ShowDialog();
         }
-        #endregion
-
-        #region Transmitter
-        private bool updatingControls = false; // to prevent feedback loops (to be safe)
-        private CancellationTokenSource backgroundCancellationTokenSource;
-        private Task backgroundSendTask;
-        private bool isSending = false;
 
         private void Slider_Scroll(object sender, EventArgs e)
         {
@@ -259,35 +261,73 @@ namespace MODE5_Tester
             }
         }
 
-        private void UpdateSendButton()
+        private void sweepTimer_Tick(object sender, EventArgs e)
         {
-            if (isSending)
+
+            // update AZ
+
+            if (sweepAzDirection > 0 && sweepAzDegrees < sweepMaxAz)
             {
-                btnSend.Text = "Stop";
+                sweepAzDegrees++;
             }
-            else if (sendRate.Text == "Single Packet" && sendMode.Text == "Use Position Controls")
+            else if (sweepAzDirection > 0 && sweepAzDegrees >= sweepMaxAz)
             {
-                btnSend.Text = "Send";
+                sweepAzDirection = -1;
+                sweepAzDegrees--;
+            }
+            else if (sweepAzDirection < 0 && sweepAzDegrees > sweepMinAz)
+            {
+                sweepAzDegrees--;
+            }
+            else if (sweepAzDirection < 0 && sweepAzDegrees <= sweepMinAz)
+            {
+                sweepAzDirection = 1;
+                sweepAzDegrees++;
+            }
+
+            // update EL
+
+            if (sweepElDirection > 0 && sweepElDegrees < sweepMaxEl)
+            {
+                sweepElDegrees++;
+            }
+            else if (sweepElDirection > 0 && sweepElDegrees >= sweepMaxEl)
+            {
+                sweepElDirection = -1;
+                sweepElDegrees--;
+            }
+            else if (sweepElDirection < 0 && sweepElDegrees > sweepMinEl)
+            {
+                sweepElDegrees--;
+            }
+            else if (sweepElDirection < 0 && sweepElDegrees <= sweepMinEl)
+            {
+                sweepElDirection = 1;
+                sweepElDegrees++;
+            }
+
+            // send it
+
+            SendPacket(ConstructPacket(sweepAzDegrees, sweepElDegrees, 2.0f, 2.0f, 1.0f, 1.0f));
+        }
+
+        private void sendTimer_Tick(object sender, EventArgs e)
+        {
+            ConstructAndSendPacket();
+        }
+
+        private void sendSettingChanged(object sender, EventArgs e)
+        {
+            StopSending();
+
+            if (sendMode.Text == "Sweep")
+            {
+                sendRate.Enabled = false;
             }
             else
             {
-                btnSend.Text = "Start";
+                sendRate.Enabled = true;
             }
-        }
-
-        private void StopSending()
-        {
-            sendTimer.Stop();
-            sweepTimer.Stop();
-
-            if (backgroundCancellationTokenSource != null)
-            {
-                backgroundCancellationTokenSource.Cancel();
-            }
-
-            isSending = false;
-
-            UpdateSendButton();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -376,6 +416,59 @@ namespace MODE5_Tester
             }
         }
 
+        #endregion
+
+        #region Methods
+        private void UpdateCOMPortList()
+        {
+            // Get all existing Com Port names
+            string[] Ports = System.IO.Ports.SerialPort.GetPortNames();
+            cboxComport.Items.Clear();
+            cboxBaudrate.Items.Clear();
+            foreach (var item in Ports)
+            {
+                cboxComport.Items.Add(item);
+            }
+
+            // Append possible Baudrate to the cboxBaudrate list
+            foreach (var baud in baudrate)
+            {
+                cboxBaudrate.Items.Add(baud.ToString());
+            }
+
+        }
+
+        private void UpdateSendButton()
+        {
+            if (isSending)
+            {
+                btnSend.Text = "Stop";
+            }
+            else if (sendRate.Text == "Single Packet" && sendMode.Text == "Use Position Controls")
+            {
+                btnSend.Text = "Send";
+            }
+            else
+            {
+                btnSend.Text = "Start";
+            }
+        }
+
+        private void StopSending()
+        {
+            sendTimer.Stop();
+            sweepTimer.Stop();
+
+            if (backgroundCancellationTokenSource != null)
+            {
+                backgroundCancellationTokenSource.Cancel();
+            }
+
+            isSending = false;
+
+            UpdateSendButton();
+        }
+
         private void AddFloatToPacket(byte[] packet, float value, int startIndex)
         {
             byte[] bytes = BitConverter.GetBytes(value);
@@ -457,25 +550,6 @@ namespace MODE5_Tester
 
         }
 
-        private void sendTimer_Tick(object sender, EventArgs e)
-        {
-            ConstructAndSendPacket();
-        }
-
-        private void sendSettingChanged(object sender, EventArgs e)
-        {
-            StopSending();
-
-            if (sendMode.Text == "Sweep")
-            {
-                sendRate.Enabled = false;
-            }
-            else
-            {
-                sendRate.Enabled = true;
-            }
-        }
-
         private void ContinuousSend(byte[] packet, CancellationToken token)
         {
             while (!token.IsCancellationRequested)
@@ -484,62 +558,6 @@ namespace MODE5_Tester
             }
         }
 
-        private int sweepMinAz = 0;
-        private int sweepMaxAz = 359;
-        private int sweepMinEl = -38;
-        private int sweepMaxEl = 83;
-        float sweepAzDegrees = 0, sweepElDegrees = 0;
-        int sweepAzDirection = 1, sweepElDirection = 1;
-
-        private void sweepTimer_Tick(object sender, EventArgs e)
-        {
-
-            // update AZ
-
-            if (sweepAzDirection > 0 && sweepAzDegrees < sweepMaxAz)
-            {
-                sweepAzDegrees++;
-            }
-            else if (sweepAzDirection > 0 && sweepAzDegrees >= sweepMaxAz)
-            {
-                sweepAzDirection = -1;
-                sweepAzDegrees--;
-            }
-            else if (sweepAzDirection < 0 && sweepAzDegrees > sweepMinAz)
-            {
-                sweepAzDegrees--;
-            }
-            else if (sweepAzDirection < 0 && sweepAzDegrees <= sweepMinAz)
-            {
-                sweepAzDirection = 1;
-                sweepAzDegrees++;
-            }
-
-            // update EL
-
-            if (sweepElDirection > 0 && sweepElDegrees < sweepMaxEl)
-            {
-                sweepElDegrees++;
-            }
-            else if (sweepElDirection > 0 && sweepElDegrees >= sweepMaxEl)
-            {
-                sweepElDirection = -1;
-                sweepElDegrees--;
-            }
-            else if (sweepElDirection < 0 && sweepElDegrees > sweepMinEl)
-            {
-                sweepElDegrees--;
-            }
-            else if (sweepElDirection < 0 && sweepElDegrees <= sweepMinEl)
-            {
-                sweepElDirection = 1;
-                sweepElDegrees++;
-            }
-
-            // send it
-
-            SendPacket(ConstructPacket(sweepAzDegrees, sweepElDegrees, 2.0f, 2.0f, 1.0f, 1.0f));
-        }
         #endregion
     }
 }

@@ -1,0 +1,35 @@
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\bin\Debug\Serial.exe.config
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\bin\Debug\Serial.exe
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\bin\Debug\Serial.pdb
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.csproj.AssemblyReference.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.MainForm.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.Properties.Resources.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.csproj.GenerateResource.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.csproj.CoreCompileInputs.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.exe
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.pdb
+C:\Users\spenc\source\repos\CSharp_SerialPort\Serial\obj\Debug\Serial.AboutForm.resources
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\bin\Debug\Serial.exe.config
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\bin\Debug\Serial.exe
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\bin\Debug\Serial.pdb
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.csproj.AssemblyReference.cache
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.exe.config
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.AboutForm.resources
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.MainForm.resources
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.Properties.Resources.resources
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.csproj.GenerateResource.cache
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.csproj.CoreCompileInputs.cache
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.exe
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.pdb
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\bin\Debug\Serial.exe.config
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\bin\Debug\Serial.exe
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\bin\Debug\Serial.pdb
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.csproj.AssemblyReference.cache
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.exe.config
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.AboutForm.resources
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.MainForm.resources
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.Properties.Resources.resources
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.csproj.GenerateResource.cache
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.csproj.CoreCompileInputs.cache
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.exe
+C:\Users\JimHenderson\Desktop\MODE5-positioner-interface-master\Serial\obj\Debug\Serial.pdb

@@ -1,0 +1,33 @@
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\bin\Debug\MODE5_Tester.exe.config
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\bin\Debug\MODE5_Tester.exe
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\bin\Debug\MODE5_Tester.pdb
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\obj\Debug\MODE5_Tester.csproj.AssemblyReference.cache
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\obj\Debug\MODE5_Tester.Properties.Resources.resources
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\obj\Debug\MODE5_Tester.csproj.GenerateResource.cache
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\obj\Debug\MODE5_Tester.csproj.CoreCompileInputs.cache
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\obj\Debug\MODE5_Tester.exe
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\obj\Debug\MODE5_Tester.pdb
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\obj\Debug\MODE5_Tester.AboutForm.resources
+C:\Users\Jim\Documents\___Work\PVP\MODE5 Serial Interface\Spencer\MODE5-positioner-interface-master\MODE5_Tester\obj\Debug\MODE5_Tester.MainForm.resources
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\obj\Debug\MODE5_Tester.csproj.AssemblyReference.cache
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\obj\Debug\MODE5_Tester.exe
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\obj\Debug\MODE5_Tester.pdb
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\bin\Debug\MODE5_Tester.exe.config
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\bin\Debug\MODE5_Tester.exe
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\bin\Debug\MODE5_Tester.pdb
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\obj\Debug\MODE5_Tester.AboutForm.resources
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\obj\Debug\MODE5_Tester.MainForm.resources
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\obj\Debug\MODE5_Tester.Properties.Resources.resources
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\obj\Debug\MODE5_Tester.csproj.GenerateResource.cache
+C:\Users\spenc\Downloads\MODE5_Tester\MODE5_Tester\obj\Debug\MODE5_Tester.csproj.CoreCompileInputs.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\bin\Debug\MODE5_Tester.exe.config
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\bin\Debug\MODE5_Tester.exe
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\bin\Debug\MODE5_Tester.pdb
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\obj\Debug\MODE5_Tester.csproj.AssemblyReference.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\obj\Debug\MODE5_Tester.AboutForm.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\obj\Debug\MODE5_Tester.MainForm.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\obj\Debug\MODE5_Tester.Properties.Resources.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\obj\Debug\MODE5_Tester.csproj.GenerateResource.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\obj\Debug\MODE5_Tester.csproj.CoreCompileInputs.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\obj\Debug\MODE5_Tester.exe
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Tester\obj\Debug\MODE5_Tester.pdb

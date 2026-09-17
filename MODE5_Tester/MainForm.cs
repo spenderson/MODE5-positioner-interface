@@ -77,14 +77,14 @@ namespace MODE5_Tester
 
             azPosTextBoxTx.Text = azPosSlider.Value.ToString();
             elPosTextBoxTx.Text = elPosSlider.Value.ToString();
-
             azVelTextBoxTx.Text = azVelSlider.Value.ToString();
             elVelTextBoxTx.Text = elVelSlider.Value.ToString();
-
             azAccTextBoxTx.Text = azAccSlider.Value.ToString();
             elAccTextBoxTx.Text = elAccSlider.Value.ToString();
 
+            sendRate.SelectedIndex = 0;
             sendMode.SelectedIndex = 0;
+
         }
         
         private void btnConnect_Click(object sender, EventArgs e)
@@ -265,7 +265,7 @@ namespace MODE5_Tester
             {
                 btnSend.Text = "Stop";
             }
-            else if (sendMode.Text == "Single Packet")
+            else if (sendRate.Text == "Single Packet" && sendMode.Text == "Use Position Controls")
             {
                 btnSend.Text = "Send";
             }
@@ -298,64 +298,68 @@ namespace MODE5_Tester
                 {
                     if (!isSending)
                     {
-                        if (sendMode.Text == "Single Packet")
+                        if (sendMode.Text == "Use Position Controls")
                         {
-                            ConstructAndSendPacket();
+                            if (sendRate.Text == "Single Packet")
+                            {
+                                ConstructAndSendPacket();
+                            }
+                            else
+                            {
+                                if (sendRate.Text == "1 Hz")
+                                {
+                                    sendTimer.Interval = 1000;
+                                    sendTimer.Start();
+                                }
+                                else if (sendRate.Text == "10 Hz")
+                                {
+                                    sendTimer.Interval = 100;
+                                    sendTimer.Start();
+                                }
+                                else if (sendRate.Text == "50 Hz")
+                                {
+                                    sendTimer.Interval = 20;
+                                    sendTimer.Start();
+                                }
+                                else if (sendRate.Text == "100 Hz")
+                                {
+                                    sendTimer.Interval = 10;
+                                    sendTimer.Start();
+                                }
+                                else if (sendRate.Text == "Continuous")
+                                {
+
+                                    // construct packet from textbox values on UI
+
+                                    float.TryParse(azPosTextBoxTx.Text, out float azDegrees);
+                                    float.TryParse(elPosTextBoxTx.Text, out float elDegrees);
+                                    float.TryParse(azVelTextBoxTx.Text, out float azVel);
+                                    float.TryParse(elVelTextBoxTx.Text, out float elVel);
+                                    float.TryParse(azAccTextBoxTx.Text, out float azAcc);
+                                    float.TryParse(elAccTextBoxTx.Text, out float elAcc);
+                                    byte[] packet = ConstructPacket(azDegrees, elDegrees, azVel, elVel, azAcc, elAcc);
+
+                                    // pass the packet off to the ContinuousSend method that runs in the background
+
+                                    backgroundCancellationTokenSource = new CancellationTokenSource();
+                                    CancellationToken token = backgroundCancellationTokenSource.Token;
+                                    backgroundSendTask = Task.Run(() => ContinuousSend(packet, token), token);
+
+                                }
+                                isSending = true;
+                            }
                         }
-                        else
+                        else if (sendMode.Text == "Sweep")
                         {
-                            if (sendMode.Text == "1 Hz")
-                            {
-                                sendTimer.Interval = 1000;
-                                sendTimer.Start();
-                            }
-                            else if (sendMode.Text == "10 Hz")
-                            {
-                                sendTimer.Interval = 100;
-                                sendTimer.Start();
-                            }
-                            else if (sendMode.Text == "50 Hz")
-                            {
-                                sendTimer.Interval = 20;
-                                sendTimer.Start();
-                            }
-                            else if (sendMode.Text == "100 Hz")
-                            {
-                                sendTimer.Interval = 10;
-                                sendTimer.Start();
-                            }
-                            else if (sendMode.Text == "Continuous")
-                            {
+                            // reset the sweep variables, in case it had already been run
+                            sweepAzDegrees = 0;
+                            sweepElDegrees = 0;
+                            sweepAzDirection = 1;
+                            sweepElDirection = 1;
 
-                                // construct packet from textbox values on UI
-
-                                float.TryParse(azPosTextBoxTx.Text, out float azDegrees);
-                                float.TryParse(elPosTextBoxTx.Text, out float elDegrees);
-                                float.TryParse(azVelTextBoxTx.Text, out float azVel);
-                                float.TryParse(elVelTextBoxTx.Text, out float elVel);
-                                float.TryParse(azAccTextBoxTx.Text, out float azAcc);
-                                float.TryParse(elAccTextBoxTx.Text, out float elAcc);
-                                byte[] packet = ConstructPacket(azDegrees, elDegrees, azVel, elVel, azAcc, elAcc);
-
-                                // pass the packet off to the ContinuousSend method that runs in the background
-
-                                backgroundCancellationTokenSource = new CancellationTokenSource();
-                                CancellationToken token = backgroundCancellationTokenSource.Token;
-                                backgroundSendTask = Task.Run(() => ContinuousSend(packet, token), token);
-
-                            }
-                            else if (sendMode.Text == "Sweep")
-                            {
-                                // reset the sweep variables, in case it had already been run
-                                sweepAzDegrees = 0;
-                                sweepElDegrees = 0;
-                                sweepAzDirection = 1;
-                                sweepElDirection = 1;
-
-                                // run the sweep
-                                sweepTimer.Interval = 500;
-                                sweepTimer.Start();
-                            }
+                            // run the sweep
+                            sweepTimer.Interval = 500;
+                            sweepTimer.Start();
                             isSending = true;
                         }
                     }
@@ -458,9 +462,18 @@ namespace MODE5_Tester
             ConstructAndSendPacket();
         }
 
-        private void sendMode_SelectedIndexChanged(object sender, EventArgs e)
+        private void sendSettingChanged(object sender, EventArgs e)
         {
             StopSending();
+
+            if (sendMode.Text == "Sweep")
+            {
+                sendRate.Enabled = false;
+            }
+            else
+            {
+                sendRate.Enabled = true;
+            }
         }
 
         private void ContinuousSend(byte[] packet, CancellationToken token)

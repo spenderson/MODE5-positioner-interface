@@ -42,9 +42,11 @@
             this.elAccSlider = new System.Windows.Forms.TrackBar();
             this.azAccSlider = new System.Windows.Forms.TrackBar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox15 = new System.Windows.Forms.GroupBox();
-            this.sendMode = new System.Windows.Forms.ComboBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.groupBox15 = new System.Windows.Forms.GroupBox();
+            this.sendRate = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.sendMode = new System.Windows.Forms.ComboBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -86,8 +88,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.elAccSlider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.azAccSlider)).BeginInit();
             this.groupBox3.SuspendLayout();
-            this.groupBox15.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox15.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -104,7 +107,7 @@
             // 
             this.cboxComport.FormattingEnabled = true;
             this.cboxComport.Location = new System.Drawing.Point(72, 32);
-            this.cboxComport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboxComport.Margin = new System.Windows.Forms.Padding(4);
             this.cboxComport.Name = "cboxComport";
             this.cboxComport.Size = new System.Drawing.Size(103, 24);
             this.cboxComport.TabIndex = 0;
@@ -112,7 +115,7 @@
             // btnConnect
             // 
             this.btnConnect.Location = new System.Drawing.Point(27, 106);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnConnect.Margin = new System.Windows.Forms.Padding(4);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(112, 28);
             this.btnConnect.TabIndex = 1;
@@ -124,7 +127,7 @@
             // 
             this.cboxBaudrate.FormattingEnabled = true;
             this.cboxBaudrate.Location = new System.Drawing.Point(72, 65);
-            this.cboxBaudrate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboxBaudrate.Margin = new System.Windows.Forms.Padding(4);
             this.cboxBaudrate.Name = "cboxBaudrate";
             this.cboxBaudrate.Size = new System.Drawing.Size(103, 24);
             this.cboxBaudrate.TabIndex = 2;
@@ -132,7 +135,7 @@
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(235, 32);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(79, 28);
             this.btnRefresh.TabIndex = 3;
@@ -142,12 +145,12 @@
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(565, 583);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSend.Location = new System.Drawing.Point(510, 145);
+            this.btnSend.Margin = new System.Windows.Forms.Padding(4);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(131, 28);
             this.btnSend.TabIndex = 4;
-            this.btnSend.Text = "Start";
+            this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
             this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
@@ -227,9 +230,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.groupBox15);
             this.groupBox3.Controls.Add(this.groupBox8);
-            this.groupBox3.Controls.Add(this.btnSend);
             this.groupBox3.Controls.Add(this.groupBox7);
             this.groupBox3.Controls.Add(this.groupBox6);
             this.groupBox3.Location = new System.Drawing.Point(12, 187);
@@ -241,39 +242,12 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Transmitter";
             // 
-            // groupBox15
-            // 
-            this.groupBox15.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox15.Controls.Add(this.sendMode);
-            this.groupBox15.Location = new System.Drawing.Point(549, 464);
-            this.groupBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox15.Name = "groupBox15";
-            this.groupBox15.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox15.Size = new System.Drawing.Size(157, 78);
-            this.groupBox15.TabIndex = 38;
-            this.groupBox15.TabStop = false;
-            this.groupBox15.Text = "Send Mode";
-            // 
-            // sendMode
-            // 
-            this.sendMode.FormattingEnabled = true;
-            this.sendMode.Items.AddRange(new object[] {
-            "Single Packet",
-            "1 Hz",
-            "10 Hz",
-            "50 Hz",
-            "100 Hz",
-            "Continuous"});
-            this.sendMode.Location = new System.Drawing.Point(16, 30);
-            this.sendMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.sendMode.Name = "sendMode";
-            this.sendMode.Size = new System.Drawing.Size(121, 24);
-            this.sendMode.TabIndex = 37;
-            this.sendMode.SelectedIndexChanged += new System.EventHandler(this.sendMode_SelectedIndexChanged);
-            // 
             // groupBox8
             // 
             this.groupBox8.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox8.Controls.Add(this.groupBox15);
+            this.groupBox8.Controls.Add(this.btnSend);
+            this.groupBox8.Controls.Add(this.groupBox1);
             this.groupBox8.Controls.Add(this.groupBox10);
             this.groupBox8.Controls.Add(this.groupBox9);
             this.groupBox8.Location = new System.Drawing.Point(21, 34);
@@ -284,6 +258,60 @@
             this.groupBox8.TabIndex = 34;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Position";
+            // 
+            // groupBox15
+            // 
+            this.groupBox15.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox15.Controls.Add(this.sendRate);
+            this.groupBox15.Location = new System.Drawing.Point(335, 115);
+            this.groupBox15.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox15.Name = "groupBox15";
+            this.groupBox15.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox15.Size = new System.Drawing.Size(157, 78);
+            this.groupBox15.TabIndex = 38;
+            this.groupBox15.TabStop = false;
+            this.groupBox15.Text = "Rate";
+            // 
+            // sendRate
+            // 
+            this.sendRate.FormattingEnabled = true;
+            this.sendRate.Items.AddRange(new object[] {
+            "Single Packet",
+            "1 Hz",
+            "10 Hz",
+            "Continuous"});
+            this.sendRate.Location = new System.Drawing.Point(16, 30);
+            this.sendRate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.sendRate.Name = "sendRate";
+            this.sendRate.Size = new System.Drawing.Size(121, 24);
+            this.sendRate.TabIndex = 37;
+            this.sendRate.SelectedIndexChanged += new System.EventHandler(this.sendSettingChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox1.Controls.Add(this.sendMode);
+            this.groupBox1.Location = new System.Drawing.Point(335, 33);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(224, 78);
+            this.groupBox1.TabIndex = 39;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Mode";
+            // 
+            // sendMode
+            // 
+            this.sendMode.FormattingEnabled = true;
+            this.sendMode.Items.AddRange(new object[] {
+            "Use Position Controls",
+            "Sweep"});
+            this.sendMode.Location = new System.Drawing.Point(16, 30);
+            this.sendMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.sendMode.Name = "sendMode";
+            this.sendMode.Size = new System.Drawing.Size(192, 24);
+            this.sendMode.TabIndex = 37;
+            this.sendMode.SelectedIndexChanged += new System.EventHandler(this.sendSettingChanged);
             // 
             // groupBox10
             // 
@@ -673,7 +701,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "MODE5 Tester";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -685,8 +713,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.elAccSlider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.azAccSlider)).EndInit();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox15.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
+            this.groupBox15.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox9.ResumeLayout(false);
@@ -757,10 +786,12 @@
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private System.Windows.Forms.ComboBox sendMode;
+        private System.Windows.Forms.ComboBox sendRate;
         private System.Windows.Forms.Timer sendTimer;
         private System.Windows.Forms.GroupBox groupBox15;
         private System.Windows.Forms.Timer sweepTimer;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox sendMode;
     }
 }
 

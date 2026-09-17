@@ -535,6 +535,45 @@ namespace MODE5_Tester
             Serial.Write(packet, 0, packet.Length);
         }
 
+        private void btnShort_Click(object sender, EventArgs e)
+        {
+            byte[] validPacket = ConstructPacket(0f, 1f, 2f, 3f, 4f, 5f);
+
+            byte[] shortPacket = new byte[MODE5_PACKET_SIZE - 1];
+            for (int i = 0; i < shortPacket.Length; i++)
+            {
+                shortPacket[i] = validPacket[i];
+            }
+
+            SendPacket(shortPacket);
+        }
+
+        private void btnLong_Click(object sender, EventArgs e)
+        {
+            byte[] validPacket = ConstructPacket(0f, 1f, 2f, 3f, 4f, 5f);
+
+            byte[] longPacket = new byte[MODE5_PACKET_SIZE + 1];
+            for (int i = 0; i < MODE5_PACKET_SIZE - 1; i++)
+            {
+                longPacket[i] = validPacket[i];
+            }
+            longPacket[MODE5_PACKET_SIZE - 1] = 0xF5;
+            longPacket[MODE5_PACKET_SIZE] = validPacket[MODE5_PACKET_SIZE - 1];
+
+            SendPacket(longPacket);
+        }
+
+        private void btnAllSync_Click(object sender, EventArgs e)
+        {
+            byte[] allSyncs = new byte[MODE5_PACKET_SIZE];
+            for (int i = 0; i < MODE5_PACKET_SIZE; i++)
+            {
+                allSyncs[i] = MODE5_SYNC_CHAR;
+            }
+
+            SendPacket(allSyncs);
+        }
+
         private void ConstructAndSendPacket()
         {
 

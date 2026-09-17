@@ -80,6 +80,10 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.btnShort = new System.Windows.Forms.Button();
+            this.btnLong = new System.Windows.Forms.Button();
+            this.btnAllSync = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -97,6 +101,7 @@
             this.groupBox10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboxComport
@@ -665,11 +670,54 @@
             this.label9.TabIndex = 39;
             this.label9.Text = "Rate:";
             // 
+            // btnShort
+            // 
+            this.btnShort.Location = new System.Drawing.Point(27, 41);
+            this.btnShort.Name = "btnShort";
+            this.btnShort.Size = new System.Drawing.Size(154, 28);
+            this.btnShort.TabIndex = 45;
+            this.btnShort.Text = "Short packet";
+            this.btnShort.UseVisualStyleBackColor = true;
+            this.btnShort.Click += new System.EventHandler(this.btnShort_Click);
+            // 
+            // btnLong
+            // 
+            this.btnLong.Location = new System.Drawing.Point(27, 71);
+            this.btnLong.Name = "btnLong";
+            this.btnLong.Size = new System.Drawing.Size(154, 28);
+            this.btnLong.TabIndex = 46;
+            this.btnLong.Text = "Long packet";
+            this.btnLong.UseVisualStyleBackColor = true;
+            this.btnLong.Click += new System.EventHandler(this.btnLong_Click);
+            // 
+            // btnAllSync
+            // 
+            this.btnAllSync.Location = new System.Drawing.Point(27, 101);
+            this.btnAllSync.Name = "btnAllSync";
+            this.btnAllSync.Size = new System.Drawing.Size(154, 28);
+            this.btnAllSync.TabIndex = 47;
+            this.btnAllSync.Text = "All sync characters";
+            this.btnAllSync.UseVisualStyleBackColor = true;
+            this.btnAllSync.Click += new System.EventHandler(this.btnAllSync_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnShort);
+            this.groupBox1.Controls.Add(this.btnAllSync);
+            this.groupBox1.Controls.Add(this.btnLong);
+            this.groupBox1.Location = new System.Drawing.Point(12, 534);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(204, 154);
+            this.groupBox1.TabIndex = 48;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Send Corrupt Packets";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 540);
+            this.ClientSize = new System.Drawing.Size(651, 701);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox4);
@@ -711,6 +759,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.azPosSlider)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -768,6 +817,10 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button btnShort;
+        private System.Windows.Forms.Button btnLong;
+        private System.Windows.Forms.Button btnAllSync;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 

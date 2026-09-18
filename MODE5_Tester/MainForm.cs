@@ -413,6 +413,7 @@ namespace MODE5_Tester
                                     updateCounterTimer.Start();
 
                                 }
+                                SetInputEnabled(false);
                                 isSending = true;
                             }
                         }
@@ -427,6 +428,7 @@ namespace MODE5_Tester
                             // run the sweep
                             sweepTimer.Interval = 500;
                             sweepTimer.Start();
+                            SetInputEnabled(false);
                             isSending = true;
                         }
                     }
@@ -575,6 +577,7 @@ namespace MODE5_Tester
             sweepTimer.Stop();
 
             isSending = false;
+            SetInputEnabled(true);
 
             UpdateSendButton();
         }
@@ -678,6 +681,16 @@ namespace MODE5_Tester
         private void UpdatePacketCounter()
         {
             validCounterDisplay.Text = validCounter.ToString("N0"); // "N0" adds commas, e.g. "12,349" instead of "12349"
+        }
+
+        private void SetInputEnabled(bool enabled)
+        {
+            azPosTextBoxTx.Enabled = enabled;
+            elPosTextBoxTx.Enabled = enabled;
+            azVelTextBoxTx.Enabled = enabled;
+            elVelTextBoxTx.Enabled = enabled;
+            azAccTextBoxTx.Enabled = enabled;
+            elAccTextBoxTx.Enabled = enabled;
         }
 
         #endregion

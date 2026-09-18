@@ -86,10 +86,12 @@ namespace MODE5_Tester
         float sweepAzDegrees = 0, sweepElDegrees = 0;
 
         int sweepAzDirection = 1, sweepElDirection = 1;
+
+        int shortCounter = 0, longCounter = 0, syncCounter = 0;
         #endregion
 
         #region Handlers
-        
+
         private void btnConnect_Click(object sender, EventArgs e)
         {
             // If user click disconnect
@@ -323,10 +325,25 @@ namespace MODE5_Tester
             if (sendMode.Text == "Sweep")
             {
                 sendRate.Enabled = false;
+
+                azPosTextBoxTx.Enabled = false;
+                elPosTextBoxTx.Enabled = false;
+                azVelTextBoxTx.Enabled = false;
+                elVelTextBoxTx.Enabled = false;
+                azAccTextBoxTx.Enabled = false;
+                elAccTextBoxTx.Enabled = false;
+
             }
             else
             {
                 sendRate.Enabled = true;
+
+                azPosTextBoxTx.Enabled = true;
+                elPosTextBoxTx.Enabled = true;
+                azVelTextBoxTx.Enabled = true;
+                elVelTextBoxTx.Enabled = true;
+                azAccTextBoxTx.Enabled = true;
+                elAccTextBoxTx.Enabled = true;
             }
         }
 
@@ -408,6 +425,81 @@ namespace MODE5_Tester
                         StopSending();
                     }
                     UpdateSendButton();
+                }
+                else
+                {
+                    MessageBox.Show("COM port is not opened");
+                }
+            }
+        }
+
+        private void btnShort_Click(object sender, EventArgs e)
+        {
+            if (null != Serial)
+            {
+                if (true == Serial.IsOpen)
+                {
+                    byte[] validPacket = ConstructPacket(0f, 1f, 2f, 3f, 4f, 5f);
+
+                    byte[] shortPacket = new byte[MODE5_PACKET_SIZE - 1];
+                    for (int i = 0; i < shortPacket.Length; i++)
+                    {
+                        shortPacket[i] = validPacket[i];
+                    }
+
+                    SendPacket(shortPacket);
+                    shortCounter++;
+                    shortCountDisplay.Text = shortCounter.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("COM port is not opened");
+                }
+            }
+        }
+
+        private void btnLong_Click(object sender, EventArgs e)
+        {
+            if (null != Serial)
+            {
+                if (true == Serial.IsOpen)
+                {
+                    byte[] validPacket = ConstructPacket(0f, 1f, 2f, 3f, 4f, 5f);
+
+                    byte[] longPacket = new byte[MODE5_PACKET_SIZE + 1];
+                    for (int i = 0; i < MODE5_PACKET_SIZE - 1; i++)
+                    {
+                        longPacket[i] = validPacket[i];
+                    }
+                    longPacket[MODE5_PACKET_SIZE - 1] = 0xF5;
+                    longPacket[MODE5_PACKET_SIZE] = validPacket[MODE5_PACKET_SIZE - 1];
+
+                    SendPacket(longPacket);
+                    longCounter++;
+                    longCountDisplay.Text = longCounter.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("COM port is not opened");
+                }
+            }
+        }
+
+        private void btnAllSync_Click(object sender, EventArgs e)
+        {
+            if (null != Serial)
+            {
+                if (true == Serial.IsOpen)
+                {
+                    byte[] allSyncs = new byte[MODE5_PACKET_SIZE];
+                    for (int i = 0; i < MODE5_PACKET_SIZE; i++)
+                    {
+                        allSyncs[i] = MODE5_SYNC_CHAR;
+                    }
+
+                    SendPacket(allSyncs);
+                    syncCounter++;
+                    syncCountDisplay.Text = syncCounter.ToString();
                 }
                 else
                 {
@@ -533,45 +625,6 @@ namespace MODE5_Tester
         private void SendPacket(byte[] packet)
         {
             Serial.Write(packet, 0, packet.Length);
-        }
-
-        private void btnShort_Click(object sender, EventArgs e)
-        {
-            byte[] validPacket = ConstructPacket(0f, 1f, 2f, 3f, 4f, 5f);
-
-            byte[] shortPacket = new byte[MODE5_PACKET_SIZE - 1];
-            for (int i = 0; i < shortPacket.Length; i++)
-            {
-                shortPacket[i] = validPacket[i];
-            }
-
-            SendPacket(shortPacket);
-        }
-
-        private void btnLong_Click(object sender, EventArgs e)
-        {
-            byte[] validPacket = ConstructPacket(0f, 1f, 2f, 3f, 4f, 5f);
-
-            byte[] longPacket = new byte[MODE5_PACKET_SIZE + 1];
-            for (int i = 0; i < MODE5_PACKET_SIZE - 1; i++)
-            {
-                longPacket[i] = validPacket[i];
-            }
-            longPacket[MODE5_PACKET_SIZE - 1] = 0xF5;
-            longPacket[MODE5_PACKET_SIZE] = validPacket[MODE5_PACKET_SIZE - 1];
-
-            SendPacket(longPacket);
-        }
-
-        private void btnAllSync_Click(object sender, EventArgs e)
-        {
-            byte[] allSyncs = new byte[MODE5_PACKET_SIZE];
-            for (int i = 0; i < MODE5_PACKET_SIZE; i++)
-            {
-                allSyncs[i] = MODE5_SYNC_CHAR;
-            }
-
-            SendPacket(allSyncs);
         }
 
         private void ConstructAndSendPacket()

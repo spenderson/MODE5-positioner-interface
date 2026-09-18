@@ -42,60 +42,63 @@
             this.sendTimer = new System.Windows.Forms.Timer(this.components);
             this.sweepTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.elVelSlider = new System.Windows.Forms.TrackBar();
-            this.elVelTextBoxTx = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.azVelSlider = new System.Windows.Forms.TrackBar();
-            this.azVelTextBoxTx = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.azVelTextBoxTx = new System.Windows.Forms.TextBox();
+            this.azVelSlider = new System.Windows.Forms.TrackBar();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.elVelTextBoxTx = new System.Windows.Forms.TextBox();
+            this.elVelSlider = new System.Windows.Forms.TrackBar();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.azAccSlider = new System.Windows.Forms.TrackBar();
-            this.label6 = new System.Windows.Forms.Label();
-            this.azAccTextBoxTx = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.elAccSlider = new System.Windows.Forms.TrackBar();
-            this.label31 = new System.Windows.Forms.Label();
-            this.elAccTextBoxTx = new System.Windows.Forms.TextBox();
             this.label30 = new System.Windows.Forms.Label();
+            this.elAccTextBoxTx = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.elAccSlider = new System.Windows.Forms.TrackBar();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.azAccTextBoxTx = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.azAccSlider = new System.Windows.Forms.TrackBar();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.elPosSlider = new System.Windows.Forms.TrackBar();
-            this.label19 = new System.Windows.Forms.Label();
-            this.elPosTextBoxTx = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.elPosTextBoxTx = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.elPosSlider = new System.Windows.Forms.TrackBar();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.azPosSlider = new System.Windows.Forms.TrackBar();
-            this.azPosTextBoxTx = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.azPosTextBoxTx = new System.Windows.Forms.TextBox();
+            this.azPosSlider = new System.Windows.Forms.TrackBar();
             this.sendMode = new System.Windows.Forms.ComboBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.sendRate = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.btnShort = new System.Windows.Forms.Button();
             this.btnLong = new System.Windows.Forms.Button();
             this.btnAllSync = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.shortCountDisplay = new System.Windows.Forms.Label();
+            this.longCountDisplay = new System.Windows.Forms.Label();
+            this.syncCountDisplay = new System.Windows.Forms.Label();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.elVelSlider)).BeginInit();
             this.groupBox12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.azVelSlider)).BeginInit();
+            this.groupBox11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.elVelSlider)).BeginInit();
             this.groupBox7.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.azAccSlider)).BeginInit();
             this.groupBox14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elAccSlider)).BeginInit();
+            this.groupBox13.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azAccSlider)).BeginInit();
             this.groupBox9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).BeginInit();
             this.groupBox10.SuspendLayout();
@@ -190,14 +193,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(651, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(651, 30);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -223,65 +226,6 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Velocity (degrees/second)";
             // 
-            // groupBox11
-            // 
-            this.groupBox11.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox11.Controls.Add(this.label29);
-            this.groupBox11.Controls.Add(this.label28);
-            this.groupBox11.Controls.Add(this.elVelTextBoxTx);
-            this.groupBox11.Controls.Add(this.elVelSlider);
-            this.groupBox11.Location = new System.Drawing.Point(132, 25);
-            this.groupBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox11.Size = new System.Drawing.Size(109, 222);
-            this.groupBox11.TabIndex = 37;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Elevation";
-            // 
-            // elVelSlider
-            // 
-            this.elVelSlider.Location = new System.Drawing.Point(25, 49);
-            this.elVelSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.elVelSlider.Maximum = 90;
-            this.elVelSlider.Minimum = 1;
-            this.elVelSlider.Name = "elVelSlider";
-            this.elVelSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.elVelSlider.Size = new System.Drawing.Size(56, 162);
-            this.elVelSlider.TabIndex = 10;
-            this.elVelSlider.Value = 1;
-            this.elVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            // 
-            // elVelTextBoxTx
-            // 
-            this.elVelTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.elVelTextBoxTx.Location = new System.Drawing.Point(15, 21);
-            this.elVelTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.elVelTextBoxTx.Name = "elVelTextBoxTx";
-            this.elVelTextBoxTx.Size = new System.Drawing.Size(81, 22);
-            this.elVelTextBoxTx.TabIndex = 25;
-            this.elVelTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.elVelTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
-            this.elVelTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(61, 53);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(21, 16);
-            this.label28.TabIndex = 39;
-            this.label28.Text = "90";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(61, 185);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(14, 16);
-            this.label29.TabIndex = 40;
-            this.label29.Text = "1";
-            // 
             // groupBox12
             // 
             this.groupBox12.BackColor = System.Drawing.SystemColors.Control;
@@ -298,18 +242,23 @@
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Azimuth";
             // 
-            // azVelSlider
+            // label2
             // 
-            this.azVelSlider.Location = new System.Drawing.Point(25, 49);
-            this.azVelSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.azVelSlider.Maximum = 90;
-            this.azVelSlider.Minimum = 1;
-            this.azVelSlider.Name = "azVelSlider";
-            this.azVelSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.azVelSlider.Size = new System.Drawing.Size(56, 162);
-            this.azVelSlider.TabIndex = 9;
-            this.azVelSlider.Value = 1;
-            this.azVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(61, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(21, 16);
+            this.label2.TabIndex = 37;
+            this.label2.Text = "90";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(61, 185);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(14, 16);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "1";
             // 
             // azVelTextBoxTx
             // 
@@ -323,23 +272,77 @@
             this.azVelTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
             this.azVelTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
             // 
-            // label3
+            // azVelSlider
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 185);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 16);
-            this.label3.TabIndex = 38;
-            this.label3.Text = "1";
+            this.azVelSlider.Location = new System.Drawing.Point(25, 49);
+            this.azVelSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azVelSlider.Maximum = 90;
+            this.azVelSlider.Minimum = 1;
+            this.azVelSlider.Name = "azVelSlider";
+            this.azVelSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.azVelSlider.Size = new System.Drawing.Size(56, 162);
+            this.azVelSlider.TabIndex = 9;
+            this.azVelSlider.Value = 1;
+            this.azVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
             // 
-            // label2
+            // groupBox11
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 16);
-            this.label2.TabIndex = 37;
-            this.label2.Text = "90";
+            this.groupBox11.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox11.Controls.Add(this.label29);
+            this.groupBox11.Controls.Add(this.label28);
+            this.groupBox11.Controls.Add(this.elVelTextBoxTx);
+            this.groupBox11.Controls.Add(this.elVelSlider);
+            this.groupBox11.Location = new System.Drawing.Point(132, 25);
+            this.groupBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox11.Size = new System.Drawing.Size(109, 222);
+            this.groupBox11.TabIndex = 37;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Elevation";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(61, 185);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(14, 16);
+            this.label29.TabIndex = 40;
+            this.label29.Text = "1";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(61, 53);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(21, 16);
+            this.label28.TabIndex = 39;
+            this.label28.Text = "90";
+            // 
+            // elVelTextBoxTx
+            // 
+            this.elVelTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.elVelTextBoxTx.Location = new System.Drawing.Point(15, 21);
+            this.elVelTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elVelTextBoxTx.Name = "elVelTextBoxTx";
+            this.elVelTextBoxTx.Size = new System.Drawing.Size(81, 22);
+            this.elVelTextBoxTx.TabIndex = 25;
+            this.elVelTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.elVelTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
+            this.elVelTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
+            // 
+            // elVelSlider
+            // 
+            this.elVelSlider.Location = new System.Drawing.Point(25, 49);
+            this.elVelSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elVelSlider.Maximum = 90;
+            this.elVelSlider.Minimum = 1;
+            this.elVelSlider.Name = "elVelSlider";
+            this.elVelSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.elVelSlider.Size = new System.Drawing.Size(56, 162);
+            this.elVelSlider.TabIndex = 10;
+            this.elVelSlider.Value = 1;
+            this.elVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
             // 
             // groupBox7
             // 
@@ -354,65 +357,6 @@
             this.groupBox7.TabIndex = 29;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Acceleration (degrees/sec/sec)";
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox13.Controls.Add(this.label7);
-            this.groupBox13.Controls.Add(this.azAccTextBoxTx);
-            this.groupBox13.Controls.Add(this.label6);
-            this.groupBox13.Controls.Add(this.azAccSlider);
-            this.groupBox13.Location = new System.Drawing.Point(15, 25);
-            this.groupBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox13.Size = new System.Drawing.Size(109, 222);
-            this.groupBox13.TabIndex = 37;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Azimuth";
-            // 
-            // azAccSlider
-            // 
-            this.azAccSlider.Location = new System.Drawing.Point(27, 53);
-            this.azAccSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.azAccSlider.Maximum = 90;
-            this.azAccSlider.Minimum = 1;
-            this.azAccSlider.Name = "azAccSlider";
-            this.azAccSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.azAccSlider.Size = new System.Drawing.Size(56, 158);
-            this.azAccSlider.TabIndex = 12;
-            this.azAccSlider.Value = 1;
-            this.azAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(61, 185);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 16);
-            this.label6.TabIndex = 42;
-            this.label6.Text = "1";
-            // 
-            // azAccTextBoxTx
-            // 
-            this.azAccTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.azAccTextBoxTx.Location = new System.Drawing.Point(15, 21);
-            this.azAccTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.azAccTextBoxTx.Name = "azAccTextBoxTx";
-            this.azAccTextBoxTx.Size = new System.Drawing.Size(81, 22);
-            this.azAccTextBoxTx.TabIndex = 26;
-            this.azAccTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.azAccTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
-            this.azAccTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(61, 53);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(21, 16);
-            this.label7.TabIndex = 41;
-            this.label7.Text = "90";
             // 
             // groupBox14
             // 
@@ -430,27 +374,14 @@
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Elevation";
             // 
-            // elAccSlider
+            // label30
             // 
-            this.elAccSlider.Location = new System.Drawing.Point(27, 53);
-            this.elAccSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.elAccSlider.Maximum = 90;
-            this.elAccSlider.Minimum = 1;
-            this.elAccSlider.Name = "elAccSlider";
-            this.elAccSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.elAccSlider.Size = new System.Drawing.Size(56, 158);
-            this.elAccSlider.TabIndex = 11;
-            this.elAccSlider.Value = 1;
-            this.elAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(61, 53);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(21, 16);
-            this.label31.TabIndex = 43;
-            this.label31.Text = "90";
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(61, 185);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(14, 16);
+            this.label30.TabIndex = 44;
+            this.label30.Text = "1";
             // 
             // elAccTextBoxTx
             // 
@@ -464,14 +395,86 @@
             this.elAccTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
             this.elAccTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
             // 
-            // label30
+            // label31
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(61, 185);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(14, 16);
-            this.label30.TabIndex = 44;
-            this.label30.Text = "1";
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(61, 53);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(21, 16);
+            this.label31.TabIndex = 43;
+            this.label31.Text = "90";
+            // 
+            // elAccSlider
+            // 
+            this.elAccSlider.Location = new System.Drawing.Point(27, 53);
+            this.elAccSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elAccSlider.Maximum = 90;
+            this.elAccSlider.Minimum = 1;
+            this.elAccSlider.Name = "elAccSlider";
+            this.elAccSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.elAccSlider.Size = new System.Drawing.Size(56, 158);
+            this.elAccSlider.TabIndex = 11;
+            this.elAccSlider.Value = 1;
+            this.elAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox13.Controls.Add(this.label7);
+            this.groupBox13.Controls.Add(this.azAccTextBoxTx);
+            this.groupBox13.Controls.Add(this.label6);
+            this.groupBox13.Controls.Add(this.azAccSlider);
+            this.groupBox13.Location = new System.Drawing.Point(15, 25);
+            this.groupBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox13.Size = new System.Drawing.Size(109, 222);
+            this.groupBox13.TabIndex = 37;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Azimuth";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(61, 53);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(21, 16);
+            this.label7.TabIndex = 41;
+            this.label7.Text = "90";
+            // 
+            // azAccTextBoxTx
+            // 
+            this.azAccTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.azAccTextBoxTx.Location = new System.Drawing.Point(15, 21);
+            this.azAccTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azAccTextBoxTx.Name = "azAccTextBoxTx";
+            this.azAccTextBoxTx.Size = new System.Drawing.Size(81, 22);
+            this.azAccTextBoxTx.TabIndex = 26;
+            this.azAccTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.azAccTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
+            this.azAccTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(61, 185);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(14, 16);
+            this.label6.TabIndex = 42;
+            this.label6.Text = "1";
+            // 
+            // azAccSlider
+            // 
+            this.azAccSlider.Location = new System.Drawing.Point(27, 53);
+            this.azAccSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azAccSlider.Maximum = 90;
+            this.azAccSlider.Minimum = 1;
+            this.azAccSlider.Name = "azAccSlider";
+            this.azAccSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.azAccSlider.Size = new System.Drawing.Size(56, 158);
+            this.azAccSlider.TabIndex = 12;
+            this.azAccSlider.Value = 1;
+            this.azAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
             // 
             // groupBox9
             // 
@@ -490,6 +493,45 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Elevation";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(53, 223);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 16);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "0°";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(53, 66);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(25, 16);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "83°";
+            // 
+            // elPosTextBoxTx
+            // 
+            this.elPosTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.elPosTextBoxTx.Location = new System.Drawing.Point(11, 25);
+            this.elPosTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elPosTextBoxTx.Name = "elPosTextBoxTx";
+            this.elPosTextBoxTx.Size = new System.Drawing.Size(81, 22);
+            this.elPosTextBoxTx.TabIndex = 23;
+            this.elPosTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.elPosTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
+            this.elPosTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(53, 293);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(29, 16);
+            this.label19.TabIndex = 33;
+            this.label19.Text = "-38°";
+            // 
             // elPosSlider
             // 
             this.elPosSlider.Location = new System.Drawing.Point(16, 60);
@@ -501,45 +543,6 @@
             this.elPosSlider.Size = new System.Drawing.Size(56, 259);
             this.elPosSlider.TabIndex = 8;
             this.elPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(53, 293);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(29, 16);
-            this.label19.TabIndex = 33;
-            this.label19.Text = "-38°";
-            // 
-            // elPosTextBoxTx
-            // 
-            this.elPosTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.elPosTextBoxTx.Location = new System.Drawing.Point(11, 32);
-            this.elPosTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.elPosTextBoxTx.Name = "elPosTextBoxTx";
-            this.elPosTextBoxTx.Size = new System.Drawing.Size(81, 22);
-            this.elPosTextBoxTx.TabIndex = 23;
-            this.elPosTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.elPosTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
-            this.elPosTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(53, 66);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 16);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "83°";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 223);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 16);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "0°";
             // 
             // groupBox10
             // 
@@ -557,20 +560,28 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Azimuth";
             // 
-            // azPosSlider
+            // label18
             // 
-            this.azPosSlider.Location = new System.Drawing.Point(105, 17);
-            this.azPosSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.azPosSlider.Maximum = 360;
-            this.azPosSlider.Name = "azPosSlider";
-            this.azPosSlider.Size = new System.Drawing.Size(367, 56);
-            this.azPosSlider.TabIndex = 7;
-            this.azPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(481, 26);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(32, 16);
+            this.label18.TabIndex = 32;
+            this.label18.Text = "360°";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(103, 26);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(18, 16);
+            this.label4.TabIndex = 30;
+            this.label4.Text = "0°";
             // 
             // azPosTextBoxTx
             // 
             this.azPosTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.azPosTextBoxTx.Location = new System.Drawing.Point(12, 21);
+            this.azPosTextBoxTx.Location = new System.Drawing.Point(12, 25);
             this.azPosTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.azPosTextBoxTx.Name = "azPosTextBoxTx";
             this.azPosTextBoxTx.Size = new System.Drawing.Size(81, 22);
@@ -579,23 +590,15 @@
             this.azPosTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
             this.azPosTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
             // 
-            // label4
+            // azPosSlider
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(95, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(18, 16);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "0°";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(473, 20);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(32, 16);
-            this.label18.TabIndex = 32;
-            this.label18.Text = "360°";
+            this.azPosSlider.Location = new System.Drawing.Point(116, 18);
+            this.azPosSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azPosSlider.Maximum = 360;
+            this.azPosSlider.Name = "azPosSlider";
+            this.azPosSlider.Size = new System.Drawing.Size(362, 56);
+            this.azPosSlider.TabIndex = 7;
+            this.azPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
             // 
             // sendMode
             // 
@@ -645,21 +648,12 @@
             this.groupBox2.Controls.Add(this.sendRate);
             this.groupBox2.Controls.Add(this.sendMode);
             this.groupBox2.Controls.Add(this.btnSend);
-            this.groupBox2.Location = new System.Drawing.Point(319, 31);
+            this.groupBox2.Location = new System.Drawing.Point(319, 534);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(322, 150);
             this.groupBox2.TabIndex = 44;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Send";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 38);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(45, 16);
-            this.label8.TabIndex = 38;
-            this.label8.Text = "Mode:";
+            this.groupBox2.Text = "Send Valid Packets";
             // 
             // label9
             // 
@@ -670,9 +664,18 @@
             this.label9.TabIndex = 39;
             this.label9.Text = "Rate:";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(21, 38);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(45, 16);
+            this.label8.TabIndex = 38;
+            this.label8.Text = "Mode:";
+            // 
             // btnShort
             // 
-            this.btnShort.Location = new System.Drawing.Point(27, 41);
+            this.btnShort.Location = new System.Drawing.Point(27, 38);
             this.btnShort.Name = "btnShort";
             this.btnShort.Size = new System.Drawing.Size(154, 28);
             this.btnShort.TabIndex = 45;
@@ -682,7 +685,7 @@
             // 
             // btnLong
             // 
-            this.btnLong.Location = new System.Drawing.Point(27, 71);
+            this.btnLong.Location = new System.Drawing.Point(27, 68);
             this.btnLong.Name = "btnLong";
             this.btnLong.Size = new System.Drawing.Size(154, 28);
             this.btnLong.TabIndex = 46;
@@ -692,7 +695,7 @@
             // 
             // btnAllSync
             // 
-            this.btnAllSync.Location = new System.Drawing.Point(27, 101);
+            this.btnAllSync.Location = new System.Drawing.Point(27, 98);
             this.btnAllSync.Name = "btnAllSync";
             this.btnAllSync.Size = new System.Drawing.Size(154, 28);
             this.btnAllSync.TabIndex = 47;
@@ -702,26 +705,59 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.syncCountDisplay);
+            this.groupBox1.Controls.Add(this.longCountDisplay);
+            this.groupBox1.Controls.Add(this.shortCountDisplay);
             this.groupBox1.Controls.Add(this.btnShort);
             this.groupBox1.Controls.Add(this.btnAllSync);
             this.groupBox1.Controls.Add(this.btnLong);
             this.groupBox1.Location = new System.Drawing.Point(12, 534);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(204, 154);
+            this.groupBox1.Size = new System.Drawing.Size(301, 150);
             this.groupBox1.TabIndex = 48;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Send Corrupt Packets";
+            // 
+            // shortCountDisplay
+            // 
+            this.shortCountDisplay.BackColor = System.Drawing.SystemColors.Window;
+            this.shortCountDisplay.Location = new System.Drawing.Point(200, 42);
+            this.shortCountDisplay.Name = "shortCountDisplay";
+            this.shortCountDisplay.Size = new System.Drawing.Size(60, 21);
+            this.shortCountDisplay.TabIndex = 48;
+            this.shortCountDisplay.Text = "0";
+            this.shortCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // longCountDisplay
+            // 
+            this.longCountDisplay.BackColor = System.Drawing.SystemColors.Window;
+            this.longCountDisplay.Location = new System.Drawing.Point(200, 72);
+            this.longCountDisplay.Name = "longCountDisplay";
+            this.longCountDisplay.Size = new System.Drawing.Size(60, 21);
+            this.longCountDisplay.TabIndex = 49;
+            this.longCountDisplay.Text = "0";
+            this.longCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // syncCountDisplay
+            // 
+            this.syncCountDisplay.BackColor = System.Drawing.SystemColors.Window;
+            this.syncCountDisplay.Location = new System.Drawing.Point(200, 102);
+            this.syncCountDisplay.Name = "syncCountDisplay";
+            this.syncCountDisplay.Size = new System.Drawing.Size(60, 21);
+            this.syncCountDisplay.TabIndex = 50;
+            this.syncCountDisplay.Text = "0";
+            this.syncCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(651, 701);
+            this.ClientSize = new System.Drawing.Size(651, 694);
+            this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.menuStrip1);
@@ -738,19 +774,19 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.groupBox6.ResumeLayout(false);
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.elVelSlider)).EndInit();
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.azVelSlider)).EndInit();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.elVelSlider)).EndInit();
             this.groupBox7.ResumeLayout(false);
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.azAccSlider)).EndInit();
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elAccSlider)).EndInit();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.azAccSlider)).EndInit();
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.elPosSlider)).EndInit();
@@ -821,6 +857,9 @@
         private System.Windows.Forms.Button btnLong;
         private System.Windows.Forms.Button btnAllSync;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label syncCountDisplay;
+        private System.Windows.Forms.Label longCountDisplay;
+        private System.Windows.Forms.Label shortCountDisplay;
     }
 }
 

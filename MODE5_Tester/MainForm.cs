@@ -87,7 +87,8 @@ namespace MODE5_Tester
 
         int sweepAzDirection = 1, sweepElDirection = 1;
 
-        int shortCounter = 0, longCounter = 0, syncCounter = 0;
+        // sent packet counters, for displays
+        int validCounter = 0, shortCounter = 0, longCounter = 0, syncCounter = 0;
         #endregion
 
         #region Handlers
@@ -173,10 +174,10 @@ namespace MODE5_Tester
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            UpdateCOMPortList();
+            UpdateRS232Options();
 
             // Autopopulate COM port and Baud rate dropdowns
-            cboxBaudrate.SelectedIndex = 0;
+            cboxBaudrate.SelectedIndex = 1; // manually setting to 19200 while testing
             if (cboxComport.Items.Count > 0)
             {
                 cboxComport.SelectedIndex = 0;
@@ -186,7 +187,7 @@ namespace MODE5_Tester
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             // We need to update all lists again if user requested
-            UpdateCOMPortList();
+            UpdateRS232Options();
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -230,6 +231,8 @@ namespace MODE5_Tester
 
         private void ValidateInput(object sender, EventArgs e)
         {
+            //MessageBox.Show("ValidateInput called"); // debug line
+
             TextBox textBox = (TextBox)sender;
             TrackBar slider = (TrackBar)textBox.Tag;
 
@@ -311,11 +314,14 @@ namespace MODE5_Tester
             // send it
 
             SendPacket(ConstructPacket(sweepAzDegrees, sweepElDegrees, 2.0f, 2.0f, 1.0f, 1.0f));
+            validCounter++;
+            UpdatePacketCounter();
         }
 
         private void sendTimer_Tick(object sender, EventArgs e)
         {
             ConstructAndSendPacket();
+            UpdatePacketCounter();
         }
 
         private void sendSettingChanged(object sender, EventArgs e)
@@ -360,6 +366,7 @@ namespace MODE5_Tester
                             if (sendRate.Text == "Single Packet")
                             {
                                 ConstructAndSendPacket();
+                                UpdatePacketCounter();
                             }
                             else
                             {
@@ -402,6 +409,9 @@ namespace MODE5_Tester
                                     CancellationToken token = backgroundCancellationTokenSource.Token;
                                     backgroundSendTask = Task.Run(() => ContinuousSend(packet, token), token);
 
+                                    updateCounterTimer.Interval = 100;
+                                    updateCounterTimer.Start();
+
                                 }
                                 isSending = true;
                             }
@@ -423,6 +433,7 @@ namespace MODE5_Tester
                     else
                     {
                         StopSending();
+                        UpdatePacketCounter();
                     }
                     UpdateSendButton();
                 }
@@ -508,10 +519,15 @@ namespace MODE5_Tester
             }
         }
 
+        private void updateCounterTimer_Tick(object sender, EventArgs e)
+        {
+            UpdatePacketCounter();
+        }
+
         #endregion
 
         #region Methods
-        private void UpdateCOMPortList()
+        private void UpdateRS232Options()
         {
             // Get all existing Com Port names
             string[] Ports = System.IO.Ports.SerialPort.GetPortNames();
@@ -548,13 +564,15 @@ namespace MODE5_Tester
 
         private void StopSending()
         {
-            sendTimer.Stop();
-            sweepTimer.Stop();
 
             if (backgroundCancellationTokenSource != null)
             {
                 backgroundCancellationTokenSource.Cancel();
             }
+            updateCounterTimer.Stop();
+
+            sendTimer.Stop();
+            sweepTimer.Stop();
 
             isSending = false;
 
@@ -627,6 +645,13 @@ namespace MODE5_Tester
             Serial.Write(packet, 0, packet.Length);
         }
 
+        private void SendValidPacket(byte[] packet)
+        {
+            validCounter++;
+            //validCounterDisplay.Text = validCounter.ToString();
+            Serial.Write(packet, 0, packet.Length);
+        }
+
         private void ConstructAndSendPacket()
         {
 
@@ -638,7 +663,7 @@ namespace MODE5_Tester
             float.TryParse(elAccTextBoxTx.Text, out float elAcc);
             byte[] packet = ConstructPacket(azDegrees, elDegrees, azVel, elVel, azAcc, elAcc);
 
-            SendPacket(packet);
+            SendValidPacket(packet);
 
         }
 
@@ -646,8 +671,13 @@ namespace MODE5_Tester
         {
             while (!token.IsCancellationRequested)
             {
-                SendPacket(packet);
+                SendValidPacket(packet);
             }
+        }
+
+        private void UpdatePacketCounter()
+        {
+            validCounterDisplay.Text = validCounter.ToString("N0"); // "N0" adds commas, e.g. "12,349" instead of "12349"
         }
 
         #endregion

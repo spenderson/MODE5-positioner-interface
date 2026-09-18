@@ -87,6 +87,8 @@
             this.shortCountDisplay = new System.Windows.Forms.Label();
             this.longCountDisplay = new System.Windows.Forms.Label();
             this.syncCountDisplay = new System.Windows.Forms.Label();
+            this.validCounterDisplay = new System.Windows.Forms.Label();
+            this.updateCounterTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -607,16 +609,16 @@
             this.sendMode.Items.AddRange(new object[] {
             "Use Position Controls",
             "Sweep"});
-            this.sendMode.Location = new System.Drawing.Point(78, 35);
+            this.sendMode.Location = new System.Drawing.Point(78, 38);
             this.sendMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sendMode.Name = "sendMode";
-            this.sendMode.Size = new System.Drawing.Size(178, 24);
+            this.sendMode.Size = new System.Drawing.Size(200, 24);
             this.sendMode.TabIndex = 37;
             this.sendMode.SelectedIndexChanged += new System.EventHandler(this.sendSettingChanged);
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(173, 106);
+            this.btnSend.Location = new System.Drawing.Point(147, 105);
             this.btnSend.Margin = new System.Windows.Forms.Padding(4);
             this.btnSend.Name = "btnSend";
             this.btnSend.Size = new System.Drawing.Size(131, 28);
@@ -634,15 +636,16 @@
             "1 Hz",
             "10 Hz",
             "Continuous"});
-            this.sendRate.Location = new System.Drawing.Point(78, 65);
+            this.sendRate.Location = new System.Drawing.Point(78, 68);
             this.sendRate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.sendRate.Name = "sendRate";
-            this.sendRate.Size = new System.Drawing.Size(121, 24);
+            this.sendRate.Size = new System.Drawing.Size(200, 24);
             this.sendRate.TabIndex = 37;
             this.sendRate.SelectedIndexChanged += new System.EventHandler(this.sendSettingChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.validCounterDisplay);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.sendRate);
@@ -658,7 +661,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 68);
+            this.label9.Location = new System.Drawing.Point(27, 71);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(39, 16);
             this.label9.TabIndex = 39;
@@ -667,7 +670,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(21, 38);
+            this.label8.Location = new System.Drawing.Point(27, 41);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 16);
             this.label8.TabIndex = 38;
@@ -747,6 +750,20 @@
             this.syncCountDisplay.TabIndex = 50;
             this.syncCountDisplay.Text = "0";
             this.syncCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // validCounterDisplay
+            // 
+            this.validCounterDisplay.BackColor = System.Drawing.SystemColors.Window;
+            this.validCounterDisplay.Location = new System.Drawing.Point(27, 109);
+            this.validCounterDisplay.Name = "validCounterDisplay";
+            this.validCounterDisplay.Size = new System.Drawing.Size(95, 21);
+            this.validCounterDisplay.TabIndex = 51;
+            this.validCounterDisplay.Text = "0";
+            this.validCounterDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // updateCounterTimer
+            // 
+            this.updateCounterTimer.Tick += new System.EventHandler(this.updateCounterTimer_Tick);
             // 
             // MainForm
             // 
@@ -860,6 +877,8 @@
         private System.Windows.Forms.Label syncCountDisplay;
         private System.Windows.Forms.Label longCountDisplay;
         private System.Windows.Forms.Label shortCountDisplay;
+        private System.Windows.Forms.Label validCounterDisplay;
+        private System.Windows.Forms.Timer updateCounterTimer;
     }
 }
 

@@ -87,6 +87,9 @@ namespace MODE5_Tester
 
         int sweepAzDirection = 1, sweepElDirection = 1;
 
+        // variables to remember the inputs when sweep mode started
+        string memoryAzPos, memoryElPos, memoryAzVel, memoryElVel, memoryAzAcc, memoryElAcc;
+
         // sent packet counters, for displays
         int validCounter = 0, shortCounter = 0, longCounter = 0, syncCounter = 0;
         #endregion
@@ -187,6 +190,7 @@ namespace MODE5_Tester
             }
 
             UpdateInputEnabled();
+            RememberInputs();
             
         }
 
@@ -317,10 +321,14 @@ namespace MODE5_Tester
                 sweepElDegrees++;
             }
 
+            // updated input display
+
+            azPosTextBoxTx.Text = sweepAzDegrees.ToString();
+            elPosTextBoxTx.Text = sweepElDegrees.ToString();
+
             // send it
 
-            SendPacket(ConstructPacket(sweepAzDegrees, sweepElDegrees, 2.0f, 2.0f, 1.0f, 1.0f));
-            validCounter++;
+            ConstructAndSendPacket();
             UpdatePacketCounter();
         }
 
@@ -332,7 +340,6 @@ namespace MODE5_Tester
 
         private void sendSettingChanged(object sender, EventArgs e)
         {
-            StopSending();
 
             if (sendMode.Text == "Sweep")
             {
@@ -413,14 +420,27 @@ namespace MODE5_Tester
                         }
                         else if (sendMode.Text == "Sweep")
                         {
-                            // reset the sweep variables, in case it had already been run
-                            sweepAzDegrees = 0;
-                            sweepElDegrees = 0;
+                            // save the current inputs
+                            RememberInputs();
+
+                            // setup the sweep
                             sweepAzDirection = 1;
                             sweepElDirection = 1;
-
-                            // run the sweep
+                            sweepAzDegrees = 0;
+                            sweepElDegrees = 0;
+                            azPosTextBoxTx.Text = "0";
+                            elPosTextBoxTx.Text = "0";
+                            azVelTextBoxTx.Text = "2";
+                            elVelTextBoxTx.Text = "2";
+                            azAccTextBoxTx.Text = "1";
+                            elAccTextBoxTx.Text = "1";
                             sweepTimer.Interval = 500;
+
+
+                            // run it
+
+                            ConstructAndSendPacket();
+                            UpdatePacketCounter();
                             sweepTimer.Start();
                             sendMode.Enabled = false;
                             isSending = true;
@@ -577,8 +597,18 @@ namespace MODE5_Tester
             // update the GUI
             isSending = false;
             UpdateSendButton();
-
             UpdateInputEnabled();
+
+            // if it was running a sweep, recall previous inputs
+            if (sendMode.Text == "Sweep")
+            {
+                azPosTextBoxTx.Text = memoryAzPos;
+                elPosTextBoxTx.Text = memoryElPos;
+                azVelTextBoxTx.Text = memoryAzVel;
+                elVelTextBoxTx.Text = memoryElVel;
+                azAccTextBoxTx.Text = memoryAzAcc;
+                elAccTextBoxTx.Text = memoryElAcc;
+            }
         }
 
         private void AddFloatToPacket(byte[] packet, float value, int startIndex)
@@ -741,12 +771,22 @@ namespace MODE5_Tester
             else if (btnSend.Text == "Stop")
             {
                 SetSweepInput();
-                MessageBox.Show("inputs should be disabled now");
+                MessageBox.Show("inputs should be disabled now"); // debug line, it shouldn't reach this
             }
             else
             {
                 SetInputEnabled(true);
             }
+        }
+
+        private void RememberInputs()
+        {
+            memoryAzPos = azPosTextBoxTx.Text;
+            memoryElPos = elPosTextBoxTx.Text;
+            memoryAzVel = azVelTextBoxTx.Text;
+            memoryElVel = elVelTextBoxTx.Text;
+            memoryAzAcc = azAccTextBoxTx.Text;
+            memoryElAcc = elAccTextBoxTx.Text;
         }
 
 

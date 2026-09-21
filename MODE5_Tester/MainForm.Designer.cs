@@ -70,7 +70,7 @@
             this.label19 = new System.Windows.Forms.Label();
             this.elPosSlider = new System.Windows.Forms.TrackBar();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.MaxAzPosLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.azPosTextBoxTx = new System.Windows.Forms.TextBox();
             this.azPosSlider = new System.Windows.Forms.TrackBar();
@@ -78,16 +78,16 @@
             this.btnSend = new System.Windows.Forms.Button();
             this.sendRate = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.validCounterDisplay = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnShort = new System.Windows.Forms.Button();
             this.btnLong = new System.Windows.Forms.Button();
             this.btnAllSync = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.shortCountDisplay = new System.Windows.Forms.Label();
-            this.longCountDisplay = new System.Windows.Forms.Label();
             this.syncCountDisplay = new System.Windows.Forms.Label();
-            this.validCounterDisplay = new System.Windows.Forms.Label();
+            this.longCountDisplay = new System.Windows.Forms.Label();
+            this.shortCountDisplay = new System.Windows.Forms.Label();
             this.updateCounterTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -195,14 +195,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(651, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(651, 28);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -549,7 +549,7 @@
             // groupBox10
             // 
             this.groupBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox10.Controls.Add(this.label18);
+            this.groupBox10.Controls.Add(this.MaxAzPosLabel);
             this.groupBox10.Controls.Add(this.label4);
             this.groupBox10.Controls.Add(this.azPosTextBoxTx);
             this.groupBox10.Controls.Add(this.azPosSlider);
@@ -562,14 +562,14 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Azimuth";
             // 
-            // label18
+            // MaxAzPosLabel
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(481, 26);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(32, 16);
-            this.label18.TabIndex = 32;
-            this.label18.Text = "360°";
+            this.MaxAzPosLabel.AutoSize = true;
+            this.MaxAzPosLabel.Location = new System.Drawing.Point(481, 26);
+            this.MaxAzPosLabel.Name = "MaxAzPosLabel";
+            this.MaxAzPosLabel.Size = new System.Drawing.Size(32, 16);
+            this.MaxAzPosLabel.TabIndex = 32;
+            this.MaxAzPosLabel.Text = "360°";
             // 
             // label4
             // 
@@ -658,6 +658,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Send Valid Packets";
             // 
+            // validCounterDisplay
+            // 
+            this.validCounterDisplay.BackColor = System.Drawing.SystemColors.Window;
+            this.validCounterDisplay.Location = new System.Drawing.Point(27, 109);
+            this.validCounterDisplay.Name = "validCounterDisplay";
+            this.validCounterDisplay.Size = new System.Drawing.Size(95, 21);
+            this.validCounterDisplay.TabIndex = 51;
+            this.validCounterDisplay.Text = "0";
+            this.validCounterDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -721,15 +731,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Send Corrupt Packets";
             // 
-            // shortCountDisplay
+            // syncCountDisplay
             // 
-            this.shortCountDisplay.BackColor = System.Drawing.SystemColors.Window;
-            this.shortCountDisplay.Location = new System.Drawing.Point(200, 42);
-            this.shortCountDisplay.Name = "shortCountDisplay";
-            this.shortCountDisplay.Size = new System.Drawing.Size(60, 21);
-            this.shortCountDisplay.TabIndex = 48;
-            this.shortCountDisplay.Text = "0";
-            this.shortCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.syncCountDisplay.BackColor = System.Drawing.SystemColors.Window;
+            this.syncCountDisplay.Location = new System.Drawing.Point(200, 102);
+            this.syncCountDisplay.Name = "syncCountDisplay";
+            this.syncCountDisplay.Size = new System.Drawing.Size(60, 21);
+            this.syncCountDisplay.TabIndex = 50;
+            this.syncCountDisplay.Text = "0";
+            this.syncCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // longCountDisplay
             // 
@@ -741,25 +751,15 @@
             this.longCountDisplay.Text = "0";
             this.longCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // syncCountDisplay
+            // shortCountDisplay
             // 
-            this.syncCountDisplay.BackColor = System.Drawing.SystemColors.Window;
-            this.syncCountDisplay.Location = new System.Drawing.Point(200, 102);
-            this.syncCountDisplay.Name = "syncCountDisplay";
-            this.syncCountDisplay.Size = new System.Drawing.Size(60, 21);
-            this.syncCountDisplay.TabIndex = 50;
-            this.syncCountDisplay.Text = "0";
-            this.syncCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // validCounterDisplay
-            // 
-            this.validCounterDisplay.BackColor = System.Drawing.SystemColors.Window;
-            this.validCounterDisplay.Location = new System.Drawing.Point(27, 109);
-            this.validCounterDisplay.Name = "validCounterDisplay";
-            this.validCounterDisplay.Size = new System.Drawing.Size(95, 21);
-            this.validCounterDisplay.TabIndex = 51;
-            this.validCounterDisplay.Text = "0";
-            this.validCounterDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.shortCountDisplay.BackColor = System.Drawing.SystemColors.Window;
+            this.shortCountDisplay.Location = new System.Drawing.Point(200, 42);
+            this.shortCountDisplay.Name = "shortCountDisplay";
+            this.shortCountDisplay.Size = new System.Drawing.Size(60, 21);
+            this.shortCountDisplay.TabIndex = 48;
+            this.shortCountDisplay.Text = "0";
+            this.shortCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // updateCounterTimer
             // 
@@ -857,7 +857,7 @@
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ComboBox sendMode;
         private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label MaxAzPosLabel;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox azPosTextBoxTx;
         private System.Windows.Forms.TrackBar azPosSlider;

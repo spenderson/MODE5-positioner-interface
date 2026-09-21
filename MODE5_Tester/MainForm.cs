@@ -68,11 +68,13 @@ namespace MODE5_Tester
 
         private bool updatingControls = false; // to prevent feedback loops (to be safe)
 
+        private bool isSending = false;
+
+        private bool prevWasSweep = false;
+
         private CancellationTokenSource backgroundCancellationTokenSource;
 
         private Task backgroundSendTask;
-
-        private bool isSending = false;
 
         // variables used for sweep function
         private int sweepMinAz = 0;
@@ -280,7 +282,6 @@ namespace MODE5_Tester
         {
 
             // update AZ
-
             if (sweepAzDirection > 0 && sweepAzDegrees < sweepMaxAz)
             {
                 sweepAzDegrees++;
@@ -301,7 +302,6 @@ namespace MODE5_Tester
             }
 
             // update EL
-
             if (sweepElDirection > 0 && sweepElDegrees < sweepMaxEl)
             {
                 sweepElDegrees++;
@@ -322,12 +322,10 @@ namespace MODE5_Tester
             }
 
             // updated input display
-
             azPosTextBoxTx.Text = sweepAzDegrees.ToString();
             elPosTextBoxTx.Text = sweepElDegrees.ToString();
 
             // send it
-
             ConstructAndSendPacket();
             UpdatePacketCounter();
         }
@@ -341,15 +339,27 @@ namespace MODE5_Tester
         private void sendSettingChanged(object sender, EventArgs e)
         {
 
+            if (!prevWasSweep)
+            {
+                RememberInputs();
+            }
+
             if (sendMode.Text == "Sweep")
             {
-                sendRate.Enabled = false;
-
+                SetupSweep();
             }
             else
             {
+                azPosTextBoxTx.Text = memoryAzPos;
+                elPosTextBoxTx.Text = memoryElPos;
+                azVelTextBoxTx.Text = memoryAzVel;
+                elVelTextBoxTx.Text = memoryElVel;
+                azAccTextBoxTx.Text = memoryAzAcc;
+                elAccTextBoxTx.Text = memoryElAcc;
                 sendRate.Enabled = true;
+                prevWasSweep = false;
             }
+
             UpdateInputEnabled();
         }
 
@@ -420,25 +430,6 @@ namespace MODE5_Tester
                         }
                         else if (sendMode.Text == "Sweep")
                         {
-                            // save the current inputs
-                            RememberInputs();
-
-                            // setup the sweep
-                            sweepAzDirection = 1;
-                            sweepElDirection = 1;
-                            sweepAzDegrees = 0;
-                            sweepElDegrees = 0;
-                            azPosTextBoxTx.Text = "0";
-                            elPosTextBoxTx.Text = "0";
-                            azVelTextBoxTx.Text = "2";
-                            elVelTextBoxTx.Text = "2";
-                            azAccTextBoxTx.Text = "1";
-                            elAccTextBoxTx.Text = "1";
-                            sweepTimer.Interval = 500;
-
-
-                            // run it
-
                             ConstructAndSendPacket();
                             UpdatePacketCounter();
                             sweepTimer.Start();
@@ -593,22 +584,16 @@ namespace MODE5_Tester
 
             // stop sweep mode
             sweepTimer.Stop();
+            if (sendMode.Text == "Sweep")
+            {
+                // need to reset the sweep vars here, because they get initiated when Sweep is selected, not what it starts
+                SetupSweep();
+            }
 
             // update the GUI
             isSending = false;
             UpdateSendButton();
             UpdateInputEnabled();
-
-            // if it was running a sweep, recall previous inputs
-            if (sendMode.Text == "Sweep")
-            {
-                azPosTextBoxTx.Text = memoryAzPos;
-                elPosTextBoxTx.Text = memoryElPos;
-                azVelTextBoxTx.Text = memoryAzVel;
-                elVelTextBoxTx.Text = memoryElVel;
-                azAccTextBoxTx.Text = memoryAzAcc;
-                elAccTextBoxTx.Text = memoryElAcc;
-            }
         }
 
         private void AddFloatToPacket(byte[] packet, float value, int startIndex)
@@ -787,6 +772,23 @@ namespace MODE5_Tester
             memoryElVel = elVelTextBoxTx.Text;
             memoryAzAcc = azAccTextBoxTx.Text;
             memoryElAcc = elAccTextBoxTx.Text;
+        }
+
+        private void SetupSweep()
+        {
+            sendRate.Enabled = false;
+            azPosTextBoxTx.Text = "0";
+            elPosTextBoxTx.Text = "0";
+            azVelTextBoxTx.Text = "2";
+            elVelTextBoxTx.Text = "2";
+            azAccTextBoxTx.Text = "1";
+            elAccTextBoxTx.Text = "1";
+            sweepAzDirection = 1;
+            sweepElDirection = 1;
+            sweepAzDegrees = 0;
+            sweepElDegrees = 0;
+            sweepTimer.Interval = 500;
+            prevWasSweep = true;
         }
 
 

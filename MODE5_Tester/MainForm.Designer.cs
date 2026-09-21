@@ -88,6 +88,7 @@
             this.shortCountDisplay = new System.Windows.Forms.Label();
             this.updateCounterTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.checkControlSend = new System.Windows.Forms.CheckBox();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -195,14 +196,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(649, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(649, 30);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 26);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -286,6 +287,7 @@
             this.azVelSlider.TabIndex = 9;
             this.azVelSlider.Value = 1;
             this.azVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.azVelSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox11
             // 
@@ -345,6 +347,7 @@
             this.elVelSlider.TabIndex = 10;
             this.elVelSlider.Value = 1;
             this.elVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.elVelSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox7
             // 
@@ -418,6 +421,7 @@
             this.elAccSlider.TabIndex = 11;
             this.elAccSlider.Value = 1;
             this.elAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.elAccSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox13
             // 
@@ -477,6 +481,7 @@
             this.azAccSlider.TabIndex = 12;
             this.azAccSlider.Value = 1;
             this.azAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.azAccSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox9
             // 
@@ -545,6 +550,7 @@
             this.elPosSlider.Size = new System.Drawing.Size(56, 259);
             this.elPosSlider.TabIndex = 8;
             this.elPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.elPosSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox10
             // 
@@ -601,6 +607,7 @@
             this.azPosSlider.Size = new System.Drawing.Size(362, 56);
             this.azPosSlider.TabIndex = 7;
             this.azPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.azPosSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // sendMode
             // 
@@ -752,11 +759,22 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Mode";
             // 
+            // checkControlSend
+            // 
+            this.checkControlSend.AutoSize = true;
+            this.checkControlSend.Location = new System.Drawing.Point(25, 623);
+            this.checkControlSend.Name = "checkControlSend";
+            this.checkControlSend.Size = new System.Drawing.Size(207, 20);
+            this.checkControlSend.TabIndex = 53;
+            this.checkControlSend.Text = "moving controls sends packet";
+            this.checkControlSend.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(649, 670);
+            this.Controls.Add(this.checkControlSend);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.validCounterDisplay);
             this.Controls.Add(this.groupBox1);
@@ -868,6 +886,7 @@
         private System.Windows.Forms.Label validCounterDisplay;
         private System.Windows.Forms.Timer updateCounterTimer;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox checkControlSend;
     }
 }
 

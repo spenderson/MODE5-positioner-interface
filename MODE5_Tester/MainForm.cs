@@ -341,6 +341,7 @@ namespace MODE5_Tester
 
             if (!prevWasSweep)
             {
+                // commit previous settings to memory
                 RememberInputs();
             }
 
@@ -350,6 +351,7 @@ namespace MODE5_Tester
             }
             else
             {
+                // recall previous non-sweep settings
                 azPosTextBoxTx.Text = memoryAzPos;
                 elPosTextBoxTx.Text = memoryElPos;
                 azVelTextBoxTx.Text = memoryAzVel;
@@ -361,6 +363,7 @@ namespace MODE5_Tester
             }
 
             UpdateInputEnabled();
+            UpdateSendButton();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -756,7 +759,7 @@ namespace MODE5_Tester
             else if (btnSend.Text == "Stop")
             {
                 SetSweepInput();
-                MessageBox.Show("inputs should be disabled now"); // debug line, it shouldn't reach this
+                MessageBox.Show("[DEBUG] inputs should be disabled now"); // debug line, it shouldn't reach this
             }
             else
             {

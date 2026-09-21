@@ -111,6 +111,8 @@ namespace MODE5_Tester
                 cboxBaudrate.Enabled = true;
                 btnRefresh.Enabled = true;
 
+                UpdateInputEnabled();
+
                 return;
             }
 
@@ -168,6 +170,7 @@ namespace MODE5_Tester
                     cboxComport.Enabled = false;
                     cboxBaudrate.Enabled = false;
                     btnRefresh.Enabled = false;
+                    UpdateInputEnabled();
                 }
             }
         }
@@ -182,6 +185,9 @@ namespace MODE5_Tester
             {
                 cboxComport.SelectedIndex = 0;
             }
+
+            UpdateInputEnabled();
+            
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -332,25 +338,12 @@ namespace MODE5_Tester
             {
                 sendRate.Enabled = false;
 
-                azPosTextBoxTx.Enabled = false;
-                elPosTextBoxTx.Enabled = false;
-                azVelTextBoxTx.Enabled = false;
-                elVelTextBoxTx.Enabled = false;
-                azAccTextBoxTx.Enabled = false;
-                elAccTextBoxTx.Enabled = false;
-
             }
             else
             {
                 sendRate.Enabled = true;
-
-                azPosTextBoxTx.Enabled = true;
-                elPosTextBoxTx.Enabled = true;
-                azVelTextBoxTx.Enabled = true;
-                elVelTextBoxTx.Enabled = true;
-                azAccTextBoxTx.Enabled = true;
-                elAccTextBoxTx.Enabled = true;
             }
+            UpdateInputEnabled();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -413,7 +406,8 @@ namespace MODE5_Tester
                                     updateCounterTimer.Start();
 
                                 }
-                                SetInputEnabled(false);
+                                SetSweepInput();
+                                sendMode.Enabled = false;
                                 isSending = true;
                             }
                         }
@@ -428,7 +422,7 @@ namespace MODE5_Tester
                             // run the sweep
                             sweepTimer.Interval = 500;
                             sweepTimer.Start();
-                            SetInputEnabled(false);
+                            sendMode.Enabled = false;
                             isSending = true;
                         }
                     }
@@ -567,19 +561,24 @@ namespace MODE5_Tester
         private void StopSending()
         {
 
+            // stop continuous mode
             if (backgroundCancellationTokenSource != null)
             {
                 backgroundCancellationTokenSource.Cancel();
             }
             updateCounterTimer.Stop();
 
+            // stop Hz mode
             sendTimer.Stop();
+
+            // stop sweep mode
             sweepTimer.Stop();
 
+            // update the GUI
             isSending = false;
-            SetInputEnabled(true);
-
             UpdateSendButton();
+
+            UpdateInputEnabled();
         }
 
         private void AddFloatToPacket(byte[] packet, float value, int startIndex)
@@ -691,7 +690,65 @@ namespace MODE5_Tester
             elVelTextBoxTx.Enabled = enabled;
             azAccTextBoxTx.Enabled = enabled;
             elAccTextBoxTx.Enabled = enabled;
+
+            azPosSlider.Enabled = enabled;
+            elPosSlider.Enabled = enabled;
+            azVelSlider.Enabled = enabled;
+            elVelSlider.Enabled = enabled;
+            azAccSlider.Enabled = enabled;
+            elAccSlider.Enabled = enabled;
+
+            btnShort.Enabled = enabled;
+            btnLong.Enabled = enabled;
+            btnAllSync.Enabled = enabled;
+
+            btnSend.Enabled = enabled;
+            sendRate.Enabled = enabled;
+            sendMode.Enabled = enabled;
         }
+
+        private void SetSweepInput()
+        {
+            SetInputEnabled(true);
+
+            azPosTextBoxTx.Enabled = false;
+            elPosTextBoxTx.Enabled = false;
+            azVelTextBoxTx.Enabled = false;
+            elVelTextBoxTx.Enabled = false;
+            azAccTextBoxTx.Enabled = false;
+            elAccTextBoxTx.Enabled = false;
+
+            azPosSlider.Enabled = false;
+            elPosSlider.Enabled = false;
+            azVelSlider.Enabled = false;
+            elVelSlider.Enabled = false;
+            azAccSlider.Enabled = false;
+            elAccSlider.Enabled = false;
+
+            sendRate.Enabled = false;
+        }
+
+        private void UpdateInputEnabled()
+        {
+            if (btnConnect.Text == "Connect")
+            {
+                SetInputEnabled(false);
+            }
+            else if (sendMode.Text == "Sweep")
+            {
+                SetSweepInput();
+            }
+            else if (btnSend.Text == "Stop")
+            {
+                SetSweepInput();
+                MessageBox.Show("inputs should be disabled now");
+            }
+            else
+            {
+                SetInputEnabled(true);
+            }
+        }
+
 
         #endregion
     }

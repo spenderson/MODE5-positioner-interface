@@ -193,6 +193,7 @@ namespace MODE5_Tester
 
             UpdateInputEnabled();
             RememberInputs();
+            checkControlSend.Checked = true;
             
         }
 

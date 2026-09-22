@@ -43,35 +43,35 @@
             this.sweepTimer = new System.Windows.Forms.Timer(this.components);
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.azVelLabelMax = new System.Windows.Forms.Label();
+            this.azVelLabelMin = new System.Windows.Forms.Label();
             this.azVelTextBoxTx = new System.Windows.Forms.TextBox();
             this.azVelSlider = new System.Windows.Forms.TrackBar();
             this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
+            this.elVelLabelMin = new System.Windows.Forms.Label();
+            this.elVelLabelMax = new System.Windows.Forms.Label();
             this.elVelTextBoxTx = new System.Windows.Forms.TextBox();
             this.elVelSlider = new System.Windows.Forms.TrackBar();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.label30 = new System.Windows.Forms.Label();
+            this.elAccLabelMin = new System.Windows.Forms.Label();
             this.elAccTextBoxTx = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
+            this.elAccLabelMax = new System.Windows.Forms.Label();
             this.elAccSlider = new System.Windows.Forms.TrackBar();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.azAccLabelMax = new System.Windows.Forms.Label();
             this.azAccTextBoxTx = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.azAccLabelMin = new System.Windows.Forms.Label();
             this.azAccSlider = new System.Windows.Forms.TrackBar();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.elPosLabelZero = new System.Windows.Forms.Label();
+            this.elPosLabelMax = new System.Windows.Forms.Label();
             this.elPosTextBoxTx = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
+            this.elPosLabelMin = new System.Windows.Forms.Label();
             this.elPosSlider = new System.Windows.Forms.TrackBar();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.MaxAzPosLabel = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.azPosLabelMax = new System.Windows.Forms.Label();
+            this.azPosLabelMin = new System.Windows.Forms.Label();
             this.azPosTextBoxTx = new System.Windows.Forms.TextBox();
             this.azPosSlider = new System.Windows.Forms.TrackBar();
             this.sendMode = new System.Windows.Forms.ComboBox();
@@ -234,8 +234,8 @@
             // groupBox12
             // 
             this.groupBox12.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox12.Controls.Add(this.label2);
-            this.groupBox12.Controls.Add(this.label3);
+            this.groupBox12.Controls.Add(this.azVelLabelMax);
+            this.groupBox12.Controls.Add(this.azVelLabelMin);
             this.groupBox12.Controls.Add(this.azVelTextBoxTx);
             this.groupBox12.Controls.Add(this.azVelSlider);
             this.groupBox12.Location = new System.Drawing.Point(16, 25);
@@ -247,23 +247,25 @@
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Azimuth";
             // 
-            // label2
+            // azVelLabelMax
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 53);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(21, 16);
-            this.label2.TabIndex = 37;
-            this.label2.Text = "90";
+            this.azVelLabelMax.AutoSize = true;
+            this.azVelLabelMax.Location = new System.Drawing.Point(61, 53);
+            this.azVelLabelMax.Name = "azVelLabelMax";
+            this.azVelLabelMax.Size = new System.Drawing.Size(21, 16);
+            this.azVelLabelMax.TabIndex = 37;
+            this.azVelLabelMax.Text = "90";
+            this.azVelLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
             // 
-            // label3
+            // azVelLabelMin
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 185);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(14, 16);
-            this.label3.TabIndex = 38;
-            this.label3.Text = "1";
+            this.azVelLabelMin.AutoSize = true;
+            this.azVelLabelMin.Location = new System.Drawing.Point(61, 185);
+            this.azVelLabelMin.Name = "azVelLabelMin";
+            this.azVelLabelMin.Size = new System.Drawing.Size(14, 16);
+            this.azVelLabelMin.TabIndex = 38;
+            this.azVelLabelMin.Text = "1";
+            this.azVelLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
             // 
             // azVelTextBoxTx
             // 
@@ -289,13 +291,14 @@
             this.azVelSlider.TabIndex = 9;
             this.azVelSlider.Value = 1;
             this.azVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.azVelSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
             this.azVelSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox11
             // 
             this.groupBox11.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox11.Controls.Add(this.label29);
-            this.groupBox11.Controls.Add(this.label28);
+            this.groupBox11.Controls.Add(this.elVelLabelMin);
+            this.groupBox11.Controls.Add(this.elVelLabelMax);
             this.groupBox11.Controls.Add(this.elVelTextBoxTx);
             this.groupBox11.Controls.Add(this.elVelSlider);
             this.groupBox11.Location = new System.Drawing.Point(132, 25);
@@ -307,23 +310,25 @@
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Elevation";
             // 
-            // label29
+            // elVelLabelMin
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(61, 185);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(14, 16);
-            this.label29.TabIndex = 40;
-            this.label29.Text = "1";
+            this.elVelLabelMin.AutoSize = true;
+            this.elVelLabelMin.Location = new System.Drawing.Point(61, 185);
+            this.elVelLabelMin.Name = "elVelLabelMin";
+            this.elVelLabelMin.Size = new System.Drawing.Size(14, 16);
+            this.elVelLabelMin.TabIndex = 40;
+            this.elVelLabelMin.Text = "1";
+            this.elVelLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
             // 
-            // label28
+            // elVelLabelMax
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(61, 53);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(21, 16);
-            this.label28.TabIndex = 39;
-            this.label28.Text = "90";
+            this.elVelLabelMax.AutoSize = true;
+            this.elVelLabelMax.Location = new System.Drawing.Point(61, 53);
+            this.elVelLabelMax.Name = "elVelLabelMax";
+            this.elVelLabelMax.Size = new System.Drawing.Size(21, 16);
+            this.elVelLabelMax.TabIndex = 39;
+            this.elVelLabelMax.Text = "90";
+            this.elVelLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
             // 
             // elVelTextBoxTx
             // 
@@ -349,6 +354,7 @@
             this.elVelSlider.TabIndex = 10;
             this.elVelSlider.Value = 1;
             this.elVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.elVelSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
             this.elVelSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox7
@@ -368,9 +374,9 @@
             // groupBox14
             // 
             this.groupBox14.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox14.Controls.Add(this.label30);
+            this.groupBox14.Controls.Add(this.elAccLabelMin);
             this.groupBox14.Controls.Add(this.elAccTextBoxTx);
-            this.groupBox14.Controls.Add(this.label31);
+            this.groupBox14.Controls.Add(this.elAccLabelMax);
             this.groupBox14.Controls.Add(this.elAccSlider);
             this.groupBox14.Location = new System.Drawing.Point(132, 25);
             this.groupBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -381,14 +387,15 @@
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Elevation";
             // 
-            // label30
+            // elAccLabelMin
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(61, 185);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(14, 16);
-            this.label30.TabIndex = 44;
-            this.label30.Text = "1";
+            this.elAccLabelMin.AutoSize = true;
+            this.elAccLabelMin.Location = new System.Drawing.Point(61, 185);
+            this.elAccLabelMin.Name = "elAccLabelMin";
+            this.elAccLabelMin.Size = new System.Drawing.Size(14, 16);
+            this.elAccLabelMin.TabIndex = 44;
+            this.elAccLabelMin.Text = "1";
+            this.elAccLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
             // 
             // elAccTextBoxTx
             // 
@@ -402,14 +409,15 @@
             this.elAccTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
             this.elAccTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
             // 
-            // label31
+            // elAccLabelMax
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(61, 53);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(21, 16);
-            this.label31.TabIndex = 43;
-            this.label31.Text = "90";
+            this.elAccLabelMax.AutoSize = true;
+            this.elAccLabelMax.Location = new System.Drawing.Point(61, 53);
+            this.elAccLabelMax.Name = "elAccLabelMax";
+            this.elAccLabelMax.Size = new System.Drawing.Size(21, 16);
+            this.elAccLabelMax.TabIndex = 43;
+            this.elAccLabelMax.Text = "90";
+            this.elAccLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
             // 
             // elAccSlider
             // 
@@ -423,14 +431,15 @@
             this.elAccSlider.TabIndex = 11;
             this.elAccSlider.Value = 1;
             this.elAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.elAccSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
             this.elAccSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox13
             // 
             this.groupBox13.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox13.Controls.Add(this.label7);
+            this.groupBox13.Controls.Add(this.azAccLabelMax);
             this.groupBox13.Controls.Add(this.azAccTextBoxTx);
-            this.groupBox13.Controls.Add(this.label6);
+            this.groupBox13.Controls.Add(this.azAccLabelMin);
             this.groupBox13.Controls.Add(this.azAccSlider);
             this.groupBox13.Location = new System.Drawing.Point(15, 25);
             this.groupBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -441,14 +450,15 @@
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Azimuth";
             // 
-            // label7
+            // azAccLabelMax
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(61, 53);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(21, 16);
-            this.label7.TabIndex = 41;
-            this.label7.Text = "90";
+            this.azAccLabelMax.AutoSize = true;
+            this.azAccLabelMax.Location = new System.Drawing.Point(61, 53);
+            this.azAccLabelMax.Name = "azAccLabelMax";
+            this.azAccLabelMax.Size = new System.Drawing.Size(21, 16);
+            this.azAccLabelMax.TabIndex = 41;
+            this.azAccLabelMax.Text = "90";
+            this.azAccLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
             // 
             // azAccTextBoxTx
             // 
@@ -462,14 +472,15 @@
             this.azAccTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
             this.azAccTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
             // 
-            // label6
+            // azAccLabelMin
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(61, 185);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(14, 16);
-            this.label6.TabIndex = 42;
-            this.label6.Text = "1";
+            this.azAccLabelMin.AutoSize = true;
+            this.azAccLabelMin.Location = new System.Drawing.Point(61, 185);
+            this.azAccLabelMin.Name = "azAccLabelMin";
+            this.azAccLabelMin.Size = new System.Drawing.Size(14, 16);
+            this.azAccLabelMin.TabIndex = 42;
+            this.azAccLabelMin.Text = "1";
+            this.azAccLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
             // 
             // azAccSlider
             // 
@@ -483,15 +494,16 @@
             this.azAccSlider.TabIndex = 12;
             this.azAccSlider.Value = 1;
             this.azAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.azAccSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
             this.azAccSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox9
             // 
             this.groupBox9.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox9.Controls.Add(this.label1);
-            this.groupBox9.Controls.Add(this.label5);
+            this.groupBox9.Controls.Add(this.elPosLabelZero);
+            this.groupBox9.Controls.Add(this.elPosLabelMax);
             this.groupBox9.Controls.Add(this.elPosTextBoxTx);
-            this.groupBox9.Controls.Add(this.label19);
+            this.groupBox9.Controls.Add(this.elPosLabelMin);
             this.groupBox9.Controls.Add(this.elPosSlider);
             this.groupBox9.Location = new System.Drawing.Point(12, 253);
             this.groupBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -502,23 +514,25 @@
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Elevation";
             // 
-            // label1
+            // elPosLabelZero
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 223);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(18, 16);
-            this.label1.TabIndex = 34;
-            this.label1.Text = "0°";
+            this.elPosLabelZero.AutoSize = true;
+            this.elPosLabelZero.Location = new System.Drawing.Point(53, 223);
+            this.elPosLabelZero.Name = "elPosLabelZero";
+            this.elPosLabelZero.Size = new System.Drawing.Size(18, 16);
+            this.elPosLabelZero.TabIndex = 34;
+            this.elPosLabelZero.Text = "0°";
+            this.elPosLabelZero.Click += new System.EventHandler(this.LabelZero_Click);
             // 
-            // label5
+            // elPosLabelMax
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(53, 66);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(25, 16);
-            this.label5.TabIndex = 31;
-            this.label5.Text = "83°";
+            this.elPosLabelMax.AutoSize = true;
+            this.elPosLabelMax.Location = new System.Drawing.Point(53, 66);
+            this.elPosLabelMax.Name = "elPosLabelMax";
+            this.elPosLabelMax.Size = new System.Drawing.Size(25, 16);
+            this.elPosLabelMax.TabIndex = 31;
+            this.elPosLabelMax.Text = "83°";
+            this.elPosLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
             // 
             // elPosTextBoxTx
             // 
@@ -532,14 +546,15 @@
             this.elPosTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
             this.elPosTextBoxTx.Leave += new System.EventHandler(this.ValidateInput);
             // 
-            // label19
+            // elPosLabelMin
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(53, 293);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(29, 16);
-            this.label19.TabIndex = 33;
-            this.label19.Text = "-38°";
+            this.elPosLabelMin.AutoSize = true;
+            this.elPosLabelMin.Location = new System.Drawing.Point(53, 293);
+            this.elPosLabelMin.Name = "elPosLabelMin";
+            this.elPosLabelMin.Size = new System.Drawing.Size(29, 16);
+            this.elPosLabelMin.TabIndex = 33;
+            this.elPosLabelMin.Text = "-38°";
+            this.elPosLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
             // 
             // elPosSlider
             // 
@@ -552,13 +567,14 @@
             this.elPosSlider.Size = new System.Drawing.Size(56, 259);
             this.elPosSlider.TabIndex = 8;
             this.elPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.elPosSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
             this.elPosSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox10
             // 
             this.groupBox10.BackColor = System.Drawing.SystemColors.Control;
-            this.groupBox10.Controls.Add(this.MaxAzPosLabel);
-            this.groupBox10.Controls.Add(this.label4);
+            this.groupBox10.Controls.Add(this.azPosLabelMax);
+            this.groupBox10.Controls.Add(this.azPosLabelMin);
             this.groupBox10.Controls.Add(this.azPosTextBoxTx);
             this.groupBox10.Controls.Add(this.azPosSlider);
             this.groupBox10.Location = new System.Drawing.Point(117, 253);
@@ -570,23 +586,25 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Azimuth";
             // 
-            // MaxAzPosLabel
+            // azPosLabelMax
             // 
-            this.MaxAzPosLabel.AutoSize = true;
-            this.MaxAzPosLabel.Location = new System.Drawing.Point(481, 26);
-            this.MaxAzPosLabel.Name = "MaxAzPosLabel";
-            this.MaxAzPosLabel.Size = new System.Drawing.Size(32, 16);
-            this.MaxAzPosLabel.TabIndex = 32;
-            this.MaxAzPosLabel.Text = "360°";
+            this.azPosLabelMax.AutoSize = true;
+            this.azPosLabelMax.Location = new System.Drawing.Point(481, 26);
+            this.azPosLabelMax.Name = "azPosLabelMax";
+            this.azPosLabelMax.Size = new System.Drawing.Size(32, 16);
+            this.azPosLabelMax.TabIndex = 32;
+            this.azPosLabelMax.Text = "360°";
+            this.azPosLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
             // 
-            // label4
+            // azPosLabelMin
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(103, 26);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(18, 16);
-            this.label4.TabIndex = 30;
-            this.label4.Text = "0°";
+            this.azPosLabelMin.AutoSize = true;
+            this.azPosLabelMin.Location = new System.Drawing.Point(103, 26);
+            this.azPosLabelMin.Name = "azPosLabelMin";
+            this.azPosLabelMin.Size = new System.Drawing.Size(18, 16);
+            this.azPosLabelMin.TabIndex = 30;
+            this.azPosLabelMin.Text = "0°";
+            this.azPosLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
             // 
             // azPosTextBoxTx
             // 
@@ -609,6 +627,7 @@
             this.azPosSlider.Size = new System.Drawing.Size(362, 56);
             this.azPosSlider.TabIndex = 7;
             this.azPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
+            this.azPosSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
             this.azPosSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // sendMode
@@ -805,6 +824,7 @@
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -861,39 +881,39 @@
         private System.Windows.Forms.Timer sweepTimer;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label azVelLabelMax;
+        private System.Windows.Forms.Label azVelLabelMin;
         private System.Windows.Forms.TextBox azVelTextBoxTx;
         private System.Windows.Forms.TrackBar azVelSlider;
         private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label elVelLabelMin;
+        private System.Windows.Forms.Label elVelLabelMax;
         private System.Windows.Forms.TextBox elVelTextBoxTx;
         private System.Windows.Forms.TrackBar elVelSlider;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox14;
-        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label elAccLabelMin;
         private System.Windows.Forms.TextBox elAccTextBoxTx;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label elAccLabelMax;
         private System.Windows.Forms.TrackBar elAccSlider;
         private System.Windows.Forms.GroupBox groupBox13;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label azAccLabelMax;
         private System.Windows.Forms.TextBox azAccTextBoxTx;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label azAccLabelMin;
         private System.Windows.Forms.TrackBar azAccSlider;
         private System.Windows.Forms.ComboBox sendRate;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.ComboBox sendMode;
         private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.Label MaxAzPosLabel;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label azPosLabelMax;
+        private System.Windows.Forms.Label azPosLabelMin;
         private System.Windows.Forms.TextBox azPosTextBoxTx;
         private System.Windows.Forms.TrackBar azPosSlider;
         private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label elPosLabelZero;
+        private System.Windows.Forms.Label elPosLabelMax;
         private System.Windows.Forms.TextBox elPosTextBoxTx;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label elPosLabelMin;
         private System.Windows.Forms.TrackBar elPosSlider;
         private System.Windows.Forms.Button btnShort;
         private System.Windows.Forms.Button btnLong;

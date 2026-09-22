@@ -42,6 +42,23 @@ namespace MODE5_Tester
             elAccSlider.Tag = elAccTextBoxTx;
             elAccTextBoxTx.Tag = elAccSlider;
 
+            // allow user to click labels to snap sliders
+
+            azPosLabelMax.Tag = azPosSlider;
+            elPosLabelMax.Tag = elPosSlider;
+            azVelLabelMax.Tag = azVelSlider;
+            elVelLabelMax.Tag = elVelSlider;
+            azAccLabelMax.Tag = azAccSlider;
+            elAccLabelMax.Tag = elAccSlider;
+
+            elPosLabelZero.Tag = elPosSlider;
+
+            azPosLabelMin.Tag = azPosSlider;
+            elPosLabelMin.Tag = elPosSlider;
+            azVelLabelMin.Tag = azVelSlider;
+            elVelLabelMin.Tag = elVelSlider;
+            azAccLabelMin.Tag = azAccSlider;
+            elAccLabelMin.Tag = elAccSlider;
 
             // make sure the text boxes are populated upon startup
 
@@ -222,6 +239,14 @@ namespace MODE5_Tester
             updatingControls = false;
         }
 
+        private void Slider_ValueChanged(object sender, EventArgs e)
+        {
+            // Same as Slider_Scroll, but without checking updatingControls
+            TrackBar slider = (TrackBar)sender;
+            TextBox textBox = (TextBox)slider.Tag;
+            textBox.Text = slider.Value.ToString();
+        }
+
         private void TextBoxTx_TextChanged(object sender, EventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -263,12 +288,7 @@ namespace MODE5_Tester
                 textBox.Text = slider.Value.ToString();
             }
 
-
-            if (checkControlSend.Checked)
-            {
-                ConstructAndSendPacket();
-                UpdatePacketCounter();
-            }
+            SeeToggleSend();
         }
 
         private void MainForm_KeyDown(object sender, KeyEventArgs e)
@@ -514,11 +534,64 @@ namespace MODE5_Tester
 
         private void Slider_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left && checkControlSend.Checked)
+            if (e.Button == MouseButtons.Left)
             {
-                ConstructAndSendPacket();
-                UpdatePacketCounter();
+                SeeToggleSend();
             }
+        }
+
+        private void LabelMax_Click(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            TrackBar slider = (TrackBar)label.Tag;
+
+            if (updatingControls)
+                return;
+
+            updatingControls = true;
+            if (slider.Enabled)
+            {
+                slider.Value = slider.Maximum;
+                SeeToggleSend();
+            }
+            updatingControls = false;
+
+        }
+
+        private void LabelMin_Click(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            TrackBar slider = (TrackBar)label.Tag;
+
+            if (updatingControls)
+                return;
+
+            updatingControls = true;
+            if (slider.Enabled)
+            {
+                slider.Value = slider.Minimum;
+                SeeToggleSend();
+            }
+            updatingControls = false;
+
+        }
+
+        private void LabelZero_Click(object sender, EventArgs e)
+        {
+            Label label = (Label)sender;
+            TrackBar slider = (TrackBar)label.Tag;
+
+            if (updatingControls)
+                return;
+
+            updatingControls = true;
+            if (slider.Enabled)
+            {
+                slider.Value = 0;
+                SeeToggleSend();
+            }
+            updatingControls = false;
+
         }
 
         #endregion
@@ -783,6 +856,15 @@ namespace MODE5_Tester
             sweepElDegrees = 0;
             sweepTimer.Interval = 500;
             prevWasSweep = true;
+        }
+
+        private void SeeToggleSend()
+        {
+            if (checkControlSend.Checked)
+            {
+                ConstructAndSendPacket();
+                UpdatePacketCounter();
+            }
         }
 
 

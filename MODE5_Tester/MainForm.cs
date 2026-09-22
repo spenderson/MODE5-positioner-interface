@@ -211,7 +211,10 @@ namespace MODE5_Tester
             UpdateInputEnabled();
             RememberInputs();
             checkControlSend.Checked = true;
-            
+
+            //btnConnect.Focus();
+            ActiveControl = btnConnect;
+
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -866,7 +869,6 @@ namespace MODE5_Tester
                 UpdatePacketCounter();
             }
         }
-
 
         #endregion
     }

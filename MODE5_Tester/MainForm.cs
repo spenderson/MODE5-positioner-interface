@@ -199,28 +199,36 @@ namespace MODE5_Tester
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            UpdateRS232Options();
 
-            // Autopopulate COM port and Baud rate dropdowns
+            // autopopulate COM port and Baud rate dropdowns
+            UpdateRS232Options();
             cboxBaudrate.SelectedIndex = 1; // manually setting to 19200 while testing
             if (cboxComport.Items.Count > 0)
             {
                 cboxComport.SelectedIndex = 0;
             }
 
+            // setup rest of the GUI
             UpdateInputEnabled();
             RememberInputs();
-            checkControlSend.Checked = true;
+            checkControlSend.Checked = false;
 
-            //btnConnect.Focus();
+            // focus the Connect button so user can just hit ENTER to right after startup
             ActiveControl = btnConnect;
 
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            // We need to update all lists again if user requested
+            // repopulate COM port and Baud rate dropdowns
             UpdateRS232Options();
+
+            // select the first one
+            cboxBaudrate.SelectedIndex = 0;
+            if (cboxComport.Items.Count > 0)
+            {
+                cboxComport.SelectedIndex = 0;
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -240,14 +248,6 @@ namespace MODE5_Tester
             updatingControls = true;
             textBox.Text = slider.Value.ToString();
             updatingControls = false;
-        }
-
-        private void Slider_ValueChanged(object sender, EventArgs e)
-        {
-            // Same as Slider_Scroll, but without checking updatingControls
-            TrackBar slider = (TrackBar)sender;
-            TextBox textBox = (TextBox)slider.Tag;
-            textBox.Text = slider.Value.ToString();
         }
 
         private void TextBoxTx_TextChanged(object sender, EventArgs e)
@@ -548,16 +548,11 @@ namespace MODE5_Tester
             Label label = (Label)sender;
             TrackBar slider = (TrackBar)label.Tag;
 
-            if (updatingControls)
-                return;
-
-            updatingControls = true;
             if (slider.Enabled)
             {
                 slider.Value = slider.Maximum;
                 SeeToggleSend();
             }
-            updatingControls = false;
 
         }
 
@@ -566,16 +561,11 @@ namespace MODE5_Tester
             Label label = (Label)sender;
             TrackBar slider = (TrackBar)label.Tag;
 
-            if (updatingControls)
-                return;
-
-            updatingControls = true;
             if (slider.Enabled)
             {
                 slider.Value = slider.Minimum;
                 SeeToggleSend();
             }
-            updatingControls = false;
 
         }
 
@@ -584,16 +574,11 @@ namespace MODE5_Tester
             Label label = (Label)sender;
             TrackBar slider = (TrackBar)label.Tag;
 
-            if (updatingControls)
-                return;
-
-            updatingControls = true;
             if (slider.Enabled)
             {
                 slider.Value = 0;
                 SeeToggleSend();
             }
-            updatingControls = false;
 
         }
 
@@ -602,16 +587,18 @@ namespace MODE5_Tester
         #region Methods
         private void UpdateRS232Options()
         {
-            // Get all existing Com Port names
-            string[] Ports = System.IO.Ports.SerialPort.GetPortNames();
+            // clear the lists
             cboxComport.Items.Clear();
             cboxBaudrate.Items.Clear();
+
+            // populate port names
+            string[] Ports = System.IO.Ports.SerialPort.GetPortNames();
             foreach (var item in Ports)
             {
                 cboxComport.Items.Add(item);
             }
 
-            // Append possible Baudrate to the cboxBaudrate list
+            // populate baud rates
             foreach (var baud in baudrate)
             {
                 cboxBaudrate.Items.Add(baud.ToString());

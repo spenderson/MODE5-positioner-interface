@@ -291,7 +291,7 @@
             this.azVelSlider.TabIndex = 9;
             this.azVelSlider.Value = 1;
             this.azVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.azVelSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
+            this.azVelSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
             this.azVelSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox11
@@ -354,7 +354,7 @@
             this.elVelSlider.TabIndex = 10;
             this.elVelSlider.Value = 1;
             this.elVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.elVelSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
+            this.elVelSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
             this.elVelSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox7
@@ -431,7 +431,7 @@
             this.elAccSlider.TabIndex = 11;
             this.elAccSlider.Value = 1;
             this.elAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.elAccSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
+            this.elAccSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
             this.elAccSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox13
@@ -494,7 +494,7 @@
             this.azAccSlider.TabIndex = 12;
             this.azAccSlider.Value = 1;
             this.azAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.azAccSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
+            this.azAccSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
             this.azAccSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox9
@@ -567,7 +567,7 @@
             this.elPosSlider.Size = new System.Drawing.Size(56, 259);
             this.elPosSlider.TabIndex = 8;
             this.elPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.elPosSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
+            this.elPosSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
             this.elPosSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox10
@@ -627,7 +627,7 @@
             this.azPosSlider.Size = new System.Drawing.Size(362, 56);
             this.azPosSlider.TabIndex = 7;
             this.azPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.azPosSlider.ValueChanged += new System.EventHandler(this.Slider_ValueChanged);
+            this.azPosSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
             this.azPosSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // sendMode

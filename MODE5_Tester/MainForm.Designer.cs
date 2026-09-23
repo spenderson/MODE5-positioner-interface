@@ -74,7 +74,6 @@
             this.azPosLabelMin = new System.Windows.Forms.Label();
             this.azPosTextBoxTx = new System.Windows.Forms.TextBox();
             this.azPosSlider = new System.Windows.Forms.TrackBar();
-            this.sendMode = new System.Windows.Forms.ComboBox();
             this.btnSend = new System.Windows.Forms.Button();
             this.sendRate = new System.Windows.Forms.ComboBox();
             this.validCounterDisplay = new System.Windows.Forms.Label();
@@ -86,11 +85,13 @@
             this.longCountDisplay = new System.Windows.Forms.Label();
             this.shortCountDisplay = new System.Windows.Forms.Label();
             this.updateCounterTimer = new System.Windows.Forms.Timer(this.components);
-            this.checkControlSend = new System.Windows.Forms.CheckBox();
+            this.sendOnChange = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnModeSweep = new System.Windows.Forms.CheckBox();
+            this.btnModeControls = new System.Windows.Forms.CheckBox();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -116,18 +117,16 @@
             // 
             this.cboxComport.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxComport.FormattingEnabled = true;
-            this.cboxComport.Location = new System.Drawing.Point(72, 32);
-            this.cboxComport.Margin = new System.Windows.Forms.Padding(4);
+            this.cboxComport.Location = new System.Drawing.Point(47, 28);
             this.cboxComport.Name = "cboxComport";
-            this.cboxComport.Size = new System.Drawing.Size(103, 24);
+            this.cboxComport.Size = new System.Drawing.Size(78, 21);
             this.cboxComport.TabIndex = 0;
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(24, 102);
-            this.btnConnect.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConnect.Location = new System.Drawing.Point(47, 80);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(112, 28);
+            this.btnConnect.Size = new System.Drawing.Size(84, 23);
             this.btnConnect.TabIndex = 1;
             this.btnConnect.Text = "Connect";
             this.btnConnect.UseVisualStyleBackColor = true;
@@ -137,18 +136,16 @@
             // 
             this.cboxBaudrate.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboxBaudrate.FormattingEnabled = true;
-            this.cboxBaudrate.Location = new System.Drawing.Point(72, 65);
-            this.cboxBaudrate.Margin = new System.Windows.Forms.Padding(4);
+            this.cboxBaudrate.Location = new System.Drawing.Point(47, 53);
             this.cboxBaudrate.Name = "cboxBaudrate";
-            this.cboxBaudrate.Size = new System.Drawing.Size(103, 24);
+            this.cboxBaudrate.Size = new System.Drawing.Size(78, 21);
             this.cboxBaudrate.TabIndex = 2;
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(203, 29);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRefresh.Location = new System.Drawing.Point(157, 26);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(79, 28);
+            this.btnRefresh.Size = new System.Drawing.Size(59, 23);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -162,11 +159,11 @@
             this.groupBox4.Controls.Add(this.btnConnect);
             this.groupBox4.Controls.Add(this.cboxBaudrate);
             this.groupBox4.Controls.Add(this.btnRefresh);
-            this.groupBox4.Location = new System.Drawing.Point(12, 31);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox4.Location = new System.Drawing.Point(9, 25);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox4.Size = new System.Drawing.Size(301, 150);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Size = new System.Drawing.Size(226, 122);
             this.groupBox4.TabIndex = 41;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "RS-232";
@@ -174,18 +171,20 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(21, 38);
+            this.label15.Location = new System.Drawing.Point(9, 31);
+            this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(34, 16);
+            this.label15.Size = new System.Drawing.Size(29, 13);
             this.label15.TabIndex = 42;
             this.label15.Text = "Port:";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(21, 68);
+            this.label17.Location = new System.Drawing.Point(9, 55);
+            this.label17.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(42, 16);
+            this.label17.Size = new System.Drawing.Size(35, 13);
             this.label17.TabIndex = 43;
             this.label17.Text = "Baud:";
             // 
@@ -197,15 +196,15 @@
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(649, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(489, 24);
             this.menuStrip1.TabIndex = 43;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(64, 24);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -222,11 +221,11 @@
             this.groupBox6.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox6.Controls.Add(this.groupBox12);
             this.groupBox6.Controls.Add(this.groupBox11);
-            this.groupBox6.Location = new System.Drawing.Point(118, 336);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox6.Location = new System.Drawing.Point(88, 273);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox6.Size = new System.Drawing.Size(259, 261);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox6.Size = new System.Drawing.Size(194, 212);
             this.groupBox6.TabIndex = 28;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Velocity (degrees/second)";
@@ -238,11 +237,11 @@
             this.groupBox12.Controls.Add(this.azVelLabelMin);
             this.groupBox12.Controls.Add(this.azVelTextBoxTx);
             this.groupBox12.Controls.Add(this.azVelSlider);
-            this.groupBox12.Location = new System.Drawing.Point(16, 25);
-            this.groupBox12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox12.Location = new System.Drawing.Point(12, 20);
+            this.groupBox12.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox12.Size = new System.Drawing.Size(109, 222);
+            this.groupBox12.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox12.Size = new System.Drawing.Size(82, 180);
             this.groupBox12.TabIndex = 43;
             this.groupBox12.TabStop = false;
             this.groupBox12.Text = "Azimuth";
@@ -250,9 +249,10 @@
             // azVelLabelMax
             // 
             this.azVelLabelMax.AutoSize = true;
-            this.azVelLabelMax.Location = new System.Drawing.Point(61, 53);
+            this.azVelLabelMax.Location = new System.Drawing.Point(46, 43);
+            this.azVelLabelMax.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.azVelLabelMax.Name = "azVelLabelMax";
-            this.azVelLabelMax.Size = new System.Drawing.Size(21, 16);
+            this.azVelLabelMax.Size = new System.Drawing.Size(19, 13);
             this.azVelLabelMax.TabIndex = 37;
             this.azVelLabelMax.Text = "90";
             this.azVelLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
@@ -260,9 +260,10 @@
             // azVelLabelMin
             // 
             this.azVelLabelMin.AutoSize = true;
-            this.azVelLabelMin.Location = new System.Drawing.Point(61, 185);
+            this.azVelLabelMin.Location = new System.Drawing.Point(46, 150);
+            this.azVelLabelMin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.azVelLabelMin.Name = "azVelLabelMin";
-            this.azVelLabelMin.Size = new System.Drawing.Size(14, 16);
+            this.azVelLabelMin.Size = new System.Drawing.Size(13, 13);
             this.azVelLabelMin.TabIndex = 38;
             this.azVelLabelMin.Text = "1";
             this.azVelLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
@@ -270,10 +271,10 @@
             // azVelTextBoxTx
             // 
             this.azVelTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.azVelTextBoxTx.Location = new System.Drawing.Point(15, 21);
-            this.azVelTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azVelTextBoxTx.Location = new System.Drawing.Point(11, 17);
+            this.azVelTextBoxTx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.azVelTextBoxTx.Name = "azVelTextBoxTx";
-            this.azVelTextBoxTx.Size = new System.Drawing.Size(81, 22);
+            this.azVelTextBoxTx.Size = new System.Drawing.Size(61, 20);
             this.azVelTextBoxTx.TabIndex = 24;
             this.azVelTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.azVelTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
@@ -281,17 +282,17 @@
             // 
             // azVelSlider
             // 
-            this.azVelSlider.Location = new System.Drawing.Point(25, 49);
-            this.azVelSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azVelSlider.Location = new System.Drawing.Point(19, 40);
+            this.azVelSlider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.azVelSlider.Maximum = 90;
             this.azVelSlider.Minimum = 1;
             this.azVelSlider.Name = "azVelSlider";
             this.azVelSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.azVelSlider.Size = new System.Drawing.Size(56, 162);
+            this.azVelSlider.Size = new System.Drawing.Size(45, 132);
             this.azVelSlider.TabIndex = 9;
             this.azVelSlider.Value = 1;
-            this.azVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.azVelSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
+            this.azVelSlider.Scroll += new System.EventHandler(this.SliderUpdatesTextbox);
+            this.azVelSlider.ValueChanged += new System.EventHandler(this.SliderUpdatesTextbox);
             this.azVelSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox11
@@ -301,11 +302,11 @@
             this.groupBox11.Controls.Add(this.elVelLabelMax);
             this.groupBox11.Controls.Add(this.elVelTextBoxTx);
             this.groupBox11.Controls.Add(this.elVelSlider);
-            this.groupBox11.Location = new System.Drawing.Point(132, 25);
-            this.groupBox11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox11.Location = new System.Drawing.Point(99, 20);
+            this.groupBox11.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox11.Size = new System.Drawing.Size(109, 222);
+            this.groupBox11.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox11.Size = new System.Drawing.Size(82, 180);
             this.groupBox11.TabIndex = 37;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Elevation";
@@ -313,9 +314,10 @@
             // elVelLabelMin
             // 
             this.elVelLabelMin.AutoSize = true;
-            this.elVelLabelMin.Location = new System.Drawing.Point(61, 185);
+            this.elVelLabelMin.Location = new System.Drawing.Point(46, 150);
+            this.elVelLabelMin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.elVelLabelMin.Name = "elVelLabelMin";
-            this.elVelLabelMin.Size = new System.Drawing.Size(14, 16);
+            this.elVelLabelMin.Size = new System.Drawing.Size(13, 13);
             this.elVelLabelMin.TabIndex = 40;
             this.elVelLabelMin.Text = "1";
             this.elVelLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
@@ -323,9 +325,10 @@
             // elVelLabelMax
             // 
             this.elVelLabelMax.AutoSize = true;
-            this.elVelLabelMax.Location = new System.Drawing.Point(61, 53);
+            this.elVelLabelMax.Location = new System.Drawing.Point(46, 43);
+            this.elVelLabelMax.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.elVelLabelMax.Name = "elVelLabelMax";
-            this.elVelLabelMax.Size = new System.Drawing.Size(21, 16);
+            this.elVelLabelMax.Size = new System.Drawing.Size(19, 13);
             this.elVelLabelMax.TabIndex = 39;
             this.elVelLabelMax.Text = "90";
             this.elVelLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
@@ -333,10 +336,10 @@
             // elVelTextBoxTx
             // 
             this.elVelTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.elVelTextBoxTx.Location = new System.Drawing.Point(15, 21);
-            this.elVelTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elVelTextBoxTx.Location = new System.Drawing.Point(11, 17);
+            this.elVelTextBoxTx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.elVelTextBoxTx.Name = "elVelTextBoxTx";
-            this.elVelTextBoxTx.Size = new System.Drawing.Size(81, 22);
+            this.elVelTextBoxTx.Size = new System.Drawing.Size(61, 20);
             this.elVelTextBoxTx.TabIndex = 25;
             this.elVelTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.elVelTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
@@ -344,17 +347,17 @@
             // 
             // elVelSlider
             // 
-            this.elVelSlider.Location = new System.Drawing.Point(25, 49);
-            this.elVelSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elVelSlider.Location = new System.Drawing.Point(19, 40);
+            this.elVelSlider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.elVelSlider.Maximum = 90;
             this.elVelSlider.Minimum = 1;
             this.elVelSlider.Name = "elVelSlider";
             this.elVelSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.elVelSlider.Size = new System.Drawing.Size(56, 162);
+            this.elVelSlider.Size = new System.Drawing.Size(45, 132);
             this.elVelSlider.TabIndex = 10;
             this.elVelSlider.Value = 1;
-            this.elVelSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.elVelSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
+            this.elVelSlider.Scroll += new System.EventHandler(this.SliderUpdatesTextbox);
+            this.elVelSlider.ValueChanged += new System.EventHandler(this.SliderUpdatesTextbox);
             this.elVelSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox7
@@ -362,11 +365,11 @@
             this.groupBox7.BackColor = System.Drawing.SystemColors.Control;
             this.groupBox7.Controls.Add(this.groupBox14);
             this.groupBox7.Controls.Add(this.groupBox13);
-            this.groupBox7.Location = new System.Drawing.Point(382, 336);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox7.Location = new System.Drawing.Point(286, 273);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox7.Size = new System.Drawing.Size(259, 261);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox7.Size = new System.Drawing.Size(194, 212);
             this.groupBox7.TabIndex = 29;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Acceleration (degrees/sec/sec)";
@@ -378,11 +381,11 @@
             this.groupBox14.Controls.Add(this.elAccTextBoxTx);
             this.groupBox14.Controls.Add(this.elAccLabelMax);
             this.groupBox14.Controls.Add(this.elAccSlider);
-            this.groupBox14.Location = new System.Drawing.Point(132, 25);
-            this.groupBox14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox14.Location = new System.Drawing.Point(99, 20);
+            this.groupBox14.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox14.Size = new System.Drawing.Size(109, 222);
+            this.groupBox14.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox14.Size = new System.Drawing.Size(82, 180);
             this.groupBox14.TabIndex = 38;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "Elevation";
@@ -390,9 +393,10 @@
             // elAccLabelMin
             // 
             this.elAccLabelMin.AutoSize = true;
-            this.elAccLabelMin.Location = new System.Drawing.Point(61, 185);
+            this.elAccLabelMin.Location = new System.Drawing.Point(46, 150);
+            this.elAccLabelMin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.elAccLabelMin.Name = "elAccLabelMin";
-            this.elAccLabelMin.Size = new System.Drawing.Size(14, 16);
+            this.elAccLabelMin.Size = new System.Drawing.Size(13, 13);
             this.elAccLabelMin.TabIndex = 44;
             this.elAccLabelMin.Text = "1";
             this.elAccLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
@@ -400,10 +404,10 @@
             // elAccTextBoxTx
             // 
             this.elAccTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.elAccTextBoxTx.Location = new System.Drawing.Point(15, 21);
-            this.elAccTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elAccTextBoxTx.Location = new System.Drawing.Point(11, 17);
+            this.elAccTextBoxTx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.elAccTextBoxTx.Name = "elAccTextBoxTx";
-            this.elAccTextBoxTx.Size = new System.Drawing.Size(81, 22);
+            this.elAccTextBoxTx.Size = new System.Drawing.Size(61, 20);
             this.elAccTextBoxTx.TabIndex = 27;
             this.elAccTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.elAccTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
@@ -412,26 +416,27 @@
             // elAccLabelMax
             // 
             this.elAccLabelMax.AutoSize = true;
-            this.elAccLabelMax.Location = new System.Drawing.Point(61, 53);
+            this.elAccLabelMax.Location = new System.Drawing.Point(46, 43);
+            this.elAccLabelMax.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.elAccLabelMax.Name = "elAccLabelMax";
-            this.elAccLabelMax.Size = new System.Drawing.Size(21, 16);
+            this.elAccLabelMax.Size = new System.Drawing.Size(19, 13);
             this.elAccLabelMax.TabIndex = 43;
             this.elAccLabelMax.Text = "90";
             this.elAccLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
             // 
             // elAccSlider
             // 
-            this.elAccSlider.Location = new System.Drawing.Point(27, 53);
-            this.elAccSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elAccSlider.Location = new System.Drawing.Point(20, 43);
+            this.elAccSlider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.elAccSlider.Maximum = 90;
             this.elAccSlider.Minimum = 1;
             this.elAccSlider.Name = "elAccSlider";
             this.elAccSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.elAccSlider.Size = new System.Drawing.Size(56, 158);
+            this.elAccSlider.Size = new System.Drawing.Size(45, 128);
             this.elAccSlider.TabIndex = 11;
             this.elAccSlider.Value = 1;
-            this.elAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.elAccSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
+            this.elAccSlider.Scroll += new System.EventHandler(this.SliderUpdatesTextbox);
+            this.elAccSlider.ValueChanged += new System.EventHandler(this.SliderUpdatesTextbox);
             this.elAccSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox13
@@ -441,11 +446,11 @@
             this.groupBox13.Controls.Add(this.azAccTextBoxTx);
             this.groupBox13.Controls.Add(this.azAccLabelMin);
             this.groupBox13.Controls.Add(this.azAccSlider);
-            this.groupBox13.Location = new System.Drawing.Point(15, 25);
-            this.groupBox13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox13.Location = new System.Drawing.Point(11, 20);
+            this.groupBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox13.Size = new System.Drawing.Size(109, 222);
+            this.groupBox13.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox13.Size = new System.Drawing.Size(82, 180);
             this.groupBox13.TabIndex = 37;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "Azimuth";
@@ -453,9 +458,10 @@
             // azAccLabelMax
             // 
             this.azAccLabelMax.AutoSize = true;
-            this.azAccLabelMax.Location = new System.Drawing.Point(61, 53);
+            this.azAccLabelMax.Location = new System.Drawing.Point(46, 43);
+            this.azAccLabelMax.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.azAccLabelMax.Name = "azAccLabelMax";
-            this.azAccLabelMax.Size = new System.Drawing.Size(21, 16);
+            this.azAccLabelMax.Size = new System.Drawing.Size(19, 13);
             this.azAccLabelMax.TabIndex = 41;
             this.azAccLabelMax.Text = "90";
             this.azAccLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
@@ -463,10 +469,10 @@
             // azAccTextBoxTx
             // 
             this.azAccTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.azAccTextBoxTx.Location = new System.Drawing.Point(15, 21);
-            this.azAccTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azAccTextBoxTx.Location = new System.Drawing.Point(11, 17);
+            this.azAccTextBoxTx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.azAccTextBoxTx.Name = "azAccTextBoxTx";
-            this.azAccTextBoxTx.Size = new System.Drawing.Size(81, 22);
+            this.azAccTextBoxTx.Size = new System.Drawing.Size(61, 20);
             this.azAccTextBoxTx.TabIndex = 26;
             this.azAccTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.azAccTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
@@ -475,26 +481,27 @@
             // azAccLabelMin
             // 
             this.azAccLabelMin.AutoSize = true;
-            this.azAccLabelMin.Location = new System.Drawing.Point(61, 185);
+            this.azAccLabelMin.Location = new System.Drawing.Point(46, 150);
+            this.azAccLabelMin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.azAccLabelMin.Name = "azAccLabelMin";
-            this.azAccLabelMin.Size = new System.Drawing.Size(14, 16);
+            this.azAccLabelMin.Size = new System.Drawing.Size(13, 13);
             this.azAccLabelMin.TabIndex = 42;
             this.azAccLabelMin.Text = "1";
             this.azAccLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
             // 
             // azAccSlider
             // 
-            this.azAccSlider.Location = new System.Drawing.Point(27, 53);
-            this.azAccSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azAccSlider.Location = new System.Drawing.Point(20, 43);
+            this.azAccSlider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.azAccSlider.Maximum = 90;
             this.azAccSlider.Minimum = 1;
             this.azAccSlider.Name = "azAccSlider";
             this.azAccSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.azAccSlider.Size = new System.Drawing.Size(56, 158);
+            this.azAccSlider.Size = new System.Drawing.Size(45, 128);
             this.azAccSlider.TabIndex = 12;
             this.azAccSlider.Value = 1;
-            this.azAccSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.azAccSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
+            this.azAccSlider.Scroll += new System.EventHandler(this.SliderUpdatesTextbox);
+            this.azAccSlider.ValueChanged += new System.EventHandler(this.SliderUpdatesTextbox);
             this.azAccSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox9
@@ -505,11 +512,11 @@
             this.groupBox9.Controls.Add(this.elPosTextBoxTx);
             this.groupBox9.Controls.Add(this.elPosLabelMin);
             this.groupBox9.Controls.Add(this.elPosSlider);
-            this.groupBox9.Location = new System.Drawing.Point(12, 253);
-            this.groupBox9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox9.Location = new System.Drawing.Point(9, 206);
+            this.groupBox9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox9.Size = new System.Drawing.Size(100, 344);
+            this.groupBox9.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox9.Size = new System.Drawing.Size(75, 280);
             this.groupBox9.TabIndex = 35;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Elevation";
@@ -517,9 +524,10 @@
             // elPosLabelZero
             // 
             this.elPosLabelZero.AutoSize = true;
-            this.elPosLabelZero.Location = new System.Drawing.Point(53, 223);
+            this.elPosLabelZero.Location = new System.Drawing.Point(40, 181);
+            this.elPosLabelZero.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.elPosLabelZero.Name = "elPosLabelZero";
-            this.elPosLabelZero.Size = new System.Drawing.Size(18, 16);
+            this.elPosLabelZero.Size = new System.Drawing.Size(17, 13);
             this.elPosLabelZero.TabIndex = 34;
             this.elPosLabelZero.Text = "0°";
             this.elPosLabelZero.Click += new System.EventHandler(this.LabelZero_Click);
@@ -527,9 +535,10 @@
             // elPosLabelMax
             // 
             this.elPosLabelMax.AutoSize = true;
-            this.elPosLabelMax.Location = new System.Drawing.Point(53, 66);
+            this.elPosLabelMax.Location = new System.Drawing.Point(40, 54);
+            this.elPosLabelMax.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.elPosLabelMax.Name = "elPosLabelMax";
-            this.elPosLabelMax.Size = new System.Drawing.Size(25, 16);
+            this.elPosLabelMax.Size = new System.Drawing.Size(23, 13);
             this.elPosLabelMax.TabIndex = 31;
             this.elPosLabelMax.Text = "83°";
             this.elPosLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
@@ -537,10 +546,10 @@
             // elPosTextBoxTx
             // 
             this.elPosTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.elPosTextBoxTx.Location = new System.Drawing.Point(11, 25);
-            this.elPosTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elPosTextBoxTx.Location = new System.Drawing.Point(8, 20);
+            this.elPosTextBoxTx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.elPosTextBoxTx.Name = "elPosTextBoxTx";
-            this.elPosTextBoxTx.Size = new System.Drawing.Size(81, 22);
+            this.elPosTextBoxTx.Size = new System.Drawing.Size(61, 20);
             this.elPosTextBoxTx.TabIndex = 23;
             this.elPosTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.elPosTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
@@ -549,25 +558,26 @@
             // elPosLabelMin
             // 
             this.elPosLabelMin.AutoSize = true;
-            this.elPosLabelMin.Location = new System.Drawing.Point(53, 293);
+            this.elPosLabelMin.Location = new System.Drawing.Point(40, 238);
+            this.elPosLabelMin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.elPosLabelMin.Name = "elPosLabelMin";
-            this.elPosLabelMin.Size = new System.Drawing.Size(29, 16);
+            this.elPosLabelMin.Size = new System.Drawing.Size(26, 13);
             this.elPosLabelMin.TabIndex = 33;
             this.elPosLabelMin.Text = "-38°";
             this.elPosLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
             // 
             // elPosSlider
             // 
-            this.elPosSlider.Location = new System.Drawing.Point(16, 60);
-            this.elPosSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.elPosSlider.Location = new System.Drawing.Point(12, 49);
+            this.elPosSlider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.elPosSlider.Maximum = 83;
             this.elPosSlider.Minimum = -38;
             this.elPosSlider.Name = "elPosSlider";
             this.elPosSlider.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.elPosSlider.Size = new System.Drawing.Size(56, 259);
+            this.elPosSlider.Size = new System.Drawing.Size(45, 210);
             this.elPosSlider.TabIndex = 8;
-            this.elPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.elPosSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
+            this.elPosSlider.Scroll += new System.EventHandler(this.SliderUpdatesTextbox);
+            this.elPosSlider.ValueChanged += new System.EventHandler(this.SliderUpdatesTextbox);
             this.elPosSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
             // 
             // groupBox10
@@ -577,11 +587,11 @@
             this.groupBox10.Controls.Add(this.azPosLabelMin);
             this.groupBox10.Controls.Add(this.azPosTextBoxTx);
             this.groupBox10.Controls.Add(this.azPosSlider);
-            this.groupBox10.Location = new System.Drawing.Point(117, 253);
-            this.groupBox10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox10.Location = new System.Drawing.Point(88, 206);
+            this.groupBox10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox10.Size = new System.Drawing.Size(524, 79);
+            this.groupBox10.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox10.Size = new System.Drawing.Size(393, 64);
             this.groupBox10.TabIndex = 36;
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Azimuth";
@@ -589,9 +599,10 @@
             // azPosLabelMax
             // 
             this.azPosLabelMax.AutoSize = true;
-            this.azPosLabelMax.Location = new System.Drawing.Point(481, 26);
+            this.azPosLabelMax.Location = new System.Drawing.Point(361, 21);
+            this.azPosLabelMax.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.azPosLabelMax.Name = "azPosLabelMax";
-            this.azPosLabelMax.Size = new System.Drawing.Size(32, 16);
+            this.azPosLabelMax.Size = new System.Drawing.Size(29, 13);
             this.azPosLabelMax.TabIndex = 32;
             this.azPosLabelMax.Text = "360°";
             this.azPosLabelMax.Click += new System.EventHandler(this.LabelMax_Click);
@@ -599,9 +610,10 @@
             // azPosLabelMin
             // 
             this.azPosLabelMin.AutoSize = true;
-            this.azPosLabelMin.Location = new System.Drawing.Point(103, 26);
+            this.azPosLabelMin.Location = new System.Drawing.Point(77, 21);
+            this.azPosLabelMin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.azPosLabelMin.Name = "azPosLabelMin";
-            this.azPosLabelMin.Size = new System.Drawing.Size(18, 16);
+            this.azPosLabelMin.Size = new System.Drawing.Size(17, 13);
             this.azPosLabelMin.TabIndex = 30;
             this.azPosLabelMin.Text = "0°";
             this.azPosLabelMin.Click += new System.EventHandler(this.LabelMin_Click);
@@ -609,10 +621,10 @@
             // azPosTextBoxTx
             // 
             this.azPosTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.azPosTextBoxTx.Location = new System.Drawing.Point(12, 25);
-            this.azPosTextBoxTx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azPosTextBoxTx.Location = new System.Drawing.Point(9, 20);
+            this.azPosTextBoxTx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.azPosTextBoxTx.Name = "azPosTextBoxTx";
-            this.azPosTextBoxTx.Size = new System.Drawing.Size(81, 22);
+            this.azPosTextBoxTx.Size = new System.Drawing.Size(61, 20);
             this.azPosTextBoxTx.TabIndex = 22;
             this.azPosTextBoxTx.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.azPosTextBoxTx.TextChanged += new System.EventHandler(this.TextBoxTx_TextChanged);
@@ -620,36 +632,21 @@
             // 
             // azPosSlider
             // 
-            this.azPosSlider.Location = new System.Drawing.Point(116, 18);
-            this.azPosSlider.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.azPosSlider.Location = new System.Drawing.Point(87, 15);
+            this.azPosSlider.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.azPosSlider.Maximum = 360;
             this.azPosSlider.Name = "azPosSlider";
-            this.azPosSlider.Size = new System.Drawing.Size(362, 56);
+            this.azPosSlider.Size = new System.Drawing.Size(272, 45);
             this.azPosSlider.TabIndex = 7;
-            this.azPosSlider.Scroll += new System.EventHandler(this.Slider_Scroll);
-            this.azPosSlider.ValueChanged += new System.EventHandler(this.Slider_Scroll);
+            this.azPosSlider.Scroll += new System.EventHandler(this.SliderUpdatesTextbox);
+            this.azPosSlider.ValueChanged += new System.EventHandler(this.SliderUpdatesTextbox);
             this.azPosSlider.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Slider_MouseUp);
-            // 
-            // sendMode
-            // 
-            this.sendMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.sendMode.FormattingEnabled = true;
-            this.sendMode.Items.AddRange(new object[] {
-            "Use Position Controls",
-            "Sweep"});
-            this.sendMode.Location = new System.Drawing.Point(72, 25);
-            this.sendMode.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.sendMode.Name = "sendMode";
-            this.sendMode.Size = new System.Drawing.Size(198, 24);
-            this.sendMode.TabIndex = 37;
-            this.sendMode.SelectedIndexChanged += new System.EventHandler(this.sendSettingChanged);
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(27, 22);
-            this.btnSend.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSend.Location = new System.Drawing.Point(20, 18);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(154, 28);
+            this.btnSend.Size = new System.Drawing.Size(116, 23);
             this.btnSend.TabIndex = 4;
             this.btnSend.Text = "Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -664,28 +661,30 @@
             "1 Hz",
             "10 Hz",
             "Continuous"});
-            this.sendRate.Location = new System.Drawing.Point(451, 601);
-            this.sendRate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.sendRate.Location = new System.Drawing.Point(337, 489);
+            this.sendRate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.sendRate.Name = "sendRate";
-            this.sendRate.Size = new System.Drawing.Size(146, 24);
+            this.sendRate.Size = new System.Drawing.Size(110, 21);
             this.sendRate.TabIndex = 37;
             this.sendRate.SelectedIndexChanged += new System.EventHandler(this.sendSettingChanged);
             // 
             // validCounterDisplay
             // 
             this.validCounterDisplay.BackColor = System.Drawing.SystemColors.Window;
-            this.validCounterDisplay.Location = new System.Drawing.Point(200, 26);
+            this.validCounterDisplay.Location = new System.Drawing.Point(150, 21);
+            this.validCounterDisplay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.validCounterDisplay.Name = "validCounterDisplay";
-            this.validCounterDisplay.Size = new System.Drawing.Size(88, 21);
+            this.validCounterDisplay.Size = new System.Drawing.Size(66, 17);
             this.validCounterDisplay.TabIndex = 51;
             this.validCounterDisplay.Text = "0";
             this.validCounterDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnShort
             // 
-            this.btnShort.Location = new System.Drawing.Point(27, 38);
+            this.btnShort.Location = new System.Drawing.Point(19, 26);
+            this.btnShort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnShort.Name = "btnShort";
-            this.btnShort.Size = new System.Drawing.Size(154, 28);
+            this.btnShort.Size = new System.Drawing.Size(116, 23);
             this.btnShort.TabIndex = 45;
             this.btnShort.Text = "Short packet";
             this.btnShort.UseVisualStyleBackColor = true;
@@ -693,9 +692,10 @@
             // 
             // btnLong
             // 
-            this.btnLong.Location = new System.Drawing.Point(27, 68);
+            this.btnLong.Location = new System.Drawing.Point(19, 51);
+            this.btnLong.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLong.Name = "btnLong";
-            this.btnLong.Size = new System.Drawing.Size(154, 28);
+            this.btnLong.Size = new System.Drawing.Size(116, 23);
             this.btnLong.TabIndex = 46;
             this.btnLong.Text = "Long packet";
             this.btnLong.UseVisualStyleBackColor = true;
@@ -703,9 +703,10 @@
             // 
             // btnAllSync
             // 
-            this.btnAllSync.Location = new System.Drawing.Point(27, 98);
+            this.btnAllSync.Location = new System.Drawing.Point(19, 76);
+            this.btnAllSync.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnAllSync.Name = "btnAllSync";
-            this.btnAllSync.Size = new System.Drawing.Size(154, 28);
+            this.btnAllSync.Size = new System.Drawing.Size(116, 23);
             this.btnAllSync.TabIndex = 47;
             this.btnAllSync.Text = "All sync characters";
             this.btnAllSync.UseVisualStyleBackColor = true;
@@ -719,9 +720,11 @@
             this.groupBox1.Controls.Add(this.btnShort);
             this.groupBox1.Controls.Add(this.btnAllSync);
             this.groupBox1.Controls.Add(this.btnLong);
-            this.groupBox1.Location = new System.Drawing.Point(322, 31);
+            this.groupBox1.Location = new System.Drawing.Point(242, 25);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(319, 150);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Size = new System.Drawing.Size(239, 122);
             this.groupBox1.TabIndex = 48;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Send Corrupt Packets";
@@ -729,9 +732,10 @@
             // syncCountDisplay
             // 
             this.syncCountDisplay.BackColor = System.Drawing.SystemColors.Window;
-            this.syncCountDisplay.Location = new System.Drawing.Point(200, 102);
+            this.syncCountDisplay.Location = new System.Drawing.Point(149, 79);
+            this.syncCountDisplay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.syncCountDisplay.Name = "syncCountDisplay";
-            this.syncCountDisplay.Size = new System.Drawing.Size(88, 21);
+            this.syncCountDisplay.Size = new System.Drawing.Size(66, 17);
             this.syncCountDisplay.TabIndex = 50;
             this.syncCountDisplay.Text = "0";
             this.syncCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -739,9 +743,10 @@
             // longCountDisplay
             // 
             this.longCountDisplay.BackColor = System.Drawing.SystemColors.Window;
-            this.longCountDisplay.Location = new System.Drawing.Point(200, 72);
+            this.longCountDisplay.Location = new System.Drawing.Point(149, 53);
+            this.longCountDisplay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.longCountDisplay.Name = "longCountDisplay";
-            this.longCountDisplay.Size = new System.Drawing.Size(88, 21);
+            this.longCountDisplay.Size = new System.Drawing.Size(66, 17);
             this.longCountDisplay.TabIndex = 49;
             this.longCountDisplay.Text = "0";
             this.longCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -749,9 +754,10 @@
             // shortCountDisplay
             // 
             this.shortCountDisplay.BackColor = System.Drawing.SystemColors.Window;
-            this.shortCountDisplay.Location = new System.Drawing.Point(200, 42);
+            this.shortCountDisplay.Location = new System.Drawing.Point(149, 29);
+            this.shortCountDisplay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.shortCountDisplay.Name = "shortCountDisplay";
-            this.shortCountDisplay.Size = new System.Drawing.Size(88, 21);
+            this.shortCountDisplay.Size = new System.Drawing.Size(66, 17);
             this.shortCountDisplay.TabIndex = 48;
             this.shortCountDisplay.Text = "0";
             this.shortCountDisplay.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -760,30 +766,33 @@
             // 
             this.updateCounterTimer.Tick += new System.EventHandler(this.updateCounterTimer_Tick);
             // 
-            // checkControlSend
+            // sendOnChange
             // 
-            this.checkControlSend.AutoSize = true;
-            this.checkControlSend.Location = new System.Drawing.Point(32, 603);
-            this.checkControlSend.Name = "checkControlSend";
-            this.checkControlSend.Size = new System.Drawing.Size(207, 20);
-            this.checkControlSend.TabIndex = 53;
-            this.checkControlSend.Text = "moving controls sends packet";
-            this.checkControlSend.UseVisualStyleBackColor = true;
+            this.sendOnChange.AutoSize = true;
+            this.sendOnChange.Location = new System.Drawing.Point(27, 492);
+            this.sendOnChange.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sendOnChange.Name = "sendOnChange";
+            this.sendOnChange.Size = new System.Drawing.Size(167, 17);
+            this.sendOnChange.TabIndex = 53;
+            this.sendOnChange.Text = "moving controls sends packet";
+            this.sendOnChange.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(401, 604);
+            this.label8.Location = new System.Drawing.Point(300, 492);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 16);
+            this.label8.Size = new System.Drawing.Size(33, 13);
             this.label8.TabIndex = 0;
             this.label8.Text = "Rate:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(21, 28);
+            this.label9.Location = new System.Drawing.Point(9, 23);
+            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 16);
+            this.label9.Size = new System.Drawing.Size(37, 13);
             this.label9.TabIndex = 55;
             this.label9.Text = "Mode:";
             // 
@@ -791,32 +800,63 @@
             // 
             this.groupBox2.Controls.Add(this.validCounterDisplay);
             this.groupBox2.Controls.Add(this.btnSend);
-            this.groupBox2.Location = new System.Drawing.Point(322, 180);
+            this.groupBox2.Location = new System.Drawing.Point(242, 146);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(319, 68);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(239, 55);
             this.groupBox2.TabIndex = 56;
             this.groupBox2.TabStop = false;
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.sendMode);
             this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Location = new System.Drawing.Point(12, 180);
+            this.groupBox3.Controls.Add(this.btnModeSweep);
+            this.groupBox3.Controls.Add(this.btnModeControls);
+            this.groupBox3.Location = new System.Drawing.Point(9, 146);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(301, 68);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Size = new System.Drawing.Size(226, 55);
             this.groupBox3.TabIndex = 57;
             this.groupBox3.TabStop = false;
             // 
+            // btnModeSweep
+            // 
+            this.btnModeSweep.Appearance = System.Windows.Forms.Appearance.Button;
+            this.btnModeSweep.AutoSize = true;
+            this.btnModeSweep.Location = new System.Drawing.Point(166, 18);
+            this.btnModeSweep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnModeSweep.Name = "btnModeSweep";
+            this.btnModeSweep.Size = new System.Drawing.Size(50, 23);
+            this.btnModeSweep.TabIndex = 59;
+            this.btnModeSweep.Text = "Sweep";
+            this.btnModeSweep.UseVisualStyleBackColor = true;
+            this.btnModeSweep.Click += new System.EventHandler(this.btnModeSweep_Click);
+            // 
+            // btnModeControls
+            // 
+            this.btnModeControls.Appearance = System.Windows.Forms.Appearance.Button;
+            this.btnModeControls.AutoSize = true;
+            this.btnModeControls.Location = new System.Drawing.Point(47, 18);
+            this.btnModeControls.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnModeControls.Name = "btnModeControls";
+            this.btnModeControls.Size = new System.Drawing.Size(117, 23);
+            this.btnModeControls.TabIndex = 0;
+            this.btnModeControls.Text = "Use Position Controls";
+            this.btnModeControls.UseVisualStyleBackColor = true;
+            this.btnModeControls.Click += new System.EventHandler(this.btnModeControls_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(649, 633);
+            this.ClientSize = new System.Drawing.Size(489, 514);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.sendRate);
-            this.Controls.Add(this.checkControlSend);
+            this.Controls.Add(this.sendOnChange);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox7);
@@ -828,7 +868,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "MODE5 Tester";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -903,7 +942,6 @@
         private System.Windows.Forms.TrackBar azAccSlider;
         private System.Windows.Forms.ComboBox sendRate;
         private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.ComboBox sendMode;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.Label azPosLabelMax;
         private System.Windows.Forms.Label azPosLabelMin;
@@ -924,11 +962,13 @@
         private System.Windows.Forms.Label shortCountDisplay;
         private System.Windows.Forms.Label validCounterDisplay;
         private System.Windows.Forms.Timer updateCounterTimer;
-        private System.Windows.Forms.CheckBox checkControlSend;
+        private System.Windows.Forms.CheckBox sendOnChange;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox btnModeSweep;
+        private System.Windows.Forms.CheckBox btnModeControls;
     }
 }
 

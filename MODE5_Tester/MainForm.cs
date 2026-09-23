@@ -70,15 +70,16 @@ namespace MODE5_Tester
             elAccTextBoxTx.Text = elAccSlider.Value.ToString();
 
             sendRate.SelectedIndex = 0;
-            sendMode.SelectedIndex = 0;
+            btnModeControls.Checked = true;
+            btnModeSweep.Checked = false;
 
         }
 
         #region Globals
         private readonly int[] baudrate = { 9600, 19200, 38400, 115200, 230400, 460800, 921600, 3860000 };
-        
+
         private readonly int MODE5_PACKET_SIZE = 24;
-        
+
         private readonly byte MODE5_SYNC_CHAR = 0xAA;
 
         private SerialPort Serial = new SerialPort();
@@ -211,7 +212,7 @@ namespace MODE5_Tester
             // setup rest of the GUI
             UpdateInputEnabled();
             RememberInputs();
-            checkControlSend.Checked = false;
+            sendOnChange.Checked = false;
 
             // focus the Connect button so user can just hit ENTER to right after startup
             ActiveControl = btnConnect;
@@ -237,7 +238,7 @@ namespace MODE5_Tester
             aboutForm.ShowDialog();
         }
 
-        private void Slider_Scroll(object sender, EventArgs e)
+        private void SliderUpdatesTextbox(object sender, EventArgs e)
         {
             TrackBar slider = (TrackBar)sender;
             TextBox textBox = (TextBox)slider.Tag;
@@ -367,34 +368,23 @@ namespace MODE5_Tester
             UpdatePacketCounter();
         }
 
+        private void btnModeControls_Click(object sender, EventArgs e)
+        {
+            btnModeControls.Checked = true;
+            btnModeSweep.Checked = false;
+            sendSettingChanged_M();
+        }
+
+        private void btnModeSweep_Click(object sender, EventArgs e)
+        {
+            btnModeControls.Checked = false;
+            btnModeSweep.Checked = true;
+            sendSettingChanged_M();
+        }
+
         private void sendSettingChanged(object sender, EventArgs e)
         {
-
-            if (!prevWasSweep)
-            {
-                // commit previous settings to memory
-                RememberInputs();
-            }
-
-            if (sendMode.Text == "Sweep")
-            {
-                SetupSweep();
-            }
-            else
-            {
-                // recall previous non-sweep settings
-                azPosTextBoxTx.Text = memoryAzPos;
-                elPosTextBoxTx.Text = memoryElPos;
-                azVelTextBoxTx.Text = memoryAzVel;
-                elVelTextBoxTx.Text = memoryElVel;
-                azAccTextBoxTx.Text = memoryAzAcc;
-                elAccTextBoxTx.Text = memoryElAcc;
-                sendRate.Enabled = true;
-                prevWasSweep = false;
-            }
-
-            UpdateInputEnabled();
-            UpdateSendButton();
+            sendSettingChanged_M();
         }
 
         private void btnSend_Click(object sender, EventArgs e)
@@ -405,7 +395,7 @@ namespace MODE5_Tester
                 {
                     if (!isSending)
                     {
-                        if (sendMode.Text == "Use Position Controls")
+                        if (btnModeControls.Checked)
                         {
                             if (sendRate.Text == "Single Packet")
                             {
@@ -458,16 +448,18 @@ namespace MODE5_Tester
 
                                 }
                                 SetSweepInput();
-                                sendMode.Enabled = false;
+                                btnModeSweep.Enabled = false;
+                                btnModeControls.Enabled = false;
                                 isSending = true;
                             }
                         }
-                        else if (sendMode.Text == "Sweep")
+                        else if (btnModeSweep.Checked)
                         {
                             ConstructAndSendPacket();
                             UpdatePacketCounter();
                             sweepTimer.Start();
-                            sendMode.Enabled = false;
+                            btnModeSweep.Enabled = false;
+                            btnModeControls.Enabled = false;
                             isSending = true;
                         }
                     }
@@ -612,7 +604,7 @@ namespace MODE5_Tester
             {
                 btnSend.Text = "Stop";
             }
-            else if (sendRate.Text == "Single Packet" && sendMode.Text == "Use Position Controls")
+            else if (sendRate.Text == "Single Packet" && btnModeControls.Checked)
             {
                 btnSend.Text = "Send";
             }
@@ -637,7 +629,7 @@ namespace MODE5_Tester
 
             // stop sweep mode
             sweepTimer.Stop();
-            if (sendMode.Text == "Sweep")
+            if (btnModeSweep.Checked)
             {
                 // need to reset the sweep vars here, because they get initiated when Sweep is selected, not what it starts
                 SetupSweep();
@@ -771,8 +763,9 @@ namespace MODE5_Tester
 
             btnSend.Enabled = enabled;
             sendRate.Enabled = enabled;
-            sendMode.Enabled = enabled;
-            checkControlSend.Enabled = enabled;
+            btnModeSweep.Enabled = enabled;
+            btnModeControls.Enabled = enabled;
+            sendOnChange.Enabled = enabled;
         }
 
         private void SetSweepInput()
@@ -798,7 +791,7 @@ namespace MODE5_Tester
             elAccSlider.Enabled = false;
 
             sendRate.Enabled = false;
-            checkControlSend.Enabled = false;
+            sendOnChange.Enabled = false;
         }
 
         private void UpdateInputEnabled()
@@ -807,7 +800,7 @@ namespace MODE5_Tester
             {
                 SetInputEnabled(false);
             }
-            else if (sendMode.Text == "Sweep")
+            else if (btnModeSweep.Checked)
             {
                 SetSweepInput();
             }
@@ -850,11 +843,43 @@ namespace MODE5_Tester
 
         private void SeeToggleSend()
         {
-            if (checkControlSend.Checked)
+            if (sendOnChange.Checked)
             {
                 ConstructAndSendPacket();
                 UpdatePacketCounter();
             }
+        }
+
+        private void sendSettingChanged_M()
+        {
+
+            if (!prevWasSweep)
+            {
+                // commit previous settings to memory
+                RememberInputs();
+            }
+
+            if (btnModeSweep.Checked)
+            {
+                btnModeControls.Checked = false;
+                SetupSweep();
+            }
+            else
+            {
+                btnModeSweep.Checked = false;
+                // recall previous non-sweep settings
+                azPosTextBoxTx.Text = memoryAzPos;
+                elPosTextBoxTx.Text = memoryElPos;
+                azVelTextBoxTx.Text = memoryAzVel;
+                elVelTextBoxTx.Text = memoryElVel;
+                azAccTextBoxTx.Text = memoryAzAcc;
+                elAccTextBoxTx.Text = memoryElAcc;
+                sendRate.Enabled = true;
+                prevWasSweep = false;
+            }
+
+            UpdateInputEnabled();
+            UpdateSendButton();
         }
 
         #endregion

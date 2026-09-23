@@ -71,7 +71,7 @@ namespace MODE5_Tester
 
             sendRate.SelectedIndex = 0;
             btnModeControls.Checked = true;
-            btnModeSweep.Checked = false;
+            //btnModeSweep.Checked = false;
 
         }
 
@@ -368,17 +368,8 @@ namespace MODE5_Tester
             UpdatePacketCounter();
         }
 
-        private void btnModeControls_Click(object sender, EventArgs e)
+        private void btnMode_Click(object sender, EventArgs e)
         {
-            btnModeControls.Checked = true;
-            btnModeSweep.Checked = false;
-            sendSettingChanged_M();
-        }
-
-        private void btnModeSweep_Click(object sender, EventArgs e)
-        {
-            btnModeControls.Checked = false;
-            btnModeSweep.Checked = true;
             sendSettingChanged_M();
         }
 
@@ -861,12 +852,12 @@ namespace MODE5_Tester
 
             if (btnModeSweep.Checked)
             {
-                btnModeControls.Checked = false;
+                //btnModeControls.Checked = false;
                 SetupSweep();
             }
             else
             {
-                btnModeSweep.Checked = false;
+                //btnModeSweep.Checked = false;
                 // recall previous non-sweep settings
                 azPosTextBoxTx.Text = memoryAzPos;
                 elPosTextBoxTx.Text = memoryElPos;

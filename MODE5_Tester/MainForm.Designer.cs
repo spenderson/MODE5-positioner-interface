@@ -90,8 +90,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnModeSweep = new System.Windows.Forms.CheckBox();
-            this.btnModeControls = new System.Windows.Forms.CheckBox();
+            this.btnModeControls = new System.Windows.Forms.RadioButton();
+            this.btnModeSweep = new System.Windows.Forms.RadioButton();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -119,7 +119,7 @@
             this.cboxComport.FormattingEnabled = true;
             this.cboxComport.Location = new System.Drawing.Point(47, 28);
             this.cboxComport.Name = "cboxComport";
-            this.cboxComport.Size = new System.Drawing.Size(78, 21);
+            this.cboxComport.Size = new System.Drawing.Size(84, 21);
             this.cboxComport.TabIndex = 0;
             // 
             // btnConnect
@@ -138,7 +138,7 @@
             this.cboxBaudrate.FormattingEnabled = true;
             this.cboxBaudrate.Location = new System.Drawing.Point(47, 53);
             this.cboxBaudrate.Name = "cboxBaudrate";
-            this.cboxBaudrate.Size = new System.Drawing.Size(78, 21);
+            this.cboxBaudrate.Size = new System.Drawing.Size(84, 21);
             this.cboxBaudrate.TabIndex = 2;
             // 
             // btnRefresh
@@ -446,7 +446,7 @@
             this.groupBox13.Controls.Add(this.azAccTextBoxTx);
             this.groupBox13.Controls.Add(this.azAccLabelMin);
             this.groupBox13.Controls.Add(this.azAccSlider);
-            this.groupBox13.Location = new System.Drawing.Point(11, 20);
+            this.groupBox13.Location = new System.Drawing.Point(12, 20);
             this.groupBox13.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -546,7 +546,7 @@
             // elPosTextBoxTx
             // 
             this.elPosTextBoxTx.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.elPosTextBoxTx.Location = new System.Drawing.Point(8, 20);
+            this.elPosTextBoxTx.Location = new System.Drawing.Point(7, 20);
             this.elPosTextBoxTx.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.elPosTextBoxTx.Name = "elPosTextBoxTx";
             this.elPosTextBoxTx.Size = new System.Drawing.Size(61, 20);
@@ -810,8 +810,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.btnModeSweep);
+            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.btnModeControls);
             this.groupBox3.Location = new System.Drawing.Point(9, 146);
             this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
@@ -821,37 +821,37 @@
             this.groupBox3.TabIndex = 57;
             this.groupBox3.TabStop = false;
             // 
-            // btnModeSweep
-            // 
-            this.btnModeSweep.Appearance = System.Windows.Forms.Appearance.Button;
-            this.btnModeSweep.AutoSize = true;
-            this.btnModeSweep.Location = new System.Drawing.Point(166, 18);
-            this.btnModeSweep.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnModeSweep.Name = "btnModeSweep";
-            this.btnModeSweep.Size = new System.Drawing.Size(50, 23);
-            this.btnModeSweep.TabIndex = 59;
-            this.btnModeSweep.Text = "Sweep";
-            this.btnModeSweep.UseVisualStyleBackColor = true;
-            this.btnModeSweep.Click += new System.EventHandler(this.btnModeSweep_Click);
-            // 
             // btnModeControls
             // 
             this.btnModeControls.Appearance = System.Windows.Forms.Appearance.Button;
             this.btnModeControls.AutoSize = true;
             this.btnModeControls.Location = new System.Drawing.Point(47, 18);
-            this.btnModeControls.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnModeControls.Name = "btnModeControls";
             this.btnModeControls.Size = new System.Drawing.Size(117, 23);
-            this.btnModeControls.TabIndex = 0;
+            this.btnModeControls.TabIndex = 58;
+            this.btnModeControls.TabStop = true;
             this.btnModeControls.Text = "Use Position Controls";
             this.btnModeControls.UseVisualStyleBackColor = true;
-            this.btnModeControls.Click += new System.EventHandler(this.btnModeControls_Click);
+            this.btnModeControls.Click += new System.EventHandler(this.btnMode_Click);
+            // 
+            // btnModeSweep
+            // 
+            this.btnModeSweep.Appearance = System.Windows.Forms.Appearance.Button;
+            this.btnModeSweep.AutoSize = true;
+            this.btnModeSweep.Location = new System.Drawing.Point(166, 18);
+            this.btnModeSweep.Name = "btnModeSweep";
+            this.btnModeSweep.Size = new System.Drawing.Size(50, 23);
+            this.btnModeSweep.TabIndex = 59;
+            this.btnModeSweep.TabStop = true;
+            this.btnModeSweep.Text = "Sweep";
+            this.btnModeSweep.UseVisualStyleBackColor = true;
+            this.btnModeSweep.Click += new System.EventHandler(this.btnMode_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 514);
+            this.ClientSize = new System.Drawing.Size(489, 515);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.label8);
@@ -967,8 +967,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.CheckBox btnModeSweep;
-        private System.Windows.Forms.CheckBox btnModeControls;
+        private System.Windows.Forms.RadioButton btnModeControls;
+        private System.Windows.Forms.RadioButton btnModeSweep;
     }
 }
 

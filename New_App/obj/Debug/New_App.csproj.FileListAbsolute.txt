@@ -1,0 +1,11 @@
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\bin\Debug\New_App.exe.config
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\bin\Debug\New_App.exe
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\bin\Debug\New_App.pdb
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\obj\Debug\New_App.csproj.AssemblyReference.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\obj\Debug\New_App.AboutForm.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\obj\Debug\New_App.MainForm.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\obj\Debug\New_App.Properties.Resources.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\obj\Debug\New_App.csproj.GenerateResource.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\obj\Debug\New_App.csproj.CoreCompileInputs.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\obj\Debug\New_App.exe
+C:\Users\spenc\source\repos\CSharp_SerialPort\New_App\obj\Debug\New_App.pdb

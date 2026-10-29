@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serial", "Serial\Serial.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MODE5_Tester", "MODE5_Tester\MODE5_Tester.csproj", "{6C7B8EE2-ABE6-4C6C-85AA-1705A053E69D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "New_App", "New_App\New_App.csproj", "{1688757F-DC13-4DC3-9230-2DD788FEF551}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6C7B8EE2-ABE6-4C6C-85AA-1705A053E69D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C7B8EE2-ABE6-4C6C-85AA-1705A053E69D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C7B8EE2-ABE6-4C6C-85AA-1705A053E69D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1688757F-DC13-4DC3-9230-2DD788FEF551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1688757F-DC13-4DC3-9230-2DD788FEF551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1688757F-DC13-4DC3-9230-2DD788FEF551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1688757F-DC13-4DC3-9230-2DD788FEF551}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

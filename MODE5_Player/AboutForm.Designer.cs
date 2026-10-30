@@ -1,4 +1,4 @@
-﻿namespace New_App
+﻿namespace MODE5_Player
 {
     partial class AboutForm
     {

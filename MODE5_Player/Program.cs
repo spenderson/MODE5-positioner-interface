@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace New_App
+namespace MODE5_Player
 {
     internal static class Program
     {

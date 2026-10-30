@@ -13,7 +13,7 @@ using System.IO.Ports;
 using System.Net;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace New_App
+namespace MODE5_Player
 {
     public partial class MainForm : Form
     {
@@ -28,6 +28,7 @@ namespace New_App
 
         #region Globals
         private readonly int[] baudrate = { 9600, 19200, 38400, 115200, 230400, 460800, 921600, 3860000 };
+        private readonly int[] sendratelist = { 1, 5, 10, 20 };
 
         private readonly int MODE5_PACKET_SIZE = 24;
 
@@ -292,6 +293,12 @@ namespace New_App
             foreach (var baud in baudrate)
             {
                 cboxBaudrate.Items.Add(baud.ToString());
+            }
+
+            // populate packet send rates
+            foreach (var sendrate in sendratelist)
+            {
+                cboxSendrate.Items.Add(sendrate.ToString());
             }
 
         }

@@ -1,4 +1,4 @@
-﻿namespace New_App
+﻿namespace MODE5_Player
 {
     partial class MainForm
     {
@@ -39,6 +39,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSendRdf = new System.Windows.Forms.Button();
+            this.cboxSendrate = new System.Windows.Forms.ComboBox();
             this.groupBox4.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -150,11 +151,20 @@
             this.btnSendRdf.UseVisualStyleBackColor = true;
             this.btnSendRdf.Click += new System.EventHandler(this.btnSendRdf_Click);
             // 
+            // cboxSendrate
+            // 
+            this.cboxSendrate.FormattingEnabled = true;
+            this.cboxSendrate.Location = new System.Drawing.Point(381, 109);
+            this.cboxSendrate.Name = "cboxSendrate";
+            this.cboxSendrate.Size = new System.Drawing.Size(121, 24);
+            this.cboxSendrate.TabIndex = 55;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(545, 224);
+            this.Controls.Add(this.cboxSendrate);
             this.Controls.Add(this.btnSendRdf);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.menuStrip1);
@@ -164,7 +174,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
-            this.Text = "New App";
+            this.Text = "MODE5 Player";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
@@ -187,6 +197,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button btnSendRdf;
+        private System.Windows.Forms.ComboBox cboxSendrate;
     }
 }
 

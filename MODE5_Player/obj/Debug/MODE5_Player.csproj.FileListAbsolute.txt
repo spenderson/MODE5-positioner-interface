@@ -1,0 +1,11 @@
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\obj\Debug\MODE5_Player.csproj.AssemblyReference.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\obj\Debug\MODE5_Player.AboutForm.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\obj\Debug\MODE5_Player.MainForm.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\obj\Debug\MODE5_Player.csproj.GenerateResource.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\obj\Debug\MODE5_Player.csproj.CoreCompileInputs.cache
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\bin\Debug\MODE5_Player.exe.config
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\bin\Debug\MODE5_Player.exe
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\bin\Debug\MODE5_Player.pdb
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\obj\Debug\MODE5_Player.Properties.Resources.resources
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\obj\Debug\MODE5_Player.exe
+C:\Users\spenc\source\repos\CSharp_SerialPort\MODE5_Player\obj\Debug\MODE5_Player.pdb

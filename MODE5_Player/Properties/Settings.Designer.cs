@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace New_App.Properties {
+namespace MODE5_Player.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

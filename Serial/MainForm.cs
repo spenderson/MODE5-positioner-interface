@@ -244,12 +244,25 @@ namespace Serial
         void SerialOnReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             // Add received bytes to buffer
-            int busRxMax = 100;
-            byte[] rxBufferLocal = new byte[busRxMax];
-            int numBytesReceived = Serial.Read(rxBufferLocal, 0, busRxMax);
-            for (int i = 0; i < numBytesReceived; i++)
+
+            //int busRxMax = 100;
+            //byte[] rxBufferLocal = new byte[busRxMax];
+            //int numBytesReceived = Serial.Read(rxBufferLocal, 0, busRxMax);
+            //for (int i = 0; i < numBytesReceived; i++)
+            //{
+            //    rxBuffer.Add(rxBufferLocal[i]);
+            //}
+
+            byte[] rxBufferLocal = new byte[4096];
+            while (Serial.BytesToRead > 0)
             {
-                rxBuffer.Add(rxBufferLocal[i]);
+                int numBytesReceived = Serial.Read(
+                    rxBufferLocal, 0, rxBufferLocal.Length);
+
+                for (int i = 0; i < numBytesReceived; i++)
+                {
+                    rxBuffer.Add(rxBufferLocal[i]);
+                }
             }
 
             int firstSyncChar;
